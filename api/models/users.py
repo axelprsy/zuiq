@@ -1,5 +1,5 @@
 import datetime
-from functions.hash import hashpassword
+from functions.hash import hash_password
 from functions.connect_db import connect_db, disconnect_db
 from flask import jsonify
 from flask_restful import Resource, reqparse
@@ -13,7 +13,7 @@ class User(Resource):
         parser.add_argument("password", required=True, location="form")
         args = parser.parse_args()
 
-        password = hashpassword(args["password"])
+        password = hash_password(args["password"])
         conn = connect_db()
         cursor = conn.cursor()
         cursor.execute('''
@@ -115,7 +115,7 @@ class Users(Resource):
 
         res = []
         for user in users:
-            res.append({"user_id": user[0], "username": user[1], "email": user[2], "created_at": user[4]})
+            res.append({"user_id": user[0], "email": user[1], "username": user[2], "created_at": user[4]})
 
         cursor.close()
         disconnect_db(conn)
