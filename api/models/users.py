@@ -12,7 +12,7 @@ class User(Resource):
         parser.add_argument("password", required=True, location="form")
         args = parser.parse_args()
 
-        conn = connect_db()  # Utilisez la fonction importée
+        conn = connect_db()
         cursor = conn.cursor()
         cursor.execute('''
         INSERT INTO users (username, email, password)
