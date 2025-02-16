@@ -41,8 +41,9 @@ class User(Resource):
                     print(f"SELECT * FROM users WHERE {i} = ?", (args[i],))
                     cursor.execute(f"SELECT * FROM users WHERE {i} = ?", (args[i],))
                     user = cursor.fetchone()
+                    print(user)
 
-            res = {"user_id": user[0], "username": user[1], "email": user[2], "created_at": user[4]}
+            res = {"user_id": user[0], "email": user[1], "username": user[2], "created_at": user[4]}
             cursor.close()
             disconnect_db(conn)
 
