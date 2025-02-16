@@ -7,7 +7,7 @@ cursor.execute('''
 CREATE TABLE users (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT, -- Identifiant unique auto-incrémenté
     email TEXT NOT NULL UNIQUE,          -- Adresse e-mail unique
-    username TEXT NOT NULL,              -- Nom d'utilisateur
+    username TEXT NOT NULL UNIQUE,              -- Nom d'utilisateur
     password TEXT NOT NULL,              -- Mot de passe hashé
     created_at TEXT DEFAULT CURRENT_TIMESTAMP -- Date et heure de création (automatique)
 )
