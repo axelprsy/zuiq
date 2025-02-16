@@ -1,4 +1,5 @@
 import datetime
+from functions.hash import hashpassword
 from functions.connect_db import connect_db, disconnect_db
 from flask import jsonify
 from flask_restful import Resource, reqparse
@@ -12,12 +13,13 @@ class User(Resource):
         parser.add_argument("password", required=True, location="form")
         args = parser.parse_args()
 
+        password = hashpassword(args["password"])
         conn = connect_db()
         cursor = conn.cursor()
         cursor.execute('''
         INSERT INTO users (username, email, password)
         VALUES (?, ?, ?)
-        ''', (args["username"], args["email"], args["password"]))
+        ''', (args["username"], args["email"], password))
 
         conn.commit()
         cursor.close()
