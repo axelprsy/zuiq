@@ -1,6 +1,20 @@
-from app import create_app
+from flask import Flask
+import os
+from routes.views import api_blueprint
+from dotenv import load_dotenv
+from pathlib import Path
+from flask_cors import CORS
 
-app = create_app()
+dotenv_path = Path(".env")
+load_dotenv(dotenv_path=dotenv_path)
+
+
+def create_app():
+    app = Flask(__name__)
+    CORS(app)
+    app.register_blueprint(api_blueprint)
+    return app
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app = create_app()
+    app.run(port=os.getenv("API_PORT"), debug=True)
