@@ -1,6 +1,5 @@
-# Third-party Libraries
 import datetime
-from functions.connect_db import connect_db, disconnect_db  # Importez les fonctions spécifiques
+from functions.connect_db import connect_db, disconnect_db
 from flask import jsonify
 from flask_restful import Resource, reqparse
 
