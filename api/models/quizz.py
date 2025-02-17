@@ -72,8 +72,8 @@ class Quizz(Resource):
             if args[i] != None:
                 cursor.execute(f"UPDATE quizz SET {i} = ? WHERE quizz_id = ?", (args[i], args["quizz_id"]))
                 conn.commit()
-                if cursor.lastrowid !=0:
-                    response = jsonify({"message": "Quizz updated successfully.", "quizz_id": cursor.lastrowid ,"status": 200})
+                if cursor.rowcount !=0:
+                    response = jsonify({"message": "Quizz updated successfully.", "quizz_id": args["quizz_id"] ,"status": 200})
                 else:
                     response = jsonify({"message": "Quizz not exist.", "status": 404})
 
