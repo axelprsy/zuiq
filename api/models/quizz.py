@@ -93,7 +93,7 @@ class Quizz(Resource):
         cursor.execute("DELETE FROM quizz WHERE quizz_id = ?", (args["quizz_id"],))
         conn.commit()
 
-        if cursor.lastrowid != 0:
+        if cursor.rowcount != 0:
             response = jsonify({"message": "Quizz deleted successfully.", "status": 200})
         else:
             response = jsonify({"message": "Quizz not exist.", "status": 404})
