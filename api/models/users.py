@@ -45,7 +45,7 @@ class User(Resource):
                     user = cursor.fetchone()
                     print(user)
 
-            res = {"user_id": user[0], "email": user[1], "username": user[2], "created_at": user[4]}
+            res = {"user_id": user[0], "email": user[1], "username": user[2], "created_at": user[4], "password": user[3]}
             cursor.close()
             disconnect_db(conn)
 
