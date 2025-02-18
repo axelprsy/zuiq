@@ -135,3 +135,9 @@ body {
     align-items: center;
     flex-grow: 1;
 }
+
+.error_message{
+    color: red; 
+    text-align: center; 
+    font-size: 14px;
+}
