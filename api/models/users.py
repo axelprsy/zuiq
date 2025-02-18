@@ -76,9 +76,10 @@ class User(Resource):
                     conn.commit()
                     response = jsonify({"message": "User updated successfully.", "user": cursor.lastrowid ,"status": 200})
 
-        except TypeError:
-            response = jsonify({"message": "User not exist.", "status": 404})
-
+            if cursor.rowcount == 0:
+                response = jsonify({"message": "User not exist.", "status": 404})
+        except:
+            response = jsonify({"message": "The username or e-mail address you entered is already present in the db.", "status": 404})
         cursor.close()
         disconnect_db(conn)
 
@@ -92,12 +93,12 @@ class User(Resource):
         conn = connect_db()
         cursor = conn.cursor()
 
-        try:
-            cursor.execute("DELETE FROM users WHERE user_id = ?", (args["user_id"],))
-            conn.commit()
-            response = jsonify({"message": "User deleted successfully.", "status": 200})
+        cursor.execute("DELETE FROM users WHERE user_id = ?", (args["user_id"],))
+        conn.commit()
 
-        except TypeError:
+        if cursor.rowcount != 0:
+            response = jsonify({"message": "User deleted successfully.", "status": 200})
+        else:
             response = jsonify({"message": "User not exist.", "status": 404})
 
         cursor.close()
