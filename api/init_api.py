@@ -11,7 +11,7 @@ if os_name == "Windows":
     subprocess.run(["touch db/app.db"])
     subprocess.run(["python3", "functions/init_db.py"])
     subprocess.run(["python3", "app.py"])
-elif os_name == "Linux":
+else:
     subprocess.run(["python3", "-m", "venv", ".venv"])
     subprocess.run(["source", ".venv/bin/activate"])
     subprocess.run(["pip3", "install", "-r", "requirements.txt"])
