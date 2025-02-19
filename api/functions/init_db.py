@@ -12,7 +12,7 @@ CREATE TABLE users (
     created_at TEXT DEFAULT CURRENT_TIMESTAMP -- Date et heure de création (automatique)
 )
 ''')
-print("Table 'users' créée avec succès.")
+print("✅ Table 'users' créée avec succès.")
 
 cursor.execute('''
 CREATE TABLE quizz (
@@ -25,5 +25,5 @@ CREATE TABLE quizz (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 ''')
-print("Table 'quizz' créée avec succès.")
+print("✅ Table 'quizz' créée avec succès.")
 conn.close()
