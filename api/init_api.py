@@ -54,7 +54,7 @@ def install_mistral():
     print("🔧 Installation de Mistral...")
     
     try:
-        subprocess.run(["ollama", "run", "mistral"], check=True)
+        subprocess.run(["ollama", "pull", "mistral"], check=True)
         print("\n\n✅ Mistral a été installé avec succès.")
     except subprocess.CalledProcessError as e:
         print(f"❌ Erreur lors de l'installation de Mistral : {e}")
