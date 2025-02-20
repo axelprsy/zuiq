@@ -40,6 +40,7 @@ Pour démarrer l'API, suivez les étapes ci-dessous selon votre système d'explo
 Commencez par naviger dans le dossier contenant l'api :
 
 ```bash
+cd kadoute
 cd api
 ```
 
@@ -66,7 +67,7 @@ cd api
     .venv/Scripts/activate
     ```
 
-### Étape 3 : Télécharger Ollama
+### Étape 3 : Télécharger et installer Ollama
 C'est une application permettant d'utiliser des modèles d'IA en local. Elle doit être presente sur votre machine pour avoir accès a toute les fonctions.
 - ***Choissiez la méthode qui correspond a votre système d'exploitation :***
     ### Linux
@@ -74,9 +75,17 @@ C'est une application permettant d'utiliser des modèles d'IA en local. Elle doi
     curl -fsSL https://ollama.com/install.sh | sh
     ```
 
-    ### Macos/Windows
-    Rendez vous sur le site de Ollama afin de téléchager le programme.
+    ### Macos
+    ```bash
+    brew install ollama
+    ```
 
+    ### Windows
+    ```bash
+    winget install ollama.ollama
+    ```
+
+    ### Via le site d'ollama
     https://ollama.com/download
 
 
