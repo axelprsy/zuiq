@@ -11,7 +11,7 @@ class GenerateQuizz(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument("theme", required=True, location="args")
         parser.add_argument("number_of_questions", required=True, location="args")
-        parser.add_argument("difficulty", required=True, location="args")
+        parser.add_argument("public", required=True, location="args")
         args = parser.parse_args()
         print(args)
 
