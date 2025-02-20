@@ -81,11 +81,7 @@ C'est une application permettant d'utiliser des modèles d'IA en local. Elle doi
     ```
 
     ### Windows
-    ```bash
-    winget install ollama.ollama
-    ```
-
-    ### Via le site d'ollama
+    Installez Ollama via leur site web :
     https://ollama.com/download
 
 
