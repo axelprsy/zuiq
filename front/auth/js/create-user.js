@@ -1,3 +1,20 @@
+async function connect_user(username) {
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+    };
+
+    fetch(`http://127.0.0.1:5000/user?username=${username}`, requestOptions)
+        .then((response) => response.json())
+        .then((result) => { 
+            const allinfo = result.res;
+            localStorage.setItem("username", allinfo.username);
+            localStorage.setItem("user_id", allinfo.user_id);
+            localStorage.setItem("email", allinfo.email);
+            window.location.replace("../../pages/html/profile.html");
+        })    
+}
+
 document.getElementById("form").addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -26,9 +43,10 @@ document.getElementById("form").addEventListener("submit", function (e) {
         fetch("http://127.0.0.1:5000/user", requestOptions)
         .then((response) => {
             if (!response.ok) {
-            throw new Error('La réponse réseau était');
+                document.getElementById("error_message").innerText = "Une erreur est survenue";
+                throw new Error('La réponse réseau était');
             }
-            window.location.replace("profile.html");
+            connect_user(username);
             return response.text();
         })
         .then((result) => console.log(result))
