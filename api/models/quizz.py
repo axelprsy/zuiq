@@ -1,4 +1,5 @@
 import datetime
+import json
 from functions.hash import hash_password
 from functions.connect_db import connect_db, disconnect_db
 from flask import jsonify
@@ -43,13 +44,14 @@ class Quizz(Resource):
                 print(quizz)
         res = []
         for i in quizz:
-            res.append({f"quizz_{i[0]}":{"quizz_id": i[0], "name": i[1], "created_at": i[2], "user_id": i[3], "questions": i[4], "total_questions": i[5]}})
+            res.append({"quizz_id": i[0], "name": i[1], "created_at": i[2], "user_id": i[3], "questions": json.loads(i[4]), "total_questions": i[5]})
         cursor.close()
         disconnect_db(conn)
 
+        print(res)
         if res != []:
             response = jsonify({
-                "res": res, 
+                "quizz": res, 
                 "status": 200
                 })
         else:
