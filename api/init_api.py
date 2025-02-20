@@ -50,6 +50,15 @@ def init_db():
         print(f"❌ Une erreur est survenue lors de l'exécution de 'init_db.py' : {e}")
         sys.exit(1)
 
+def install_mistral():
+    print("🔧 Installation de Mistral...")
+    
+    try:
+        subprocess.run(["ollama", "run", "mistral"], check=True)
+        print("\n\n✅ Mistral a été installé avec succès.")
+    except subprocess.CalledProcessError as e:
+        print(f"❌ Erreur lors de l'installation de Mistral : {e}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
@@ -57,6 +66,8 @@ if __name__ == "__main__":
     install_requirements()
 
     create_db()
+
+    install_mistral()
 
     init_db()
 
