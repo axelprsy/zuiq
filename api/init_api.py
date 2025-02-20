@@ -85,8 +85,6 @@ if __name__ == "__main__":
 
     create_db()
 
-    install_ollama()
-
     install_mistral()
 
     init_db()
