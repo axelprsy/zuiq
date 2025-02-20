@@ -11,7 +11,7 @@ async function connect_user(username) {
             localStorage.setItem("username", allinfo.username);
             localStorage.setItem("user_id", allinfo.user_id);
             localStorage.setItem("email", allinfo.email);
-            window.location.replace("profile.html");
+            window.location.replace("../../pages/html/profile.html");
         })    
 }
 

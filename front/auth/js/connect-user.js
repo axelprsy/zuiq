@@ -31,7 +31,7 @@ document.getElementById("form").addEventListener("submit", async function (e) {
                 localStorage.setItem("username", allinfo.username);
                 localStorage.setItem("user_id", allinfo.user_id);
                 localStorage.setItem("email", allinfo.email);
-                window.location.replace("profile.html");
+                window.location.replace("../../pages/html/profile.html");
             }else{
                 document.getElementById("error_message").innerText = "Le nom d'utilisateur ou le mot de passe est incorrect";
             }
