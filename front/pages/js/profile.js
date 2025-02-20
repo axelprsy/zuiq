@@ -5,7 +5,7 @@ document.getElementById('email').innerText = `Email : ${localStorage.getItem('em
 function logout() {
     localStorage.clear();
     window.location.href = '/';
-    window.location.replace("../../auth/html/login.html");
+    window.location.replace("/login");
 }
 
 async function delete_my_account() {
@@ -23,5 +23,5 @@ async function delete_my_account() {
     .then((result) => console.log(result))
     .catch((error) => console.error(error));
 
-    window.location.replace("../../auth/html/signup.html");
+    window.location.replace("/signup");
 }
