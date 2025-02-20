@@ -60,12 +60,32 @@ def install_mistral():
         print(f"❌ Erreur lors de l'installation de Mistral : {e}")
         sys.exit(1)
 
+def install_ollama():
+    print("🔧 Installation de Ollama...")
+
+    try:
+        if os.name == "nt":
+            subprocess.run(["winget", "install", "ollama.ollama"], check=True)
+        elif sys.platform == "darwin":
+            subprocess.run(["brew", "install", "ollama"], check=True)
+        elif sys.platform == "linux":
+            subprocess.run(["curl", "-fsSL", "https://ollama.com/install.sh", "|", "sh"], check=True)
+        else:
+            print("❌ Système d'exploitation non supporté.")
+            sys.exit(1)
+        print("\n\n✅ Ollama a été installé avec succès.")
+    except subprocess.CalledProcessError as e:
+        print(f"❌ Erreur lors de l'installation de Ollama : {e}")
+        sys.exit(1)
+
 
 if __name__ == "__main__":
 
     install_requirements()
 
     create_db()
+
+    install_ollama()
 
     install_mistral()
 
