@@ -21,6 +21,11 @@ Création d’un site permettant de crée un quizz par soit même ou a l’aide 
     pip --version
     ```
 
+3. **NodeJS** doit être installé afin de pouvoir lancer le front.
+    - ***Vérifier l'installation :***
+    ```bash
+    node --version
+    ```
 ---
 
 ## Installation
@@ -66,9 +71,8 @@ cd api
     ```bash
     .venv/Scripts/activate
     ```
-
-### Étape 3 : Télécharger et installer Ollama
-C'est une application permettant d'utiliser des modèles d'IA en local. Elle doit être presente sur votre machine pour avoir accès a toute les fonctions.
+    ### Étape 3 : Télécharger et installer Ollama (optionnel)
+    C'est une application permettant d'utiliser des modèles d'IA en local. Elle doit être présente sur votre machine pour avoir accès à toutes les fonctions telles que la génération de quizz.
 - ***Choissiez la méthode qui correspond a votre système d'exploitation :***
     ### Linux
     ```bash
@@ -112,3 +116,22 @@ python3 run.py
 python run.py
 ```
 
+---
+
+## Lancer le front
+Pour démarrer l'API, suivez les étapes ci-dessous :
+
+### Étape 1 : Accéder au répertoire du front
+```bash
+cd front
+```
+
+### Étape 2 : Installer les dépendances
+```bash
+npm install
+```
+
+### Étape 3 : Lancer le front avec Express.js
+```bash
+node app.js
+```
