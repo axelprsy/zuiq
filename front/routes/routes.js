@@ -25,4 +25,9 @@ router.get('/signup', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../auth/html/signup.html'));
     });
 
+// Définition de la route pour /quizz
+router.get('/create-quizz', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../quizz/html/create-quizz.html'));
+    });
+
 module.exports = router;

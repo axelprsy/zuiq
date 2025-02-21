@@ -172,3 +172,6 @@ cython_debug/
 
 # db
 app.db
+
+# node js
+node_modules/

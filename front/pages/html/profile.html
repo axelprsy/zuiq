@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil - Kadoute</title>
     <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/form.css">
 </head>
 <body>
     <div class="header">
@@ -24,16 +25,47 @@
             <p class="profile-info"><strong>Téléphone :</strong> None</p>
         </div>
         <div class="actions">
-            <button>Modifier le Profil</button>
+            <button onclick="modal_modify_account()">Modifier le Profil</button>
             <button onclick="logout()">Se Déconnecter</button>
             <button onclick="delete_my_account()">Supprimer mon compte</button>
         </div>
     </div>
+
+    <!-- MODAL -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1>Modifier son compte</h1>
+            <form id="form_modifyacount">
+                <div class="form-group">
+                    <label for="user_id">User ID</label>
+                    <input type="text" id="modal_user_id" name="user_id" value="Id Inconnu" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="modal_email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur</label>
+                    <input type="text" id="modal_username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="modal_password" name="password" placeholder="Laisser vide pour ne pas changer">
+                </div>
+                <button type="submit" class="btn">Modifier</button>
+                <p id="modal_error_message" class="error_message"></p>
+            </form>
+        </div>
+    </div>
+    <!-- FIN DU MODAL -->
+
     <footer class="footer-container">
         <p>&copy; 2025 SB & AP - Kadoute</p>
         <p><a href="/join-quizz">Rejoindre une partie</a></p>
     </footer>
     <script defer src="../js/security.js"></script>
     <script defer src="../js/profile.js"></script>
+    <script defer src="../js/edit-profile.js"></script>
 </body>
 </html>
