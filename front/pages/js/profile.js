@@ -23,6 +23,7 @@ async function delete_my_account() {
     .then((result) => console.log(result))
     .catch((error) => console.error(error));
 
+    localStorage.clear();
     window.location.replace("/signup");
 }
 
