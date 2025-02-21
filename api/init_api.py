@@ -3,6 +3,13 @@ import subprocess
 import sys
 import sqlite3
 
+def ollama_installed():
+    try:
+        subprocess.run(["ollama", "--version"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+        return True
+    except:
+        return False
+
 def install_requirements():
     print("Installation des dépendances depuis requirements.txt...")
 
@@ -85,7 +92,8 @@ if __name__ == "__main__":
 
     create_db()
 
-    install_mistral()
+    if ollama_installed():
+        install_mistral()
 
     init_db()
 
