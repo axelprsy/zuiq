@@ -40,9 +40,7 @@ class User(Resource):
         try: 
             for i in args:
                 if args[i] != None:
-                    print(f"SELECT * FROM users WHERE {i} = ?", (args[i],))
                     cursor.execute(f"SELECT * FROM users WHERE {i} = ?", (args[i],))
-                    print(cursor)
                     user = cursor.fetchone()
 
             res = {"user_id": user[0], "email": user[1], "username": user[2], "created_at": user[4], "password": user[3]}
