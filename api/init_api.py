@@ -7,7 +7,7 @@ def ollama_installed():
     try:
         subprocess.run(["ollama", "--version"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
         return True
-    except subprocess.CalledProcessError:
+    except:
         return False
 
 def install_requirements():
