@@ -39,16 +39,16 @@
             <h1>Modifier son compte</h1>
             <form id="form_modifyacount">
                 <div class="form-group">
-                    <label for="user_id">User ID</label>
-                    <input type="text" id="modal_user_id" name="user_id" value="Id Inconnu" readonly>
-                </div>
-                <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="modal_email" name="email" required>
                 </div>
                 <div class="form-group">
                     <label for="username">Nom d'utilisateur</label>
                     <input type="text" id="modal_username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="modal_password" name="password" placeholder="Laisser vide pour ne pas modifier">
                 </div>
                 <button type="submit" class="btn">Modifier</button>
                 <p id="modal_error_message" class="error_message"></p>
