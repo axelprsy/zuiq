@@ -40,10 +40,8 @@ class User(Resource):
         try: 
             for i in args:
                 if args[i] != None:
-                    print(f"SELECT * FROM users WHERE {i} = ?", (args[i],))
                     cursor.execute(f"SELECT * FROM users WHERE {i} = ?", (args[i],))
                     user = cursor.fetchone()
-                    print(user)
 
             res = {"user_id": user[0], "email": user[1], "username": user[2], "created_at": user[4], "password": user[3]}
             cursor.close()
@@ -64,6 +62,7 @@ class User(Resource):
         parser.add_argument("user_id", required=True, location="form")
         parser.add_argument("username", required=False, location="form")
         parser.add_argument("email", required=False, location="form")
+        parser.add_argument("password", required=False, location="form")
         args = parser.parse_args()
 
         conn = connect_db()
@@ -71,14 +70,18 @@ class User(Resource):
 
         try: 
             for i in args:
+                if i == "password" and args[i] != None:
+                    args[i] = hash_password(args[i])
+                
                 if args[i] != None:
                     cursor.execute(f"UPDATE users SET {i} = ? WHERE user_id = ?", (args[i], args["user_id"]))
-                    conn.commit()
-                    response = jsonify({"message": "User updated successfully.", "user": cursor.lastrowid ,"status": 200})
-
+                    response = jsonify({"message": "User updated successfully.", "user": args["user_id"] ,"status": 200})
             if cursor.rowcount == 0:
                 response = jsonify({"message": "User not exist.", "status": 404})
-        except:
+
+            conn.commit()
+        except Exception as e:
+            print(e)
             response = jsonify({"message": "The username or e-mail address you entered is already present in the db.", "status": 404})
         cursor.close()
         disconnect_db(conn)
