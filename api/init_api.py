@@ -3,6 +3,13 @@ import subprocess
 import sys
 import sqlite3
 
+def question_ollama():
+    res = input("🔧 Voulez vous utiliser Ollama afin de générer des quizz avec IA (seulement pour ordinateur puissant) ? (y/n) : ")
+    if res.lower() == "y":
+        install_ollama()
+    elif res.lower() == "n":
+        print("ℹ️ Vous avez choisi de ne pas installer Ollama.")
+
 def install_requirements():
     print("Installation des dépendances depuis requirements.txt...")
 
@@ -80,6 +87,8 @@ def install_ollama():
 
 
 if __name__ == "__main__":
+
+    question_ollama()
 
     install_requirements()
 
