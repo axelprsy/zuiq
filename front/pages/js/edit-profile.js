@@ -26,6 +26,9 @@ document.getElementById("form_modifyacount").addEventListener("submit", function
         console.log(result)
         localStorage.setItem("username", username);
         localStorage.setItem("email", email);
+        document.getElementById("modal_error_message").innerText = "Votre compte a bien été modifié";
+        document.getElementById("modal_error_message").style.color = "green";
+        location.reload()
     })
     .catch((error) => {
         console.error(error)
