@@ -25,3 +25,26 @@ async function delete_my_account() {
 
     window.location.replace("/signup");
 }
+
+// MODAL
+
+async function modal_modify_account() {
+
+    const modal = document.getElementById("modal");
+    const span = document.getElementsByClassName("close")[0];
+    
+    // Ouvrir le modal
+    modal.style.display = "flex";
+
+    // Fonction pour fermer le modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Fonction pour fermer le modal lorsque l'utilisateur clique en dehors de celui-ci
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+};

@@ -172,3 +172,8 @@ cython_debug/
 
 # db
 app.db
+
+# node js
+node_modules/
+package-lock.json
+package.json
