@@ -1,1 +1,50 @@
-Soon...
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Création de Quizz</title>
+    <link rel="stylesheet" href="../css/create_quizz.css">
+</head>
+<body>
+
+    <!-- Bouton pour ouvrir le modal -->
+    <button class="button">Créer un Quizz</button>
+
+    <!-- Modal pour créer le quizz -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Créer un Quizz</h2>
+            <form id="form_newquizz">
+                <label for="quizz_name">Nom du Quizz</label>
+                <input type="text" id="quizz_name" name="quizz_name" required>
+                <button type="button" id="continue">Continuer</button>
+        </div>
+    </div>
+
+    <!-- Modal pour ajouter des questions -->
+    <div id="modal-questions" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Créer des Questions</h2>
+
+            <div id="question-container">
+                <!-- Les questions seront générées ici -->
+            </div>
+
+            <div class="navigation">
+                <button type="button" class="arrow-left">←</button>
+                <button type="button" onclick="recupInfoForm()">Terminer</button>
+                <button class="arrow-right">→</button>
+                <p id="error_message"></p>
+            </div>
+        </div>
+    </form>
+    </div>
+
+    <script defer src="../js/modal-questions.js"></script>
+    <script defer src="../js/create-quizz.js"></script>
+    <script defer src="../js/security-quizz.js"></script>
+</body>
+</html>
