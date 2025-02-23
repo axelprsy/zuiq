@@ -14,7 +14,7 @@ async function addDB(title, questions) {
         .then((response) => response.text())
         .then((result) => {
             console.log(result)
-            window.location.replace("/success");
+            window.location.replace("/my-quizz");
         })
         .catch((error) => {
             console.error(error)
