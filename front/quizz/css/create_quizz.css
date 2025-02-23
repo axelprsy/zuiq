@@ -1,3 +1,4 @@
+/* BODY */
 body {
     display: flex;
     justify-content: center;
@@ -8,6 +9,7 @@ body {
     background-color: #f0f0f0;
 }
 
+/* BUTTON */
 .button {
     padding: 15px 30px;
     font-size: 18px;
@@ -30,6 +32,7 @@ body {
     transform: scale(0.9);
 }
 
+/* MODAL */
 .modal {
     display: none;
     position: fixed;
@@ -54,6 +57,32 @@ body {
     max-height: 80vh;
 }
 
+.modal-content input{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modal-content input:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+#continue{
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px;
+}
+
 .close {
     position: absolute;
     top: 10px;
@@ -62,6 +91,7 @@ body {
     font-size: 20px;
 }
 
+/* FORM GROUP */
 .form-group {
     margin-bottom: 15px;
 }
@@ -91,8 +121,9 @@ body {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
+/* BUTTON */
 .btn {
-    width: 100%;
+    width: 50%;
     padding: 10px;
     background-color: #007BFF;
     color: #ffffff;
@@ -100,6 +131,8 @@ body {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .btn:hover {
@@ -108,15 +141,17 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
+/* QUESTION CONTAINER */
 #question-container {
     position: relative;
     width: 100%;
     height: auto;
     overflow: hidden;
-    min-height: 300px;
+    min-height: 450px;
     margin-bottom: 20px;
 }
 
+/* FORM GROUP */
 .form-group {
     position: absolute;
     width: 100%;
@@ -139,6 +174,7 @@ body {
     transform: translateX(100%);
 }
 
+/* NAVIGATION */
 .navigation {
     display: flex;
     justify-content: space-between;
