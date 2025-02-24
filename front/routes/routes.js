@@ -37,7 +37,17 @@ router.get('/success', (req, res) => {
 
 // Définition de la route pour /my-quizz
 router.get('/my-quizz', (req, res) => {
-    res.sendFile( path.resolve(__dirname, '../quizz/html/my-quizz.html'));
+    res.sendFile(path.resolve(__dirname, '../quizz/html/my-quizz.html'));
     });
 
+
+// ------------------------------------------------
+
+router.get('/start-my-quizz', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../quizz/html/start-quizz.html'));
+});
+
+router.get('/play-quizz', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../quizz/html/play-quizz.html'));
+});
 module.exports = router;

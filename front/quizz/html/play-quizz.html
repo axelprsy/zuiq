@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Interactif</title>
+</head>
+<body>
+    <h1>Quiz Interactif</h1>
+    <!-- Interface Joueur -->
+    <div id="playerInterface">
+        <h2>Rejoindre une session</h2>
+        <input type="text" id="usernameInput" placeholder="Entrez votre username">
+        <input type="text" id="joinCodeInput" placeholder="Entrer le code de session">
+        <button id="joinQuiz">Rejoindre</button>
+        <div id="questions"></div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <script src="../js/play-quizz.js"></script>
+
+</body>
+</html>
