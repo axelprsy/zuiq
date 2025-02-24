@@ -83,7 +83,6 @@ class User(Resource):
         except Exception as e:
             print(e)
             response = jsonify({"message": "The username or e-mail address you entered is already present in the db.", "status": 404})
-        cursor.close()
         disconnect_db(conn)
 
         return response
@@ -104,7 +103,6 @@ class User(Resource):
         else:
             response = jsonify({"message": "User not exist.", "status": 404})
 
-        cursor.close()
         disconnect_db(conn)
 
         return response
@@ -121,7 +119,6 @@ class Users(Resource):
         for user in users:
             res.append({"user_id": user[0], "email": user[1], "username": user[2], "created_at": user[4]})
 
-        cursor.close()
         disconnect_db(conn)
 
         return jsonify({"users": res, "status": 200})

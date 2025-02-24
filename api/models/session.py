@@ -14,16 +14,17 @@ class Session(Resource):
         parser.add_argument("users", required=True, location="form")
         args = parser.parse_args()
 
-        conn = connect_db()
-        cursor = conn.cursor()
-        cursor.execute('''
-        INSERT INTO session (session_code, admin_user_id, users)
-        VALUES (?, ?, ?)
-        ''', (args["session_code"], args["admin_user_id"], args["users"])
-        )
-        conn.commit()
-        cursor.close()
-        disconnect_db(conn)
+        try: 
+            conn = connect_db()
+            cursor = conn.cursor()
+            cursor.execute('''
+            INSERT INTO session (session_code, admin_user_id, users)
+            VALUES (?, ?, ?)
+            ''', (args["session_code"], args["admin_user_id"], args["users"])
+            )
+            conn.commit()
+        finally:
+            disconnect_db(conn)
 
         return jsonify({"message": "Session created successfully.", "status": 201, "sesion_id_created": cursor.lastrowid})
     
@@ -36,7 +37,6 @@ class Session(Resource):
         cursor = conn.cursor()
         cursor.execute(f"SELECT * FROM session WHERE session_code = ?", (args["session_code"],))
         session = cursor.fetchone()
-        cursor.close()
         disconnect_db(conn)
 
         if session != None:
@@ -61,10 +61,8 @@ class Session(Resource):
         conn = connect_db()
         cursor = conn.cursor()
 
-    
         cursor.execute(f"UPDATE session SET users = ? WHERE session_code = ?", (args["users"], args["session_code"]))
         conn.commit()
-        cursor.close()
         disconnect_db(conn)
 
         response = jsonify({"message": "Session updated successfully.", "session_code": args["session_code"] ,"status": 200})
@@ -87,7 +85,6 @@ class Session(Resource):
         else:
             response = jsonify({"message": "Session not exist.", "status": 404})
 
-        cursor.close()
         disconnect_db(conn)
 
         return response
