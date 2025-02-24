@@ -38,10 +38,8 @@ class Quizz(Resource):
  
         for i in args:
             if args[i] != None:
-                print(f"SELECT * FROM quizz WHERE {i} = ?", (args[i],))
                 cursor.execute(f"SELECT * FROM quizz WHERE {i} = ?", (args[i],))
                 quizz = cursor.fetchall()
-                print(quizz)
         res = []
         for i in quizz:
             res.append({"quizz_id": i[0], "name": i[1], "created_at": i[2], "user_id": i[3], "questions": json.loads(i[4]), "total_questions": i[5]})
