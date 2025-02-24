@@ -26,4 +26,15 @@ CREATE TABLE quizz (
 );
 ''')
 print("✅ Table 'quizz' créée avec succès.")
+
+cursor.execute('''
+CREATE TABLE session (
+    session_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    session_code TEXT NOT NULL UNIQUE,
+    admin_user_id INTEGER NOT NULL,
+    users JSON NOT NULL
+);             
+''')
+print("✅ Table 'session' créée avec succès.")
+
 conn.close()
