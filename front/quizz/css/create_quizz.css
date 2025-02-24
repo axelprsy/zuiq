@@ -1,13 +1,12 @@
 /* BODY */
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: "Roboto", sans-serif;
+    background-color: #f8f9fa;
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    padding: 0;
 }
+
+
 
 /* BUTTON */
 .button {
@@ -21,15 +20,19 @@ body {
     text-align: center;
     text-decoration: none;
     transition: background-color 0.3s, transform 0.3s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .button:hover {
     background-color: #0056b3;
-    transform: scale(1.1);
+    transform: translate(-50%, -50%) scale(1.1);
 }
 
 .button:active {
-    transform: scale(0.9);
+    transform: translate(-50%, -50%) scale(0.9);
 }
 
 /* MODAL */
@@ -194,4 +197,45 @@ body {
 
 .arrow-left:hover, .arrow-right:hover, #finish:hover {
     background-color: #0056b3;
+}
+
+.header {
+    width: 100%;
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #ffffff;
+    width: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-container:hover {
+    background-color: #0056b3;
+}
+
+.footer-container a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer-container a:hover {
+    color: #e1e3e6;
+    text-decoration: underline;
 }

@@ -14,10 +14,10 @@ fetch(`http://127.0.0.1:5000/quizz?user_id=${user_id}`, requestOptions)
     for (let i = 0; i < allQuizz.length; i++) {
       const quizzTemplate = `
         <div class="quizz">
-        <hr>
           <h2>${allQuizz[i].name}</h2>
-          <h2>Nombres de questions : ${allQuizz[i].questions.length}</h2>
-          <a href="#" class="btn">Lancer la session</a>
+          <p>Nombres de questions : ${allQuizz[i].questions.length}</p>
+          <button onclick="startSession()" class="btn">Commencer le quizz</button>
+          <button onclick="editQuizz(${allQuizz[i].quizz_id})" class="btn">Modifier le quizz</button>
           <button onclick="deleteQuizz(${allQuizz[i].quizz_id})" class"btn">Supprimer le quizz</button>
         </div>
       `;
