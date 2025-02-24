@@ -2,7 +2,7 @@ import sqlite3
 
 def connect_db():
     """Connect to MySQL database"""
-    conn = sqlite3.connect('db/app.db') 
+    conn = sqlite3.connect('db/app.db', timeout=10, check_same_thread=False) 
 
     return conn
 
