@@ -13,7 +13,6 @@ class GenerateQuizz(Resource):
         parser.add_argument("number_of_questions", required=True, location="args")
         parser.add_argument("public", required=True, location="args")
         args = parser.parse_args()
-        print(args)
 
         response: ChatResponse = chat(model='mistral', messages=[
         {
@@ -45,7 +44,6 @@ class GenerateQuizz(Resource):
             """ 
         }
         ])
-        print(response['message']['content'])
         quizz=json.loads(response.message.content)
         quizz["quizz"]["created_at"]=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
