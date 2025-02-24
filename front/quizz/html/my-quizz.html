@@ -1,22 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mes quizz - Kadoute</title>
     <link rel="stylesheet" href="../css/my-quizz.css">
+    <link rel="stylesheet" href="../css/modal_create_quizz.css">
 </head>
+
 <body>
     <div class="header">
         <h1>Mes Quizz</h1>
     </div>
-    <div id="quizz-container"></div>
+    <div id="quizz-container">
+        <!-- Ici s'afficheront les quiz grace à la boucle js -->
+    </div>
+    <div id="add-quizz">
+        <div class="quizz" id="div_createquizz">
+            <!-- Bouton de création de quiz qui ouvre le modal -->
+            <button class="button_createquizz">Créer un Quizz</button>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+
+    <!-- Modal pour créer le quizz -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Créer un Quizz</h2>
+            <form id="form_newquizz">
+                <label for="quizz_name">Nom du Quizz</label>
+                <input type="text" id="quizz_name" name="quizz_name" required>
+                <button type="button" id="continue">Continuer</button>
+        </div>
+    </div>
+
+    <!-- Modal pour ajouter des questions -->
+    <div id="modal-questions" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Créer des Questions</h2>
+
+            <div id="question-container">
+                <!-- Les questions seront générées ici -->
+            </div>
+
+            <div class="navigation">
+                <button type="button" class="arrow-left">←</button>
+                <button class="btn" id="finishButton" type="button" onclick="recupInfoForm()">Terminer</button>
+                <button class="arrow-right">→</button>
+                <p id="error_message"></p>
+            </div>
+        </div>
+        </form>
+    </div>
+
+    <!-- FIN DU MODAL -->
+
+
+
     <footer class="footer-container">
         <p>&copy; 2025 SB & AP - Kadoute</p>
         <p><a href="/join-quizz">Rejoindre une partie</a></p>
-    </footer>  
+    </footer>
     <script defer src="../js/recup-quizz.js"></script>
     <script defer src="../js/security-quizz.js"></script>
     <script defer src="../js/delete-quizz.js"></script>
-</body>
+    <script defer src="../js/modal-questions.js"></script>
+    <script defer src="../js/create-quizz.js"></script>
+    </body>
+
 </html>
