@@ -4,6 +4,7 @@ from flask_cors import CORS
 
 from models.users import User, Users
 from models.quizz import Quizz
+from models.session import Session
 
 api_blueprint = Blueprint("api,", __name__)
 CORS(api_blueprint)
@@ -12,6 +13,7 @@ api = restful.Api()
 api.add_resource(User, "/user")
 api.add_resource(Users, "/users")
 api.add_resource(Quizz, "/quizz")
+api.add_resource(Session, "/session")
 
 try:
     from models.ai_quizz import GenerateQuizz
