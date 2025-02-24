@@ -46,7 +46,6 @@ class Quizz(Resource):
         cursor.close()
         disconnect_db(conn)
 
-        print(res)
         if res != []:
             response = jsonify({
                 "quizz": res, 
@@ -71,12 +70,12 @@ class Quizz(Resource):
         for i in args:
             if args[i] != None:
                 cursor.execute(f"UPDATE quizz SET {i} = ? WHERE quizz_id = ?", (args[i], args["quizz_id"]))
-                conn.commit()
                 if cursor.rowcount !=0:
                     response = jsonify({"message": "Quizz updated successfully.", "quizz_id": args["quizz_id"] ,"status": 200})
                 else:
                     response = jsonify({"message": "Quizz not exist.", "status": 404})
 
+        conn.commit()
         cursor.close()
         disconnect_db(conn)
 
