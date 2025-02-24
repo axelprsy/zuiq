@@ -52,6 +52,25 @@ class Session(Resource):
 
         return response
     
+    def patch(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument("session_code", required=True, location="form")
+        parser.add_argument("users", required=True, location="form")
+        args = parser.parse_args()
+
+        conn = connect_db()
+        cursor = conn.cursor()
+
+    
+        cursor.execute(f"UPDATE session SET users = ? WHERE session_code = ?", (args["users"], args["session_code"]))
+        conn.commit()
+        cursor.close()
+        disconnect_db(conn)
+
+        response = jsonify({"message": "Session updated successfully.", "session_code": args["session_code"] ,"status": 200})
+
+        return response
+    
     def delete(self):
         parser = reqparse.RequestParser()
         parser.add_argument("session_code", required=True, location="form")
