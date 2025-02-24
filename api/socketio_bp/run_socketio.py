@@ -1,6 +1,9 @@
 from flask import Flask, request
 from flask_socketio import SocketIO, join_room, leave_room, emit
 import random
+import requests
+import ast
+import json
 
 app = Flask(__name__)
 
@@ -24,9 +27,10 @@ def handle_disconnect():
 
 # Admin : création d'une session
 @socketio.on('createSession')
-def create_session():
-    code = generate_code() 
+def create_session(data):
+    code = generate_code()
     room_name = f"quiz_{code}"
+    user_admin_id = data.get('user_id')
     active_sessions[code] = room_name  # associe le code à la room
 
     join_room(room_name)  # l'admin rejoint la room qu'il vient de créer
@@ -35,11 +39,21 @@ def create_session():
     # renvoie le code de la session à l'Admin
     emit('sessionCreated', {'code': code}, to=request.sid)
 
+    url = "http://127.0.0.1:5000/session"
+
+    data = {
+        "session_code": code,
+        "admin_user_id": user_admin_id,
+        "users": '[]'
+    }
+    requests.post(url, data=data)
+
 # Joueur : rejoindre une session via un code
 @socketio.on('joinSession')
 def join_session(data):
     code = data.get('code')
-    username = data.get('username') 
+    username = data.get('username')
+    user_id = request.sid
 
     room_name = active_sessions.get(code) 
 
@@ -50,6 +64,18 @@ def join_session(data):
 
         # informer admin
         emit('userJoined', {'userId': request.sid, 'username':username}, to=room_name)
+        url = "http://127.0.0.1:5000/session"
+        response = requests.get(url+ f"?session_code={code}")
+        users = ast.literal_eval(response.json()["users"])
+        users.append({"user_id": user_id, "username": username, "points":0})
+
+        
+        data = {
+            "session_code":code,
+            "users":str(users)
+        }
+        requests.patch(url, data=data)
+
     else:
         emit('error', {'message': 'Code invalide ou session inexistante.'}, to=request.sid)
 
@@ -76,9 +102,25 @@ def submit_answer(data):
     question_id = data.get('question_id')
     room_name = active_sessions.get(code)
 
+    url_quizz = "http://127.0.0.1:5000/quizz"
+
+    response_quizz = requests.get(url_quizz+f"?quizz_id={quizz_id}")
+    res_quizz=response_quizz.json()
+    for i in res_quizz["quizz"][0]["questions"]:
+        if i["question_id"] == question_id:
+            if int(answer) == int(i["correct_answer"]):
+                url_session = "http://127.0.0.1:5000/session"
+                response_session = requests.get(url_session+f"?session_code="+code)
+                res_session = response_session.json()
+                users_list = ast.literal_eval(res_session["users"])
+                for u in users_list:
+                    if u["user_id"] == request.sid:
+                        u["points"] += 1
+                        requests.patch(url_session, data={"session_code":code ,"users":str(users_list)})
+
+
     if room_name:
         print(f"Réponse de {request.sid} dans la room {room_name}: {answer}")
-        emit('userAnswer', {'userId': request.sid, 'answer': answer}, to=room_name)
 
 if __name__ == "__main__":
     socketio.run(app, host="127.0.0.1", port=5050, debug=True)
