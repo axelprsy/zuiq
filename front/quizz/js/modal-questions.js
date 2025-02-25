@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Ajoute des écouteurs d'événements aux boutons
-    document.querySelector(".button").addEventListener("click", openModalQuizz);
+    document.querySelector(".button_createquizz").addEventListener("click", openModalQuizz);
     document.getElementById("continue").addEventListener("click", openModalQuestions);
     finishBtn.addEventListener("click", (e) => { e.preventDefault(); finishQuiz(); });
     nextQuestionBtn.addEventListener("click", nextQuestion);
