@@ -1,34 +1,34 @@
-version: '3.9'  # Version du fichier compose
+version: '3.9'
 
 services:
-  api:  # Backend API Flask (API classique)
-    build: ./api  # Le dossier contenant le code pour l'API (Dockerfile dans ce dossier)
+  api:
+    build: ./api
     ports:
-      - "5000:5000"  # Expose le port 5000 (localhost:5000)
+      - "5000:5000"
     networks:
-      - app_network  # Le réseau docker personnalisé
+      - app_network
     environment:
       - API_URL=http://api:5000
 
-  api_socketio:  # Backend Flask-SocketIO
-    build: ./api_socketio  # Le dossier contenant le code pour le socket.io (Dockerfile spécifique)
+  api_socketio: 
+    build: ./api_socketio
     ports:
-      - "5050:5050"  # Expose le port 5050 (localhost:5050 pour le SocketIO)
+      - "5050:5050"
     networks:
       - app_network
     depends_on:
-      - api  # Assure que le conteneur `api` est lancé en premier
+      - api
 
-  frontend:  # Frontend (Node.js ou autre)
-    build: ./front  # Le dossier contenant le code du projet frontend
+  frontend:
+    build: ./front
     ports:
-      - "3000:3000"  # Expose le port 3000 (localhost:3000 pour accéder au front)
+      - "3000:3000"
     networks:
       - app_network
     depends_on:
-      - api  # Assure que le backend est disponible avant de lancer le front
-      - api_socketio  # Assure que le socket est disponible avant le front
+      - api  
+      - api_socketio
 
 networks:
-  app_network:  # Réseau personnalisé pour permettre aux services de communiquer entre eux
+  app_network: 
     driver: bridge
