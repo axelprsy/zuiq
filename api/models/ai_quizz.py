@@ -20,7 +20,7 @@ class GenerateQuizz(Resource):
             'content': f"""
             Crée un quiz amusant et éducatif sur le thème {args['theme']} avec {args['number_of_questions']} questions.
             Chaque question doit comporter un énoncé clair et concis, avec 4 propositions : A, B, C et D, et précise la bonne réponse.
-            Les questions doivent être adaptées à des {args['difficulty']}.
+            Les questions doivent être adaptées à des {args['public']}.
             Je veux que ta réponse soit un JSON exactement sous cette forme :
 
             {{
@@ -30,8 +30,8 @@ class GenerateQuizz(Resource):
                         {{
                             "question_id": 1,
                             "title": "[intitulé_de_la_question]",
-                            "answers": ["A. [option_1]", "B. [option_2]", "C. [option_3]", "D. [option_4]"],
-                            "correct_answer": "[lettre_de_la_bonne_réponse]"
+                            "answers": ["[option_1]", "[option_2]", "[option_3]", "[option_4]"],
+                            "correct_answer": "[numero_de_la_bonne_réponse]"
                         }},
                         // autres questions...
                     ]
