@@ -1,15 +1,29 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Création de Quizz</title>
-    <link rel="stylesheet" href="../css/create_quizz.css">
+    <title>Mes quizz - Kadoute</title>
+    <link rel="stylesheet" href="../css/my-quizz.css">
+    <link rel="stylesheet" href="../css/modal_create_quizz.css">
 </head>
-<body>
 
-    <!-- Bouton pour ouvrir le modal -->
-    <button class="button">Créer un Quizz</button>
+<body>
+    <div class="header">
+        <h1>Mes Quizz</h1>
+    </div>
+    <div id="quizz-container">
+        <!-- Ici s'afficheront les quiz grace à la boucle js -->
+    </div>
+    <div id="add-quizz">
+        <div class="quizz" id="div_createquizz">
+            <!-- Bouton de création de quiz qui ouvre le modal -->
+            <button class="button_createquizz">Créer un Quizz</button>
+        </div>
+    </div>
+
+    <!-- MODAL -->
 
     <!-- Modal pour créer le quizz -->
     <div id="modal" class="modal">
@@ -40,11 +54,22 @@
                 <p id="error_message"></p>
             </div>
         </div>
-    </form>
+        </form>
     </div>
 
+    <!-- FIN DU MODAL -->
+
+
+
+    <footer class="footer-container">
+        <p>&copy; 2025 SB & AP - Kadoute</p>
+        <p><a href="/join-quizz">Rejoindre une partie</a></p>
+    </footer>
+    <script defer src="../js/recup-quizz.js"></script>
+    <script defer src="../js/security-quizz.js"></script>
+    <script defer src="../js/delete-quizz.js"></script>
     <script defer src="../js/modal-questions.js"></script>
     <script defer src="../js/create-quizz.js"></script>
-    <script defer src="../js/security-quizz.js"></script>
-</body>
+    </body>
+
 </html>

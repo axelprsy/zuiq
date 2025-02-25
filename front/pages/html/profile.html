@@ -14,21 +14,16 @@
     </div>
     <div class="profile-container">
         <div class="profile-section">
-            <h2>Informations de Base</h2>
+            <h2>Mes Informations</h2>
             <p id="id" class="profile-info"><strong>ID :</strong> ID inconnu</p>
             <p id="username" class="profile-info"><strong>Nom d'utilisateur :</strong> Nom d'utilisateur inconnu</p>
             <p id="email" class="profile-info"><strong>Email :</strong> Email inconnu</p>
         </div>
-        <div class="profile-section">
-            <h2>Informations Supplémentaires</h2>
-            <p class="profile-info"><strong>Date de naissance :</strong> None</p>
-            <p class="profile-info"><strong>Adresse :</strong> None</p>
-            <p class="profile-info"><strong>Téléphone :</strong> None</p>
-        </div>
         <div class="actions">
+            <button onclick="window.location.href='/my-quizz'">Mes Quizz</button>
             <button onclick="modal_modify_account()">Modifier le Profil</button>
             <button onclick="logout()">Se Déconnecter</button>
-            <button onclick="delete_my_account()">Supprimer mon compte</button>
+            <button onclick="delete_my_account()" style="background-color: #a90707;">Supprimer mon compte</button>
         </div>
     </div>
 

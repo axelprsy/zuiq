@@ -25,14 +25,14 @@ router.get('/signup', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../auth/html/signup.html'));
     });
 
-// Définition de la route pour /quizz
+// Définition de la route pour /create-quizz
 router.get('/create-quizz', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../quizz/html/create-quizz.html'));
+    res.sendFile(path.resolve(__dirname, '../quizz/html/my-quizz.html'));
     });
 
-// Définition de la route pour /succes (après la création d'un quizz)
-router.get('/success', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../quizz/html/success.html'));
+// Définition de la route pour /my-quizz
+router.get('/my-quizz', (req, res) => {
+    res.sendFile( path.resolve(__dirname, '../quizz/html/my-quizz.html'));
     });
 
 module.exports = router;

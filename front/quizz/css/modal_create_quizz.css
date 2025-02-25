@@ -1,36 +1,40 @@
-/* BODY */
-body {
-    display: flex;
-    justify-content: center;
+/* button_createquizz */
+.button_createquizz {
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-}
-
-/* BUTTON */
-.button {
     padding: 15px 30px;
     font-size: 18px;
-    color: white;
-    background-color: #007BFF;
+    color: rgb(0, 0, 0);
+    background-color: #dfdfdfae;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    transition: background-color 0.3s, transform 0.3s;
-}
+    transition: background-color 0.3s, transform 0.3s;}
 
-.button:hover {
+.button_createquizz:hover {
     background-color: #0056b3;
-    transform: scale(1.1);
 }
 
-.button:active {
+.button_createquizz:active {
     transform: scale(0.9);
 }
+
+#div_createquizz {
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    width: 100%; /* Même largeur que les autres div */
+    height: 200px; /* Définit une hauteur égale aux autres divs */
+}
+
+
+/* */
+
+
+
+
+
 
 /* MODAL */
 .modal {
