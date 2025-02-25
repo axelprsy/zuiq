@@ -1,39 +1,40 @@
-/* BODY */
-body {
-    font-family: "Roboto", sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
-}
-
-
-
-/* BUTTON */
-.button {
+/* button_createquizz */
+.button_createquizz {
+    align-items: center;
     padding: 15px 30px;
     font-size: 18px;
-    color: white;
-    background-color: #007BFF;
+    color: rgb(0, 0, 0);
+    background-color: #dfdfdfae;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    transition: background-color 0.3s, transform 0.3s;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+    transition: background-color 0.3s, transform 0.3s;}
 
-.button:hover {
+.button_createquizz:hover {
     background-color: #0056b3;
-    transform: translate(-50%, -50%) scale(1.1);
 }
 
-.button:active {
-    transform: translate(-50%, -50%) scale(0.9);
+.button_createquizz:active {
+    transform: scale(0.9);
 }
+
+#div_createquizz {
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    width: 100%; /* Même largeur que les autres div */
+    height: 200px; /* Définit une hauteur égale aux autres divs */
+}
+
+
+/* */
+
+
+
+
+
 
 /* MODAL */
 .modal {
@@ -197,45 +198,4 @@ body {
 
 .arrow-left:hover, .arrow-right:hover, #finish:hover {
     background-color: #0056b3;
-}
-
-.header {
-    width: 100%;
-    background-color: #007bff;
-    color: #ffffff;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.header h1 {
-    margin: 0;
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: #ffffff;
-    width: 100%;
-    box-sizing: border-box;
-    position: absolute;
-    bottom: 0;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.footer-container:hover {
-    background-color: #0056b3;
-}
-
-.footer-container a {
-    color: #ffffff;
-    text-decoration: none;
-}
-
-.footer-container a:hover {
-    color: #e1e3e6;
-    text-decoration: underline;
 }
