@@ -44,7 +44,7 @@ git clone https://github.com/LunityAxel/kadoute.git
 
 ---
 
-## Option 1 :
+## Option 1 (conseillée):
 
 ### Prérequis
 **Docker** doit être installé sur votre machine.
@@ -59,7 +59,7 @@ Il suffit uniquement d'executer cette ligne afin d'initialiser la base de donné
 docker compose up --build
 ```
 
-## Option 2 :
+## Option 2 (déconseillée):
 
 ## Lancer l'API
 Pour démarrer l'API, suivez les étapes ci-dessous selon votre système d'exploitation :
@@ -140,6 +140,26 @@ python3 run.py
 #### Windows
 ``` bash
 python run.py
+```
+
+---
+
+### Étape 5 : Lancer la seconde API (socket)
+Rendez vous dans le dossier : 
+```bash
+cd ../api_socketio
+```
+
+### Linux/MacOS
+```bash
+pip3 install -r requirements.txt
+python3 run_socketio.py
+```
+
+### Windows
+```bash
+pip install -r requirements.txt
+python run_socketio.py
 ```
 
 ---
