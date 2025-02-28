@@ -12,6 +12,7 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 
 url_api = os.getenv('API_URL', 'http://127.0.0.1:5000')
 
+
 # Stocker les sessions actives : {code: room_name}
 active_sessions = {}
 
@@ -40,14 +41,12 @@ def create_session(data):
     print(f"L'admin a créé une session : Room - {room_name}, Code - {code}")
 
 
-    url = "http://api:5000/session"
-
     data = {
         "session_code": code,
         "admin_user_id": user_admin_id,
         "users": '[]'
     }
-    requests.post(url, data=data)
+    requests.post(url_api+"/session", data=data)
     # renvoie le code de la session à l'Admin
     emit('sessionCreated', {'code': code}, to=request.sid)
 
@@ -67,7 +66,7 @@ def join_session(data):
 
         # informer admin
         emit('userJoined', {'userId': request.sid, 'username':username}, to=room_name)
-        url = "http://api:5000/session"
+        url = url_api+"/session"
         response = requests.get(url+ f"?session_code={code}")
         users = ast.literal_eval(response.json()["users"])
         users.append({"user_id": user_id, "username": username, "points":0})
@@ -105,14 +104,14 @@ def submit_answer(data):
     question_id = data.get('question_id')
     room_name = active_sessions.get(code)
 
-    url_quizz = "http://api:5000/quizz"
+    url_quizz = url_api + "/quizz"
 
     response_quizz = requests.get(url_quizz+f"?quizz_id={quizz_id}")
     res_quizz=response_quizz.json()
     for i in res_quizz["quizz"][0]["questions"]:
         if i["question_id"] == question_id:
             if int(answer) == int(i["correct_answer"]):
-                url_session = "http://api:5000/session"
+                url_session = url_api+"/session"
                 response_session = requests.get(url_session+f"?session_code="+code)
                 res_session = response_session.json()
                 users_list = ast.literal_eval(res_session["users"])
