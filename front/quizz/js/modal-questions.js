@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function addNewQuestion() {
         const questionCount = questions.length + 1; // Numéro de la nouvelle question
         const questionTemplate = `
-            <div class="form-group ${questionCount === 1 ? "active" : "next"}">
+            <div class="form-group next">
                 <h1>Question ${questionCount}</h1>
                 <label for="title_question${questionCount}">Titre de la Question</label>
                 <input id="title_question${questionCount}" type="text" name="title_question${questionCount}" required>
@@ -56,10 +56,12 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         `;
 
-        questionContainer.insertAdjacentHTML("beforeend", questionTemplate); // Ajoute la nouvelle question au conteneur
-        questions = document.querySelectorAll(".form-group"); // Met à jour la liste des questions
-        window.numberOfQuestions = questions.length; // Met à jour le nombre de questions
-        updateQuestionDisplay(); // Met à jour l'affichage des questions
+        questionContainer.insertAdjacentHTML("beforeend", questionTemplate); 
+        questions = document.querySelectorAll(".form-group");
+        setTimeout(() => {
+            currentQuestionIndex = questions.length - 1; 
+            updateQuestionDisplay();
+        }, 50);
     }
 
     // Fonction pour mettre à jour l'affichage des questions
