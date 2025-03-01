@@ -8,6 +8,9 @@ from flask_restful import Resource, reqparse
 
 class Session(Resource):
     def post(self):
+        """
+        Crée une session.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("session_code", required=True, location="form")
         parser.add_argument("admin_user_id", required=True, location="form")
@@ -29,6 +32,9 @@ class Session(Resource):
         return jsonify({"message": "Session created successfully.", "status": 201, "sesion_id_created": cursor.lastrowid})
     
     def get(self):
+        """
+        Récupère une session.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("session_code", required=True, location="args")
         args = parser.parse_args()
@@ -53,6 +59,9 @@ class Session(Resource):
         return response
     
     def patch(self):
+        """
+        Modifier une session.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("session_code", required=True, location="form")
         parser.add_argument("users", required=True, location="form")
@@ -70,6 +79,9 @@ class Session(Resource):
         return response
     
     def delete(self):
+        """
+        Supprimer une session.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("session_code", required=True, location="form")
         args = parser.parse_args()

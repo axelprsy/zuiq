@@ -8,6 +8,9 @@ from flask_restful import Resource, reqparse
 
 class Quizz(Resource):
     def post(self):
+        """
+        Crée un nouveau quizz.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("name", required=True, location="form")
         parser.add_argument("user_id", required=True, location="form")
@@ -28,6 +31,9 @@ class Quizz(Resource):
         return jsonify({"message": "Quizz created successfully.", "status": 201, "quizz_id_created": cursor.lastrowid})
     
     def get(self):
+        """
+        Recuperer un quizz avec son id ou les quizz d'un user.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("user_id", required=False, location="args")
         parser.add_argument("quizz_id", required=False, location="args")
@@ -57,6 +63,9 @@ class Quizz(Resource):
         return response
     
     def patch(self):
+        """
+        Modifier les elements d'un quizz avec son id.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("quizz_id", required=True, location="form")
         parser.add_argument("questions", required=False, location="form")
@@ -82,6 +91,9 @@ class Quizz(Resource):
         return response
     
     def delete(self):
+        """
+        Supprimer un quizz avec son id.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("quizz_id", required=True, location="form")
         args = parser.parse_args()
