@@ -16,9 +16,13 @@
         <h2>Interface de gestion de quizz</h2>
         <p id="sessionCode">Code de session : <span>XXXX</span></p>
         <button id="startQuizz" class="button">Lancer le quizz</button>
+        <button id="endQuizz" onclick="reloadPage()" class="button">Relancer une session</button>
         <input hidden id="numberOfQuestion" type="text" value="0">
     </div>
-
+    <div id="div_quizz-direct" class="admin-container">
+        <h2 id="title_quizz_direct">En attente de joueurs...</h2>
+        <p id="text_quizz_direct"></p>
+    </div>
     <footer class="footer-container">
         <p>&copy; 2025 SB & AP - Kadoute</p>
         <p><a href="/join-quizz">Rejoindre une partie</a></p>

@@ -90,3 +90,7 @@ body {
   color: #e1e3e6;
   text-decoration: underline;
 }
+
+#endQuizz{
+  display: none;
+}
