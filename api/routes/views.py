@@ -15,7 +15,7 @@ api.add_resource(Users, "/users")
 api.add_resource(Quizz, "/quizz")
 api.add_resource(Session, "/session")
 
-try:
+try: # si ollama n'est pas installé generate quizz n'est pas ajouté a l'api
     from models.ai_quizz import GenerateQuizz
     api.add_resource(GenerateQuizz, "/generate_quizz")
 except ImportError:

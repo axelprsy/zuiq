@@ -10,6 +10,9 @@ load_dotenv(dotenv_path=dotenv_path)
 
 
 def create_app():
+    """
+    Création de l'application Flask.
+    """
     app = Flask(__name__)
     CORS(app)
     app.register_blueprint(api_blueprint)
