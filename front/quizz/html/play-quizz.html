@@ -12,12 +12,14 @@
     <!-- HEADER -->
     <div class="header">
         <h1>Bienvenue, <span id="userName"></span> !</h1>
-        <p>Connecté à la session : <span id="sessionId"></span></p>
+        <p id="connected">Connexion en cours...</p>
     </div>
 
     <!-- CONTENEUR DES QUESTIONS -->
     <div class="quizz-container">
-        <div class="quizz" id="questionsDiv"></div>
+        <div class="quizz" id="questionsDiv">
+            <!-- Ici s'afficheront les questions avec leurs questions -->
+        </div>
     </div>
 
     <!-- Socket.io -->
