@@ -62,7 +62,7 @@ def join_session(data):
     if room_name:
         join_room(room_name)
         print(f"L'utilisateur {username} a rejoint la room : {room_name}")
-        emit('joinedSession', {'room': room_name, 'username': username}, to=request.sid)
+        emit('joinedSession', {'userId': user_id, 'room': room_name, 'username': username}, to=request.sid)
 
         # informer admin
         emit('userJoined', {'userId': request.sid, 'username':username}, to=room_name)
@@ -123,6 +123,14 @@ def submit_answer(data):
 
     if room_name:
         print(f"Réponse de {request.sid} dans la room {room_name}: {answer}")
+
+@socketio.on("endQuizz")
+def end_quizz(data):
+    code = data.get('code')
+    quizz_id = data.get('quizz_id')
+    room_name = active_sessions.get(code)
+    emit("quizzEnded", {"quizz_id": quizz_id, "code":code}, to=room_name)
+
 
 if __name__ == "__main__":
     socketio.run(app, host="0.0.0.0", port=5050, debug=True)

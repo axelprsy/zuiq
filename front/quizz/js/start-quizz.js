@@ -65,6 +65,11 @@ startQuizzButton.addEventListener("click", () => {
                 document.getElementById("text_quizz_direct").textContent = `Résultats...`;
                 document.getElementById("startQuizz").style.display = "none";
                 document.getElementById("endQuizz").style.display = "block";
+                const quizz_id = result.quizz[0].quizz_id;
+                socket.emit("endQuizz", {
+                    quizz_id: quizz_id,
+                    code: sessionCodeDisplay.textContent.split(": ")[1]
+                })
             }
         });
 });

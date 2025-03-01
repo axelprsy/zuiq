@@ -7,6 +7,7 @@ const socket = io("http://localhost:5050", {
 const params = new URLSearchParams(window.location.search);
 const sessionId = params.get("session_id");
 const userName = params.get("username");
+var user_id = ""
 
 document.getElementById("userName").textContent = userName;
 
@@ -16,7 +17,9 @@ if (sessionId && userName) {
 }
 
 // Confirmation de connexion
-socket.on("joinedSession", ({ room }) => {
+socket.on("joinedSession", ({ room, userId }) => {
+    user_id = userId
+    console.log(userId)
     console.log("Vous avez rejoint la session : ", room);
     document.getElementById("connected").textContent = `Vous êtes connecté à la session : ${sessionId}`;
 });
@@ -41,6 +44,33 @@ socket.on("newQuestion", ({ question, answers, quizz_id, question_id }) => {
         questionsDiv.appendChild(button);
     });
 });
+
+socket.on("quizzEnded", async ({quizz_id, code}) => {
+    const questionsDiv = document.getElementById("questionsDiv");
+    questionsDiv.innerHTML = ""
+    var p_finsh = document.createElement("p")
+    p_finsh.textContent = "Fin du quizz"
+    questionsDiv.append(p_finsh)
+
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+      };
+      
+      fetch("http://127.0.0.1:5000/session?session_code="+code, requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+            users = JSON.parse(result["users"].replace(/'/g, `"`))
+            for (i = 0; i < users.length; i++) {
+                console.log(users[i]["user_id"], user_id)
+                if (users[i]["user_id"] == user_id) {
+                    var p_score = document.createElement("p")
+                    p_score.textContent = "Votre score : " + users[i]["points"]
+                    questionsDiv.append(p_score)
+                }
+            }    
+        })
+} )
 
 // Envoi de la réponse au serveur
 function sendResponse(answer, quizz_id, question_id) {
