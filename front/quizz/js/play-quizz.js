@@ -19,8 +19,6 @@ if (sessionId && userName) {
 // Confirmation de connexion
 socket.on("joinedSession", ({ room, userId }) => {
     user_id = userId
-    console.log(userId)
-    console.log("Vous avez rejoint la session : ", room);
     document.getElementById("connected").textContent = `Vous êtes connecté à la session : ${sessionId}`;
 });
 
@@ -94,6 +92,7 @@ function sendResponse(answer, quizz_id, question_id) {
             code: sessionId,
             answer,
             username: userName,
+            user_id:user_id,
             quizz_id,
             question_id,
         });

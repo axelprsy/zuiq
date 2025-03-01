@@ -102,6 +102,7 @@ def submit_answer(data):
     answer = data.get('answer') 
     quizz_id = data.get('quizz_id')
     question_id = data.get('question_id')
+    user_id = data.get("user_id")
     room_name = active_sessions.get(code)
 
     url_quizz = url_api + "/quizz"
@@ -116,13 +117,13 @@ def submit_answer(data):
                 res_session = response_session.json()
                 users_list = ast.literal_eval(res_session["users"])
                 for u in users_list:
-                    if u["user_id"] == request.sid:
+                    if u["user_id"] == user_id:
                         u["points"] += 1
                         requests.patch(url_session, data={"session_code":code ,"users":str(users_list)})
 
 
     if room_name:
-        print(f"Réponse de {request.sid} dans la room {room_name}: {answer}")
+        print(f"Réponse de {user_id} dans la room {room_name}: {answer}")
 
 @socketio.on("endQuizz")
 def end_quizz(data):

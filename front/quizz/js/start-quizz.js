@@ -62,9 +62,23 @@ startQuizzButton.addEventListener("click", () => {
             } else {
                 console.log("fin du quizz");
                 document.getElementById("title_quizz_direct").textContent = `Quizz terminé !`;
-                document.getElementById("text_quizz_direct").textContent = `Résultats...`;
+                document.getElementById("text_quizz_direct").textContent = `Résultats :`;
                 document.getElementById("startQuizz").style.display = "none";
                 document.getElementById("endQuizz").style.display = "block";
+                var div_quizz_direct = document.getElementById("div_quizz-direct")
+                const code = sessionCodeDisplay.textContent.split(": ")[1];
+                
+                fetch("http://127.0.0.1:5000/session?session_code="+code, requestOptions)
+                .then((response) => response.json())
+                .then((result) => {
+                    users = JSON.parse(result["users"].replace(/'/g, `"`))
+                    for (i = 0; i < users.length; i++) {
+                        var p_score = document.createElement("p")
+                        p_score.textContent = users[i]["username"] + " : "  + users[i]["points"]
+                        div_quizz_direct.append(p_score)
+                    }    
+                })
+
                 const quizz_id = result.quizz[0].quizz_id;
                 socket.emit("endQuizz", {
                     quizz_id: quizz_id,
