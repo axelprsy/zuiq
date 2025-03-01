@@ -21,6 +21,7 @@ joinQuizButton.addEventListener('click', () => {
 // Confirmation de connexion à la session
 socket.on('joinedSession', ({ room }) => {
     alert(`Vous avez rejoint la session : ${room}`);
+    window.location.href = `/play/${joinCodeInput.value}/${usernameInput.value}`;
 });
 
 // Joueur : Recevoir une nouvelle question

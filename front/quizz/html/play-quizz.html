@@ -1,23 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Interactif</title>
+    <title>Quizz</title>
+    <style>
+        body {
+            font-family: "Roboto", sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* HEADER */
+        .header {
+            width: 100%;
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        /* CONTAINER DES QUESTIONS */
+        .quizz-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .quizz {
+            padding: 20px;
+            background-color: #dfdfdfae;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .quizz p {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* BOUTONS DE REPONSE */
+        .quizz button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .quizz button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Quiz Interactif</h1>
-    <!-- Interface Joueur -->
-    <div id="playerInterface">
-        <h2>Rejoindre une session</h2>
-        <input type="text" id="usernameInput" placeholder="Entrez votre username">
-        <input type="text" id="joinCodeInput" placeholder="Entrer le code de session">
-        <button id="joinQuiz">Rejoindre</button>
-        <div id="questions"></div>
+    <!-- HEADER -->
+    <div class="header">
+        <h1>Bienvenue, <span id="userName"></span> !</h1>
+        <p>Connecté à la session : <span id="sessionId"></span></p>
     </div>
 
-    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
-    <script src="../js/play-quizz.js"></script>
+    <!-- CONTENEUR DES QUESTIONS -->
+    <div class="quizz-container">
+        <div class="quizz" id="questionsDiv"></div>
+    </div>
 
+    <!-- Socket.io -->
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <script>
+        const socket = io('http://localhost:5050', {
+            transports: ["websocket"],
+            withCredentials: true
+        });
+
+        // Récupération des paramètres dans l'URL
+        const pathParts = window.location.pathname.split("/");
+        const sessionId = pathParts[2];
+        const userName = pathParts[3];
+
+        document.getElementById("userName").textContent = userName;
+        document.getElementById("sessionId").textContent = sessionId;
+
+        // Joueur : Rejoindre une session
+        if (sessionId && userName) {
+            socket.emit('joinSession', { code: sessionId, username: userName });
+        }
+
+        // Confirmation de connexion
+        socket.on('joinedSession', ({ room }) => {
+            alert(`Vous avez rejoint la session : ${room}`);
+        });
+
+        // Joueur : Recevoir une nouvelle question
+        socket.on('newQuestion', ({ question, answers, quizz_id, question_id }) => {
+            const questionsDiv = document.getElementById('questionsDiv');
+            questionsDiv.innerHTML = ''; // Vide les anciennes questions
+
+            // Création de la question
+            const questionElement = document.createElement('p');
+            questionElement.textContent = `Question : ${question}`;
+            questionsDiv.appendChild(questionElement);
+
+            // Création des boutons de réponse
+            answers.forEach((answer, index) => {
+                const button = document.createElement('button');
+                button.textContent = answer;
+                button.onclick = () => sendResponse(index + 1, quizz_id, question_id);
+                questionsDiv.appendChild(button);
+            });
+        });
+
+        // Envoi de la réponse au serveur
+        function sendResponse(answer, quizz_id, question_id) {
+            if (sessionId && answer && userName) {
+                socket.emit('answer', { code: sessionId, answer, username: userName, quizz_id, question_id });
+            }
+        }
+    </script>
 </body>
+
 </html>
