@@ -4,9 +4,9 @@ const socket = io('http://localhost:5050', {
 });
 
 // Récupération des paramètres dans l'URL
-const pathParts = window.location.pathname.split("/");
-const sessionId = pathParts[2];
-const userName = pathParts[3];
+const params = new URLSearchParams(window.location.search);
+const sessionId = params.get("session_id");
+const userName = params.get("username");
 
 document.getElementById("userName").textContent = userName;
 document.getElementById("sessionId").textContent = sessionId;

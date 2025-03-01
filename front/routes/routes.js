@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 
+// ------------------------------------------------
+// Routes
+
 // Définition de la route pour /login
 router.get("/login", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../auth/html/login.html"));
@@ -37,31 +40,13 @@ router.get("/create-quizz", (req, res) => {
 router.get("/my-quizz", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../quizz/html/my-quizz.html"));
 });
-// Définition de la route pour /quizz
+// Définition de la route pour /play-quizz
 router.get("/play", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../quizz/html/play-quizz.html"));
 });
-
-
+// Définition de la route pour /start-my-quizz
 router.get("/start-my-quizz", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../quizz/html/start-quizz.html"));
 });
-
-
-// ------------------------------------------------
-// Routes with params
-
-
-// Définition de la route pour /quizz
-router.get("/play/:room_id/:username", (req, res) => {
-  res.sendFile(path.join(__dirname, '../quizz/html/play-quizz.html'));
-});
-
-    
-    
-
-
-
-
 
 module.exports = router;
