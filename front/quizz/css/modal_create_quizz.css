@@ -75,7 +75,7 @@
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-#continue{
+.btn-create-quizz{
     width: 100%;
     padding: 10px;
     background-color: #007BFF;
@@ -84,7 +84,7 @@
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .close {
