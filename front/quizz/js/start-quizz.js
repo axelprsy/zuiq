@@ -64,8 +64,10 @@ startQuizzButton.addEventListener("click", () => {
                 document.getElementById("title_quizz_direct").textContent = `Quizz terminé !`;
                 document.getElementById("text_quizz_direct").textContent = `Résultats :`;
                 document.getElementById("startQuizz").style.display = "none";
-                document.getElementById("endQuizz").style.display = "block";
-                var div_quizz_direct = document.getElementById("div_quizz-direct")
+                document.getElementById("endQuizz").style.display = "inline";
+                var div_quizz_direct = document.getElementById("div_quizz-direct");
+
+
                 const code = sessionCodeDisplay.textContent.split(": ")[1];
                 
                 fetch("http://127.0.0.1:5000/session?session_code="+code, requestOptions)
