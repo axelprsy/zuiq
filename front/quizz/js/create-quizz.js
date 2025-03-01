@@ -24,28 +24,32 @@ async function addDB(title, questions) {
 
 
 async function recupInfoForm() {
-    const numberOfQuestions = window.numberOfQuestions;
-    const title = document.getElementById(`quizz_name`).value;
-    const debut_questions_formatJSON = `[`;
-    let questions_formatJSON = debut_questions_formatJSON;
+    const numberOfQuestions = window.numberOfQuestions || document.querySelectorAll(".form-group").length;
+    const title = document.getElementById("quizz_name")?.value.trim();
+
+    // Création du tableau des questions
+    const questionsArray = [];
 
     for (let i = 1; i <= numberOfQuestions; i++) {
-        const title_question = document.getElementById(`title_question${i}`).value;
-        const answer1 = document.getElementById(`answer1_question${i}`).value;
-        const answer2 = document.getElementById(`answer2_question${i}`).value;
-        const answer3 = document.getElementById(`answer3_question${i}`).value;
-        const answer4 = document.getElementById(`answer4_question${i}`).value;
-        const correct_answer = document.getElementById(`correct_answer_question${i}`).value;
+        const title_question = document.getElementById(`title_question${i}`)?.value.trim();
+        const answer1 = document.getElementById(`answer1_question${i}`)?.value.trim();
+        const answer2 = document.getElementById(`answer2_question${i}`)?.value.trim();
+        const answer3 = document.getElementById(`answer3_question${i}`)?.value.trim();
+        const answer4 = document.getElementById(`answer4_question${i}`)?.value.trim();
+        const correct_answer = document.getElementById(`correct_answer_question${i}`)?.value;
 
-        const new_question_formatJSON = `{"question_id": ${i}, "title": "${title_question}", "answers": ["${answer1}", "${answer2}", "${answer3}", "${answer4}"], "correct_answer": "${correct_answer}"}`;
-
-        if (i > 1) {
-            questions_formatJSON += `,`;
+        if (!title_question || !answer1 || !answer2 || !answer3 || !answer4 || !correct_answer) {
+            console.error(`Données manquantes pour la question ${i}`);
+            continue;
         }
-        questions_formatJSON += new_question_formatJSON;
+
+        questionsArray.push({
+            question_id: i,
+            title: title_question,
+            answers: [answer1, answer2, answer3, answer4],
+            correct_answer: correct_answer
+        });
     }
 
-    questions_formatJSON += `]`;
-
-    addDB(title, questions_formatJSON);
+    addDB(title, JSON.stringify(questionsArray));
 }
