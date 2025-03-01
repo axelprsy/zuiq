@@ -8,6 +8,9 @@ from flask_restful import Resource, reqparse
 
 class GenerateQuizz(Resource):
     def get(self):
+        """
+        Générer un quizz avec ia.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("theme", required=True, location="args")
         parser.add_argument("number_of_questions", required=True, location="args")

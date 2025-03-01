@@ -7,6 +7,9 @@ from flask_restful import Resource, reqparse
 
 class User(Resource):
     def post(self):
+        """
+        Créer un nouvel utilisateur.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("username", required=True, location="form")
         parser.add_argument("email", required=True, location="form")
@@ -28,6 +31,9 @@ class User(Resource):
         return jsonify({"message": "User created successfully.", "status": 201, "user_id_created": cursor.lastrowid})
     
     def get(self):
+        """
+        Récupérer les informations d'un utilisateur.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("user_id", required=False, location="args")
         parser.add_argument("username", required=False, location="args")
@@ -58,6 +64,9 @@ class User(Resource):
         return response
     
     def patch(self):
+        """
+        Mettre à jour les informations d'un utilisateur.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("user_id", required=True, location="form")
         parser.add_argument("username", required=False, location="form")
@@ -88,6 +97,9 @@ class User(Resource):
         return response
     
     def delete(self):
+        """
+        Supprimer un utilisateur.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("user_id", required=True, location="form")
         args = parser.parse_args()
@@ -109,6 +121,9 @@ class User(Resource):
     
 class Users(Resource):
     def get(self):
+        """
+        Recupérer la liste des utilisateurs et leurs infos.
+        """
         conn = connect_db()
         cursor = conn.cursor()
 
