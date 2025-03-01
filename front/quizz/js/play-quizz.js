@@ -18,8 +18,8 @@ if (sessionId && userName) {
 
 // Confirmation de connexion
 socket.on("joinedSession", ({ room, userId }) => {
-    user_id = userId
     document.getElementById("connected").textContent = `Vous êtes connecté à la session : ${sessionId}`;
+    user_id = userId
 });
 
 // Joueur : Recevoir une nouvelle question

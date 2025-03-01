@@ -14,14 +14,10 @@ joinQuizButton.addEventListener('click', () => {
     const code = joinCodeInput.value;
     const username = usernameInput.value;
     if (code && username) {
-        socket.emit('joinSession', { code, username });
+        window.location.href = `/play?session_id=${joinCodeInput.value}&username=${usernameInput.value}`;
     }
 });
 
-// Confirmation de connexion à la session
-socket.on('joinedSession', ({ room }) => {
-    window.location.href = `/play?session_id=${joinCodeInput.value}&username=${usernameInput.value}`;
-});
 
 // Joueur : Recevoir une nouvelle question
 socket.on('newQuestion', ({ question, answers, quizz_id, question_id }) => {
