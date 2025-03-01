@@ -1,3 +1,7 @@
+// Récupération des paramètres dans l'URL
+const params = new URLSearchParams(window.location.search);
+const quizzId = params.get("quizz_id");
+
 
 const socket = io('http://localhost:5050', {
     transports: ["websocket"],
@@ -15,11 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
 const sessionCodeDisplay = document.getElementById('sessionCode');
 const startQuizzButton = document.getElementById('startQuizz');
 
-// Recevoir le code de session généré
-// socket.on('sessionCreated', ({ code }) => {
-//     sessionCodeDisplay.textContent = `Code de session : ${code}`;   
-// });
-
 // Admin : Envoyer une question
 startQuizzButton.addEventListener('click', () => {
     const requestOptions = {
@@ -27,7 +26,7 @@ startQuizzButton.addEventListener('click', () => {
         redirect: "follow"
       };
       
-    fetch("http://127.0.0.1:5000/quizz?quizz_id=2", requestOptions)
+    fetch(`http://127.0.0.1:5000/quizz?quizz_id=${quizzId}`, requestOptions)
       .then((response) => response.json())
         .then((result) => {
             const input_number_of_question = document.getElementById("numberOfQuestion")
