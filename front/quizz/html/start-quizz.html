@@ -4,14 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
+    <link rel="stylesheet" href="../css/start-quizz.css">
+
 </head>
 <body>
-    <div id="adminInterface">
-        <h2>Admin</h2>
-        <p id="sessionCode"></p>
-        <button id="startQuizz">Lancer le quizz</button>
-            <input hidden id="numberOfQuestion" type="text" value="0">
+    <div class="header">
+        <h1>Espace Administrateur de Quizz</h1>
     </div>
+
+    <div class="admin-container">
+        <h2>Interface de gestion de quizz</h2>
+        <p id="sessionCode">Code de session : <span>XXXX</span></p>
+        <button id="startQuizz" class="button">Lancer le quizz</button>
+        <input hidden id="numberOfQuestion" type="text" value="0">
+    </div>
+
+    <footer class="footer-container">
+        <p>&copy; 2025 SB & AP - Kadoute</p>
+        <p><a href="/join-quizz">Rejoindre une partie</a></p>
+    </footer>
+
     <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
     <script src="../js/start-quizz.js"></script>
 </body>

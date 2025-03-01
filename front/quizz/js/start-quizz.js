@@ -27,7 +27,7 @@ startQuizzButton.addEventListener('click', () => {
         redirect: "follow"
       };
       
-    fetch("http://127.0.0.1:5000/quizz?user_id=1", requestOptions)
+    fetch("http://127.0.0.1:5000/quizz?quizz_id=2", requestOptions)
       .then((response) => response.json())
         .then((result) => {
             const input_number_of_question = document.getElementById("numberOfQuestion")
