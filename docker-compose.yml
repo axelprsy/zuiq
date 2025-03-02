@@ -16,6 +16,8 @@ services:
       - "5050:5050"
     networks:
       - app_network
+    environment:
+      - API_URL=http://api:5000
     depends_on:
       - api
 
