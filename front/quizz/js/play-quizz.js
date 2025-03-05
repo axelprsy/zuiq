@@ -65,6 +65,11 @@ socket.on("quizzEnded", async ({quizz_id, code}) => {
                     var p_score = document.createElement("p")
                     p_score.textContent = "Votre score : " + users[i]["points"]
                     questionsDiv.append(p_score)
+
+                    var button_return_home = document.createElement("button")
+                    button_return_home.textContent = "Retourner a l'accueil"
+                    button_return_home.onclick = () => {window.location.href = "/"}
+                    questionsDiv.append(button_return_home)
                 }
             }    
         })
