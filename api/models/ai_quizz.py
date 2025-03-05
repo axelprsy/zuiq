@@ -38,7 +38,7 @@ class GenerateQuizz(Resource):
                             "question_id": 1,
                             "title": "[intitulé_de_la_question]",
                             "answers": ["[option_1]", "[option_2]", "[option_3]", "[option_4]"],
-                            "correct_answer": "[numero_de_la_bonne_réponse]"
+                            "correct_answer": 1,2,3 ou 4 (pas 0)
                         }},
                         // autres questions...
                     ]

@@ -111,7 +111,9 @@ def submit_answer(data):
     res_quizz=response_quizz.json()
     for i in res_quizz["quizz"][0]["questions"]:
         if i["question_id"] == question_id:
+            print(int(answer), int(i["correct_answer"]))
             if int(answer) == int(i["correct_answer"]):
+                print(int(answer), int(i["correct_answer"]))
                 url_session = url_api+"/session"
                 response_session = requests.get(url_session+f"?session_code="+code)
                 res_session = response_session.json()

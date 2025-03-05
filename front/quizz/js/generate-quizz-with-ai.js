@@ -1,6 +1,6 @@
 async function createQuizz(quizz) {
   const title = quizz.name
-  const questions = quizz.questions
+  const questions = JSON.stringify(quizz.questions)
 
   const formdata = new FormData();
     formdata.append("name", title);
@@ -34,7 +34,7 @@ async function generateWithAi(theme, public, nbQuestions) {
   fetch(`http://127.0.0.1:5000/generate_quizz?theme=${theme}&public=${public}&number_of_questions=${nbQuestions}`, requestOptions)
     .then((response) => response.json())
     .then((result) => {
-      addQuizz(result)
+      createQuizz(result["quizz"]["quizz"])
     })
     .catch((error) => console.error(error));
 }
