@@ -63,3 +63,33 @@ body {
     transform: scale(1.05);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
+
+/* FOOTER */
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    width: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .footer-container:hover {
+    background-color: #0056b3;
+  }
+  
+  .footer-container a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+  .footer-container a:hover {
+    color: #e1e3e6;
+    text-decoration: underline;
+  }
