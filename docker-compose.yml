@@ -9,7 +9,7 @@ services:
       - app_network
     environment:
       - API_URL=http://api:5000
-      - OLLAMA_URL=http://host.docker.internal:5000
+      - OLLAMA_URL=http://host.docker.internal:11434
 
   api_socketio: 
     build: ./api_socketio
