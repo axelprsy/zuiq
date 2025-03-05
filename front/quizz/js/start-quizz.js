@@ -2,9 +2,9 @@
 const params = new URLSearchParams(window.location.search);
 const quizzId = params.get("quizz_id");
 
-// Pour relanver une session apres la fin du quizz
-function reloadPage() {
-    location.reload();
+// Pour revenir a la page my-quizz
+function myQuizzPage() {
+    window.location.href = "/my-quizz";
 }
 
 const socket = io("http://localhost:5050", {
