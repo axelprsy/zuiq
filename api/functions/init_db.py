@@ -3,6 +3,7 @@ import sqlite3
 conn = sqlite3.connect('db/app.db')
 cursor = conn.cursor()
 
+# initialise la table users de la db
 cursor.execute('''
 CREATE TABLE users (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT, -- Identifiant unique auto-incrémenté
@@ -14,6 +15,7 @@ CREATE TABLE users (
 ''')
 print("✅ Table 'users' créée avec succès.")
 
+# initialise la table quizz de la db
 cursor.execute('''
 CREATE TABLE quizz (
     quizz_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -26,4 +28,16 @@ CREATE TABLE quizz (
 );
 ''')
 print("✅ Table 'quizz' créée avec succès.")
+
+# initialise la table session de la db
+cursor.execute('''
+CREATE TABLE session (
+    session_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    session_code TEXT NOT NULL UNIQUE,
+    admin_user_id INTEGER NOT NULL,
+    users JSON NOT NULL
+);             
+''')
+print("✅ Table 'session' créée avec succès.")
+
 conn.close()

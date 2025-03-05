@@ -1,9 +1,6 @@
 flask
 Flask-RESTful
 requests
-python-dotenv
-mysql-connector-python
-authlib
 flask-cors
 python-dateutil
 ollama

@@ -8,6 +8,9 @@ from flask_restful import Resource, reqparse
 
 class Quizz(Resource):
     def post(self):
+        """
+        Crée un nouveau quizz.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("name", required=True, location="form")
         parser.add_argument("user_id", required=True, location="form")
@@ -28,6 +31,9 @@ class Quizz(Resource):
         return jsonify({"message": "Quizz created successfully.", "status": 201, "quizz_id_created": cursor.lastrowid})
     
     def get(self):
+        """
+        Recuperer un quizz avec son id ou les quizz d'un user.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("user_id", required=False, location="args")
         parser.add_argument("quizz_id", required=False, location="args")
@@ -38,17 +44,14 @@ class Quizz(Resource):
  
         for i in args:
             if args[i] != None:
-                print(f"SELECT * FROM quizz WHERE {i} = ?", (args[i],))
                 cursor.execute(f"SELECT * FROM quizz WHERE {i} = ?", (args[i],))
                 quizz = cursor.fetchall()
-                print(quizz)
         res = []
         for i in quizz:
             res.append({"quizz_id": i[0], "name": i[1], "created_at": i[2], "user_id": i[3], "questions": json.loads(i[4]), "total_questions": i[5]})
         cursor.close()
         disconnect_db(conn)
 
-        print(res)
         if res != []:
             response = jsonify({
                 "quizz": res, 
@@ -60,6 +63,9 @@ class Quizz(Resource):
         return response
     
     def patch(self):
+        """
+        Modifier les elements d'un quizz avec son id.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("quizz_id", required=True, location="form")
         parser.add_argument("questions", required=False, location="form")
@@ -73,18 +79,21 @@ class Quizz(Resource):
         for i in args:
             if args[i] != None:
                 cursor.execute(f"UPDATE quizz SET {i} = ? WHERE quizz_id = ?", (args[i], args["quizz_id"]))
-                conn.commit()
                 if cursor.rowcount !=0:
                     response = jsonify({"message": "Quizz updated successfully.", "quizz_id": args["quizz_id"] ,"status": 200})
                 else:
                     response = jsonify({"message": "Quizz not exist.", "status": 404})
 
+        conn.commit()
         cursor.close()
         disconnect_db(conn)
 
         return response
     
     def delete(self):
+        """
+        Supprimer un quizz avec son id.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("quizz_id", required=True, location="form")
         args = parser.parse_args()

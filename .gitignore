@@ -171,7 +171,9 @@ cython_debug/
 .pypirc
 
 # db
-app.db
-
+db/
 # node js
-node_modules/
+front/node_modules/
+
+# fichier cash mac
+.DS_Store

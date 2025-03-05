@@ -4,6 +4,9 @@ import sys
 import sqlite3
 
 def ollama_installed():
+    """
+    Vérifie si Ollama est installé.
+    """
     try:
         subprocess.run(["ollama", "--version"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
         return True
@@ -11,6 +14,9 @@ def ollama_installed():
         return False
 
 def install_requirements():
+    """
+    Installe les dépendances depuis requirements.txt.
+    """
     print("Installation des dépendances depuis requirements.txt...")
 
     pip_executable = "pip" if os.name == "nt" else "pip3"
@@ -24,6 +30,9 @@ def install_requirements():
 
 
 def create_db():
+    """
+    Création de la base de donnée.
+    """
     print("ℹ️ Création du dossier et de la base de données...")
     try:
         if not os.path.exists("db"):
@@ -44,6 +53,9 @@ def create_db():
         sys.exit(1)
 
 def init_db():
+    """
+    Initialise la base de données.
+    """
     print("🔧 Exécution de init_db.py dans le dossier 'functions'...")
     init_db_path = os.path.join("functions", "init_db.py")
     if not os.path.exists(init_db_path):
@@ -58,6 +70,9 @@ def init_db():
         sys.exit(1)
 
 def install_mistral():
+    """
+    Installe Mistral.
+    """
     print("🔧 Installation de Mistral...")
     
     try:
@@ -68,6 +83,9 @@ def install_mistral():
         sys.exit(1)
 
 def install_ollama():
+    """
+    Installe Ollama.
+    """
     print("🔧 Installation de Ollama...")
 
     try:

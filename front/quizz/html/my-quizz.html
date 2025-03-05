@@ -29,11 +29,12 @@
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Créer un Quizz</h2>
+            <h2 id="title_createquizz">Créer un Quizz</h2>
             <form id="form_newquizz">
                 <label for="quizz_name">Nom du Quizz</label>
                 <input type="text" id="quizz_name" name="quizz_name" required>
-                <button type="button" id="continue">Continuer</button>
+                <button class="btn-create-quizz" type="button" id="generate_whit_ia" onclick="CreateFormToGenerateWithAi()">Générer avec l'IA</button>
+                <button class="btn-create-quizz" type="button" id="continue">Continuer</button>
         </div>
     </div>
 
@@ -70,6 +71,7 @@
     <script defer src="../js/delete-quizz.js"></script>
     <script defer src="../js/modal-questions.js"></script>
     <script defer src="../js/create-quizz.js"></script>
+    <script defer src="../js/generate-quizz-with-ai.js"></script>
     </body>
 
 </html>

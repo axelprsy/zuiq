@@ -7,6 +7,9 @@ from flask_restful import Resource, reqparse
 
 class User(Resource):
     def post(self):
+        """
+        Créer un nouvel utilisateur.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("username", required=True, location="form")
         parser.add_argument("email", required=True, location="form")
@@ -28,6 +31,9 @@ class User(Resource):
         return jsonify({"message": "User created successfully.", "status": 201, "user_id_created": cursor.lastrowid})
     
     def get(self):
+        """
+        Récupérer les informations d'un utilisateur.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("user_id", required=False, location="args")
         parser.add_argument("username", required=False, location="args")
@@ -58,6 +64,9 @@ class User(Resource):
         return response
     
     def patch(self):
+        """
+        Mettre à jour les informations d'un utilisateur.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("user_id", required=True, location="form")
         parser.add_argument("username", required=False, location="form")
@@ -83,12 +92,14 @@ class User(Resource):
         except Exception as e:
             print(e)
             response = jsonify({"message": "The username or e-mail address you entered is already present in the db.", "status": 404})
-        cursor.close()
         disconnect_db(conn)
 
         return response
     
     def delete(self):
+        """
+        Supprimer un utilisateur.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("user_id", required=True, location="form")
         args = parser.parse_args()
@@ -104,13 +115,15 @@ class User(Resource):
         else:
             response = jsonify({"message": "User not exist.", "status": 404})
 
-        cursor.close()
         disconnect_db(conn)
 
         return response
     
 class Users(Resource):
     def get(self):
+        """
+        Recupérer la liste des utilisateurs et leurs infos.
+        """
         conn = connect_db()
         cursor = conn.cursor()
 
@@ -121,7 +134,6 @@ class Users(Resource):
         for user in users:
             res.append({"user_id": user[0], "email": user[1], "username": user[2], "created_at": user[4]})
 
-        cursor.close()
         disconnect_db(conn)
 
         return jsonify({"users": res, "status": 200})

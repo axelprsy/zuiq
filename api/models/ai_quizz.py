@@ -1,27 +1,33 @@
 import json
+import os
 from datetime import datetime
-from ollama import chat
-from ollama import ChatResponse
+from ollama import Client
 from flask import jsonify
 from flask_restful import Resource, reqparse
 
 
 class GenerateQuizz(Resource):
     def get(self):
+        """
+        Générer un quizz avec ia.
+        """
         parser = reqparse.RequestParser()
         parser.add_argument("theme", required=True, location="args")
         parser.add_argument("number_of_questions", required=True, location="args")
         parser.add_argument("public", required=True, location="args")
         args = parser.parse_args()
-        print(args)
 
-        response: ChatResponse = chat(model='mistral', messages=[
-        {
+        client = Client(
+        host=os.getenv('OLLAMA_URL', 'http://127.0.0.1:11434'),
+        headers={'x-some-header': 'some-value'}
+        )
+        response = client.chat(model='mistral', messages=[
+            {
             'role': 'user',
             'content': f"""
             Crée un quiz amusant et éducatif sur le thème {args['theme']} avec {args['number_of_questions']} questions.
-            Chaque question doit comporter un énoncé clair et concis, avec 4 propositions : A, B, C et D, et précise la bonne réponse.
-            Les questions doivent être adaptées à des {args['difficulty']}.
+            Chaque question doit comporter un énoncé clair et concis, avec 4 propositions et précise la bonne réponse.
+            Les questions doivent être adaptées à des {args['public']}.
             Je veux que ta réponse soit un JSON exactement sous cette forme :
 
             {{
@@ -31,8 +37,8 @@ class GenerateQuizz(Resource):
                         {{
                             "question_id": 1,
                             "title": "[intitulé_de_la_question]",
-                            "answers": ["A. [option_1]", "B. [option_2]", "C. [option_3]", "D. [option_4]"],
-                            "correct_answer": "[lettre_de_la_bonne_réponse]"
+                            "answers": ["[option_1]", "[option_2]", "[option_3]", "[option_4]"],
+                            "correct_answer": 1,2,3 ou 4 (pas 0)
                         }},
                         // autres questions...
                     ]
@@ -45,8 +51,6 @@ class GenerateQuizz(Resource):
             """ 
         }
         ])
-        print(response['message']['content'])
         quizz=json.loads(response.message.content)
         quizz["quizz"]["created_at"]=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
         return jsonify({"status": 200, "quizz": quizz})
