@@ -78,10 +78,6 @@ body {
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.footer-container:hover {
-    background-color: #0056b3;
-}
-
 .footer-container a {
     color: #ffffff;
     text-decoration: none;
