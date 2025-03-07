@@ -72,6 +72,11 @@ async function CreateFormToGenerateWithAi() {
   generateButton.classList.add('btn-create-quizz')
   generateButton.addEventListener("click", function (event) {
     event.preventDefault();
+    generateButton.style.backgroundColor = "darkgrey";
+    generateButton.style.cursor = "not-allowed";
+    generateButton.style.transition = "none";
+    generateButton.style.transform = "none";
+    generateButton.style.boxShadow = "none";
     const loader_contenair = document.createElement("div");
     loader_contenair.classList.add("loader-container");
 
