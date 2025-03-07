@@ -70,10 +70,28 @@ async function CreateFormToGenerateWithAi() {
   generateButton.textContent = 'Générer';
   generateButton.id = 'generateButton';
   generateButton.classList.add('btn-create-quizz')
-  generateButton.onclick = function (event) {
-    event.preventDefault(); // Empêche le rechargement de la page
+  generateButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    generateButton.style.backgroundColor = "darkgrey";
+    generateButton.style.cursor = "not-allowed";
+    generateButton.style.transition = "none";
+    generateButton.style.transform = "none";
+    generateButton.style.boxShadow = "none";
+    const loader_contenair = document.createElement("div");
+    loader_contenair.classList.add("loader-container");
+
+    const loader = document.createElement("div");
+    loader.classList.add("loader");
+
+    for (let i = 1; i <= 3; i++) {
+        let div = document.createElement("div");
+        loader.appendChild(div);
+    }
+
+    loader_contenair.appendChild(loader);
+    container.appendChild(loader_contenair);
     generateWithAi(themeInput.value, publicInput.value, nbQuestionsInput.value);
-  };
+  });
 
   // Ajouter les éléments à la div
   container.appendChild(themeLabel);
