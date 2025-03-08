@@ -1,0 +1,6 @@
+flask
+Flask-RESTful
+requests
+flask-cors
+python-dateutil
+ollama

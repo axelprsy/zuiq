@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="../css/form.css">
+    <script defer src="../js/connect-user.js"></script>
+
+</head>
+<body>
+    <div class="content">
+        <div class="form-container">
+            <h1>Connexion</h1>
+            <form id="form">
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn">Se connecter</button>
+                <p id="error_message" class="error_message"></p>
+            </form>
+            <div class="form-footer">
+                <p>Pas encore de compte ? <a href="/signup">S'inscrire</a></p>
+            </div>
+        </div>
+    </div>
+    <footer class="footer-container">
+        <p>&copy; 2025 SB & AP - Kadoute</p>
+        <p><a href="/join-quizz">Rejoindre une partie</a></p>
+    </footer>    
+    <script defer src="../js/security-auth.js"></script>
+</body>
+</html>
