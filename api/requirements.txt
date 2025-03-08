@@ -4,3 +4,5 @@ requests
 flask-cors
 python-dateutil
 ollama
+pandas
+openpyxl

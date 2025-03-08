@@ -81,6 +81,19 @@ startQuizzButton.addEventListener("click", () => {
                     }    
                 })
 
+                const generate_exel_file = document.createElement("button")
+                generate_exel_file.classList.add("button")
+                generate_exel_file.textContent = "Génerer un fichier exel"
+                
+                generate_exel_file.addEventListener("click", () => {
+                    // fetch("http://127.0.0.1:5000/generate_exel?session_data="+JSON.stringify(users), requestOptions)
+                    // .then((response) => response.json())
+                    // .then((result) => {})
+                    window.location.href = "http://127.0.0.1:5000/generate_exel?session_data="+JSON.stringify(users)
+                })
+                // div_quizz_direct.appendChild(generate_exel_file)
+                div_quizz_direct.children[0].insertAdjacentElement("afterend", generate_exel_file)
+
                 const quizz_id = result.quizz[0].quizz_id;
                 socket.emit("endQuizz", {
                     quizz_id: quizz_id,
@@ -90,7 +103,7 @@ startQuizzButton.addEventListener("click", () => {
         });
 });
 
-// Admin : Créer une session
+// Admin : Créer une session    
 // createSessionButton.addEventListener('click', () => {
 //     socket.emit('createSession');
 // });
