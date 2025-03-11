@@ -110,7 +110,7 @@ closeButtons.forEach((button) => {
 
 // Ajoute des écouteurs d'événements aux boutons
 document
-  .querySelector(".button_createquizz")
+  .getElementById(".button_createquizz")
   .addEventListener("click", openModalQuizz);
 document
   .getElementById("continue")

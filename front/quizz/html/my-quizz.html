@@ -1,78 +1,171 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mes quizz - Kadoute</title>
+    <script src="https://kit.fontawesome.com/1f76485fee.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Dashboard des quiz - Kadoute</title>
     <link rel="stylesheet" href="../css/my-quizz.css">
     <link rel="stylesheet" href="../css/modal_create_quizz.css">
 </head>
 
-<body>
-    <div class="header">
-        <h1>Mes Quizz</h1>
-    </div>
-    <div id="quizz-container">
-        <!-- Ici s'afficheront les quiz grace à la boucle js -->
-    </div>
-    <div id="add-quizz">
-        <div class="quizz" id="div_createquizz">
-            <!-- Bouton de création de quiz qui ouvre le modal -->
-            <button class="button_createquizz">Créer un Quizz</button>
+<body class="bg-[#F9F7F7] text-[#112D4E]">
+    <nav class="flex items-center justify-between px-8 py-4 bg-[#DBE2EF] shadow-md fade-in">
+        <div class="text-xl font-semibold text-[#112D4E]">
+            kadoute
         </div>
-    </div>
-
-    <!-- MODAL -->
-
-    <!-- Modal pour créer le quizz -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 id="title_createquizz">Créer un Quizz</h2>
-            <form id="form_newquizz">
-                <label for="quizz_name">Nom du Quizz</label>
-                <input type="text" id="quizz_name" name="quizz_name" required>
-                <button class="btn-create-quizz" type="button" id="generate_whit_ia"
-                    onclick="CreateFormToGenerateWithAi()">Générer avec l'IA</button>
-                <button class="btn-create-quizz" type="button" id="continue">Continuer</button>
+        <div class="flex items-center space-x-4">
+            <img src="https://as2.ftcdn.net/jpg/04/10/43/77/1000_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"
+                alt="User Avatar" class="rounded-full w-12 h-12">
+            <span class="text-sm text-[#112D4E]">Saaaandrine Parsy</span>
+            <a href="/profile" class="text-[#3F72AF] hover:text-[#112D4E]">Gérer mon profil</a>
         </div>
-    </div>
+    </nav>
 
-    <!-- Modal pour ajouter des questions -->
-    <div id="modal-questions" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Créer des Questions</h2>
+    <div class="container mx-auto px-8 py-12 fade-in">
+        <h1 class="text-3xl font-bold mb-8 slide-in text-[#112D4E]">Gérer vos Quiz</h1>
 
-            <div id="question-container">
-                <!-- Les questions seront générées ici -->
+        <div id="quizz-container">
+            <div class="bg-[#DBE2EF] p-6 rounded-lg mb-6 shadow-md flex items-center justify-between fade-in">
+                <span class="text-lg font-semibold text-[#112D4E]">Ajouter un nouveau quiz</span>
+                <button id="dropdownButton"
+                    class="bg-[#3F72AF] text-white px-4 py-2 rounded hover:bg-[#112D4E] flex items-center button_createquizz">
+                    <i class="fa-solid fa-plus mr-2"></i>
+                    Ajouter
+                </button>
+                <ul id="dropdownMenu"
+                    class="absolute hidden bg-[#F0F4F8] border border-[#3F72AF] rounded-lg mt-2 w-full shadow-lg">
+                    <li>
+                        <button id="generateWithAI" class="dropdown-item px-4 py-2 w-full text-left">Générer avec
+                            l'IA</button>
+                    </li>
+                    <li>
+                        <button id="createManually" class="dropdown-item px-4 py-2 w-full text-left">Créer
+                            manuellement</button>
+                    </li>
+                </ul>
             </div>
 
-            <div class="navigation">
-                <button type="button" class="arrow-left">←</button>
-                <button class="btn" id="finishButton" type="button" onclick="recupInfoForm()">Terminer</button>
-                <button class="arrow-right">→</button>
-                <p id="error_message"></p>
+            <!-- MODAL -->
+
+            <!-- Modal pour créer le quizz -->
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2 id="title_createquizz">Créer un Quizz</h2>
+                    <form id="form_newquizz">
+                        <label for="quizz_name">Nom du Quizz</label>
+                        <input type="text" id="quizz_name" name="quizz_name" required>
+                        <button class="btn-create-quizz" type="button" id="generate_whit_ia"
+                            onclick="CreateFormToGenerateWithAi()">Générer avec l'IA</button>
+                        <button class="btn-create-quizz" type="button" id="continue">Continuer</button>
+                </div>
             </div>
-        </div>
-        </form>
-    </div>
 
-    <!-- FIN DU MODAL -->
+            <!-- Modal pour ajouter des questions -->
+            <div id="modal-questions" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Créer des Questions</h2>
 
+                    <div id="question-container">
+                        <!-- Les questions seront générées ici -->
+                    </div>
 
+                    <div class="navigation">
+                        <button type="button" class="arrow-left">←</button>
+                        <button class="btn" id="finishButton" type="button" onclick="recupInfoForm()">Terminer</button>
+                        <button class="arrow-right">→</button>
+                        <p id="error_message"></p>
+                    </div>
+                </div>
+                </form>
+            </div>
 
-    <footer class="footer-container">
-        <p>&copy; 2025 SB & AP - Kadoute</p>
-        <p><a href="/join-quizz">Rejoindre une partie</a></p>
-    </footer>
-    <script defer src="../js/recup-quizz.js"></script>
-    <script defer src="../js/security-quizz.js"></script>
-    <script defer src="../js/delete-quizz.js"></script>
-    <script defer src="../js/modal-questions.js"></script>
-    <script defer src="../js/create-quizz.js"></script>
-    <script defer src="../js/generate-quizz-with-ai.js"></script>
+            <!-- FIN DU MODAL -->
+
+            <style>
+                /* Style du bouton dropdown */
+                #dropdownButton {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+
+                /* Style des éléments du menu */
+                #dropdownMenu {
+                    display: none;
+                    /* Initialement caché */
+                    background-color: white;
+                    border: 2px solid #3F72AF;
+                    border-radius: 8px;
+                    padding: 5px 0;
+                    width: 100%;
+                }
+
+                .dropdown-item {
+                    padding: 8px 16px;
+                    color: #3F72AF;
+                    cursor: pointer;
+                    font-weight: bold;
+                    transition: background-color 0.3s ease;
+                }
+
+                .dropdown-item:hover {
+                    background-color: #3F72AF;
+                    color: white;
+                }
+
+                /* Affichage du menu lorsque activé */
+                .show {
+                    display: block;
+                }
+            </style>
+            <script>
+                // Sélection des éléments
+                const dropdownButton = document.getElementById("dropdownButton");
+                const dropdownMenu = document.getElementById("dropdownMenu");
+                const generateWithAI = document.getElementById("generateWithAI");
+                const createManually = document.getElementById("createManually");
+                const generateButton = document.getElementById("generate_whit_ia");
+                const continueButton = document.getElementById("continue");
+
+                // Ouvrir/fermer le menu déroulant
+                dropdownButton.addEventListener("click", () => {
+                    dropdownMenu.classList.toggle("show");
+                });
+
+                // Gérer la sélection des options
+                generateWithAI.addEventListener("click", () => {
+                    dropdownMenu.classList.remove("show");
+                    generateWithAI.classList.add("active");
+                    createManually.classList.remove("active");
+                    generateButton.style.display = "inline-block";  // Afficher le bouton "Générer avec l'IA"
+                    continueButton.style.display = "none"; // Cacher le bouton "Continuer"
+                    dropdownButton.textContent = "Générer avec l'IA";
+                });
+
+                createManually.addEventListener("click", () => {
+                    dropdownMenu.classList.remove("show");
+                    createManually.classList.add("active");
+                    generateWithAI.classList.remove("active");
+                    generateButton.style.display = "none"; // Cacher le bouton "Générer avec l'IA"
+                    continueButton.style.display = "inline-block"; // Afficher le bouton "Continuer"
+                    dropdownButton.textContent = "Créer manuellement";
+                });
+
+            </script>
+            <script defer src="../js/recup-quizz.js"></script>
+            <script defer src="../js/security-quizz.js"></script>
+            <script defer src="../js/delete-quizz.js"></script>
+            <script defer src="../js/modal-questions.js"></script>
+            <script defer src="../js/create-quizz.js"></script>
+            <script defer src="../js/generate-quizz-with-ai.js"></script>
 </body>
 
 </html>

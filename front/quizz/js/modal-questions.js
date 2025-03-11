@@ -1,38 +1,31 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // On récupère les éléments HTML dont on a besoin
     const modalQuizz = document.getElementById("modal");
     const modalQuestions = document.getElementById("modal-questions");
     const questionContainer = document.getElementById("question-container");
-    const finishBtn = document.querySelector(".navigation button:nth-child(2)"); // Sélectionne le bouton "Terminer"
+    const finishBtn = document.querySelector(".navigation button:nth-child(2)");
     const nextQuestionBtn = document.querySelector(".arrow-right");
     const prevQuestionBtn = document.querySelector(".arrow-left");
     const closeButtons = document.querySelectorAll(".close");
 
-    // Variables pour suivre l'index de la question actuelle et la liste des questions
     let currentQuestionIndex = 0;
     let questions = [];
-
-    // Variable globale pour stocker le nombre de questions
     window.numberOfQuestions = 0;
 
-    // Fonction pour ouvrir la modal du quiz
     function openModalQuizz() {
-        modalQuizz.style.display = "flex"; // Affiche la modal
+        modalQuizz.style.display = "flex";
     }
 
-    // Fonction pour ouvrir la modal des questions
     function openModalQuestions() {
-        modalQuestions.style.display = "flex"; // Affiche la modal
-        questionContainer.innerHTML = ""; // Vide le conteneur de questions
-        currentQuestionIndex = 0; // Réinitialise l'index de la question actuelle
-        questions = []; // Réinitialise la liste des questions
-        window.numberOfQuestions = 0; // Réinitialise le nombre de questions
-        addNewQuestion(); // Ajoute la première question
+        modalQuestions.style.display = "flex";
+        questionContainer.innerHTML = "";
+        currentQuestionIndex = 0;
+        questions = [];
+        window.numberOfQuestions = 0;
+        addNewQuestion();
     }
 
-    // Fonction pour ajouter une nouvelle question
     function addNewQuestion() {
-        const questionCount = questions.length + 1; // Numéro de la nouvelle question
+        const questionCount = questions.length + 1;
         const questionTemplate = `
             <div class="form-group next">
                 <h1>Question ${questionCount}</h1>
@@ -56,56 +49,51 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         `;
 
-        questionContainer.insertAdjacentHTML("beforeend", questionTemplate); 
+        questionContainer.insertAdjacentHTML("beforeend", questionTemplate);
         questions = document.querySelectorAll(".form-group");
         setTimeout(() => {
-            currentQuestionIndex = questions.length - 1; 
+            currentQuestionIndex = questions.length - 1;
             updateQuestionDisplay();
         }, 50);
     }
 
-    // Fonction pour mettre à jour l'affichage des questions
     function updateQuestionDisplay() {
         questions.forEach((q, index) => {
-            q.classList.remove("active", "previous", "next"); // Enlève les classes d'affichage
+            q.classList.remove("active", "previous", "next");
             if (index === currentQuestionIndex) {
-                q.classList.add("active"); // Affiche la question actuelle
+                q.classList.add("active");
             } else if (index < currentQuestionIndex) {
-                q.classList.add("previous"); // Cache les questions précédentes
+                q.classList.add("previous");
             } else {
-                q.classList.add("next"); // Cache les questions suivantes
+                q.classList.add("next");
             }
         });
     }
 
-    // Fonction pour passer à la question suivante
     function nextQuestion(event) {
-        event.preventDefault(); // Empêche le rechargement de la page
+        event.preventDefault();
         if (currentQuestionIndex === questions.length - 1) {
-            addNewQuestion(); // Ajoute une nouvelle question si c'est la dernière
+            addNewQuestion();
         } else {
-            currentQuestionIndex++; // Passe à la question suivante
-            updateQuestionDisplay(); // Met à jour l'affichage
+            currentQuestionIndex++;
+            updateQuestionDisplay();
         }
     }
 
-    // Fonction pour revenir à la question précédente
     function prevQuestion(event) {
-        event.preventDefault(); // Empêche le rechargement de la page
+        event.preventDefault();
         if (currentQuestionIndex > 0) {
-            currentQuestionIndex--; // Revient à la question précédente
-            updateQuestionDisplay(); // Met à jour l'affichage
+            currentQuestionIndex--;
+            updateQuestionDisplay();
         }
     }
 
-    // Fonction pour fermer les modals
     closeButtons.forEach(button => {
         button.addEventListener("click", function () {
-            this.parentElement.parentElement.style.display = "none"; // Cache la modal
+            this.parentElement.parentElement.style.display = "none";
         });
     });
 
-    // Ajoute des écouteurs d'événements aux boutons
     document.querySelector(".button_createquizz").addEventListener("click", openModalQuizz);
     document.getElementById("continue").addEventListener("click", openModalQuestions);
     finishBtn.addEventListener("click", (e) => { e.preventDefault(); finishQuiz(); });
