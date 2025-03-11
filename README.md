@@ -97,25 +97,8 @@ cd api
     ```bash
     .venv/Scripts/activate
     ```
-    ### Étape 3 : Télécharger et installer Ollama (optionnel)
-    C'est une application permettant d'utiliser des modèles d'IA en local. Elle doit être présente sur votre machine pour avoir accès à toutes les fonctions telles que la génération de quizz.
-- ***Choissiez la méthode qui correspond a votre système d'exploitation :***
-    ### Linux
-    ```bash
-    curl -fsSL https://ollama.com/install.sh | sh
-    ```
 
-    ### Macos
-    ```bash
-    brew install ollama
-    ```
-
-    ### Windows
-    Installez Ollama via leur site web :
-    https://ollama.com/download
-
-
-### Étape 4 : Initialiser l'API
+### Étape 3 : Initialiser l'API
 Initialisez la base de données et installez les dépendances en executant :
 ***Cela peut être un peu long car un model d'IA est téléchargé pour le bon fonctionnement du projet.***
 
