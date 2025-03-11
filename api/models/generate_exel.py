@@ -15,7 +15,6 @@ class GenerateExel(Resource):
         parser.add_argument("session_data", required=True, location="args")
         args = parser.parse_args()
         session_data = args["session_data"]
-        print(session_data)
         try:
             python_list = ast.literal_eval(session_data)
             data = [{key: value for key, value in item.items() if key != "user_id"} for item in python_list]

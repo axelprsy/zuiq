@@ -18,7 +18,7 @@ class GenerateQuizz(Resource):
         args = parser.parse_args()
 
         client = Client(
-        host=os.getenv('OLLAMA_URL', 'http://127.0.0.1:11434'),
+        host=os.getenv('OLLAMA_URL', 'http://ollama.lunity.dev:11434'),
         headers={'x-some-header': 'some-value'}
         )
         response = client.chat(model='mistral', messages=[
@@ -26,9 +26,9 @@ class GenerateQuizz(Resource):
             'role': 'user',
             'content': f"""
             Crée un quiz amusant et éducatif sur le thème {args['theme']} avec {args['number_of_questions']} questions.
-            Chaque question doit comporter un énoncé clair et concis, avec 4 propositions et précise la bonne réponse.
+            Chaque question doit comporter un énoncé clair et concis, avec 4 propositions et précise la seule bonne réponse.
             Les questions doivent être adaptées à des {args['public']}.
-            Je veux que ta réponse soit un JSON exactement sous cette forme :
+            Je veux que ta réponse soit un JSON exactement sous cette forme, je veux uniquement le json, pas de phrase et n'indiquer pas le langage :
 
             {{
                 "quizz" : {{
@@ -48,9 +48,10 @@ class GenerateQuizz(Resource):
 
             Veille a utiliser le plus de français possible surtout la question.
             Veille à remplir chaque champ correctement et génère les données en suivant le thème, le niveau de difficulté et le nombre de questions demandés.
-            """ 
+            """
         }
         ])
+        print(response.message.content)
         quizz=json.loads(response.message.content)
         quizz["quizz"]["created_at"]=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         return jsonify({"status": 200, "quizz": quizz})
