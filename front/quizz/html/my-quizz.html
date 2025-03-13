@@ -7,8 +7,6 @@
     <script src="https://kit.fontawesome.com/1f76485fee.js" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Dashboard des quiz - Kadoute</title>
-    <link rel="stylesheet" href="../css/my-quizz.css">
-    <link rel="stylesheet" href="../css/modal_create_quizz.css">
 </head>
 
 <body class="bg-[#F9F7F7] text-[#112D4E]">
@@ -30,142 +28,85 @@
         <div id="quizz-container">
             <div class="bg-[#DBE2EF] p-6 rounded-lg mb-6 shadow-md flex items-center justify-between fade-in">
                 <span class="text-lg font-semibold text-[#112D4E]">Ajouter un nouveau quiz</span>
-                <button id="dropdownButton"
+                <button
                     class="bg-[#3F72AF] text-white px-4 py-2 rounded hover:bg-[#112D4E] flex items-center button_createquizz">
                     <i class="fa-solid fa-plus mr-2"></i>
                     Ajouter
                 </button>
-                <ul id="dropdownMenu"
-                    class="absolute hidden bg-[#F0F4F8] border border-[#3F72AF] rounded-lg mt-2 w-full shadow-lg">
-                    <li>
-                        <button id="generateWithAI" class="dropdown-item px-4 py-2 w-full text-left">Générer avec
-                            l'IA</button>
-                    </li>
-                    <li>
-                        <button id="createManually" class="dropdown-item px-4 py-2 w-full text-left">Créer
-                            manuellement</button>
-                    </li>
-                </ul>
             </div>
+        </div>
 
-            <!-- MODAL -->
-
-            <!-- Modal pour créer le quizz -->
-            <div id="modal" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <h2 id="title_createquizz">Créer un Quizz</h2>
-                    <form id="form_newquizz">
-                        <label for="quizz_name">Nom du Quizz</label>
-                        <input type="text" id="quizz_name" name="quizz_name" required>
-                        <button class="btn-create-quizz" type="button" id="generate_whit_ia"
-                            onclick="CreateFormToGenerateWithAi()">Générer avec l'IA</button>
-                        <button class="btn-create-quizz" type="button" id="continue">Continuer</button>
+        <!-- MODAUX -->
+        <!-- Modal Choix Génération IA/Manuel-->
+        <div id="modal"
+            class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 modal-choice hidden">
+            <div class="bg-[#F9F7F7] rounded-lg p-8 w-full max-w-md relative">
+                <span
+                    class="absolute top-4 right-4 text-[#112D4E] text-2xl cursor-pointer close close-button">&times;</span>
+                <h2 class="text-[#112D4E] text-2xl font-bold mb-6">Créer un Quiz</h2>
+                <div class="flex space-x-4">
+                    <button
+                        class="flex-1 bg-[#3F72AF] text-white py-8 px-6 rounded-md hover:bg-[#2c527a] transition duration-300 flex flex-col items-center justify-center"
+                        onclick="CreateFormToGenerateWithAi()">
+                        <i class="fas fa-robot text-3xl mb-2"></i>
+                        Générer avec l'IA
+                    </button>
+                    <button id="create_quizz"
+                        class="flex-1 bg-[#DBE2EF] text-[#112D4E] py-8 px-6 rounded-md hover:bg-[#c3cfe4] transition duration-300 flex flex-col items-center justify-center button_createquizz">
+                        <i class="fas fa-edit text-3xl mb-2"></i>
+                        Faire un quiz manuellement
+                    </button>
                 </div>
             </div>
+        </div>
 
-            <!-- Modal pour ajouter des questions -->
-            <div id="modal-questions" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <h2>Créer des Questions</h2>
-
-                    <div id="question-container">
-                        <!-- Les questions seront générées ici -->
-                    </div>
-
-                    <div class="navigation">
-                        <button type="button" class="arrow-left">←</button>
-                        <button class="btn" id="finishButton" type="button" onclick="recupInfoForm()">Terminer</button>
-                        <button class="arrow-right">→</button>
-                        <p id="error_message"></p>
-                    </div>
-                </div>
+        <!-- Modal pour créer le quizz -->
+        <div id="modal-create-quizz"
+            class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+            <div class="modal-content bg-[#F9F7F7] rounded-lg p-8 w-full max-w-md relative flex flex-col space-y-4">
+                <span class="close absolute top-4 right-4 text-[#112D4E] text-2xl cursor-pointer">&times;</span>
+                <h2 id="title_createquizz" class="text-[#112D4E] text-2xl font-bold mb-4">Créer un Quizz</h2>
+                <form id="form_newquizz">
+                    <label for="quizz_name" class="text-[#112D4E] font-bold">Nom du Quizz</label>
+                    <input type="text" id="quizz_name" name="quizz_name" required
+                        class="border border-gray-300 rounded-md py-2 px-4 mt-1 focus:outline-none focus:ring-2 focus:ring-[#3F72AF]">
+                    <button
+                        class="btn-create-quizz bg-[#3F72AF] text-white py-2 px-4 rounded-md hover:bg-[#2c527a] transition duration-300 mt-4"
+                        type="button" id="continue">Continuer</button>
                 </form>
             </div>
+        </div>
 
-            <!-- FIN DU MODAL -->
+        <!-- Modal pour ajouter des questions -->
+        <div id="modal-questions" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+            <div class="modal-content bg-[#F9F7F7] rounded-lg p-8 w-full max-w-md relative flex flex-col space-y-4">
+                <span class="close absolute top-4 right-4 text-[#112D4E] text-2xl cursor-pointer">&times;</span>
+                <h2 class="text-[#112D4E] text-2xl font-bold mb-4">Créer des Questions</h2>
+                <div id="question-container" class="relative h-full overflow-hidden">
+                    <!-- Les questions seront générées ici -->
+                </div>
+                <div class="navigation flex justify-between items-center mt-4">
+                    <button type="button"
+                        class="arrow-left bg-[#DBE2EF] text-[#112D4E] py-2 px-4 rounded-md hover:bg-[#c3cfe4] transition duration-300">←</button>
+                    <button
+                        class="btn bg-[#3F72AF] text-white py-2 px-4 rounded-md hover:bg-[#2c527a] transition duration-300"
+                        id="finishButton" type="button" onclick="recupInfoForm()">Terminer</button>
+                    <button
+                        class="arrow-right bg-[#DBE2EF] text-[#112D4E] py-2 px-4 rounded-md hover:bg-[#c3cfe4] transition duration-300">→</button>
+                </div>
+                <p id="error_message" class="text-red-500 mt-2"></p>
+            </div>
+        </div>
 
-            <style>
-                /* Style du bouton dropdown */
-                #dropdownButton {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-weight: bold;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                }
+        <!-- FIN DES MODAUX -->
 
-                /* Style des éléments du menu */
-                #dropdownMenu {
-                    display: none;
-                    /* Initialement caché */
-                    background-color: white;
-                    border: 2px solid #3F72AF;
-                    border-radius: 8px;
-                    padding: 5px 0;
-                    width: 100%;
-                }
-
-                .dropdown-item {
-                    padding: 8px 16px;
-                    color: #3F72AF;
-                    cursor: pointer;
-                    font-weight: bold;
-                    transition: background-color 0.3s ease;
-                }
-
-                .dropdown-item:hover {
-                    background-color: #3F72AF;
-                    color: white;
-                }
-
-                /* Affichage du menu lorsque activé */
-                .show {
-                    display: block;
-                }
-            </style>
-            <script>
-                // Sélection des éléments
-                const dropdownButton = document.getElementById("dropdownButton");
-                const dropdownMenu = document.getElementById("dropdownMenu");
-                const generateWithAI = document.getElementById("generateWithAI");
-                const createManually = document.getElementById("createManually");
-                const generateButton = document.getElementById("generate_whit_ia");
-                const continueButton = document.getElementById("continue");
-
-                // Ouvrir/fermer le menu déroulant
-                dropdownButton.addEventListener("click", () => {
-                    dropdownMenu.classList.toggle("show");
-                });
-
-                // Gérer la sélection des options
-                generateWithAI.addEventListener("click", () => {
-                    dropdownMenu.classList.remove("show");
-                    generateWithAI.classList.add("active");
-                    createManually.classList.remove("active");
-                    generateButton.style.display = "inline-block";  // Afficher le bouton "Générer avec l'IA"
-                    continueButton.style.display = "none"; // Cacher le bouton "Continuer"
-                    dropdownButton.textContent = "Générer avec l'IA";
-                });
-
-                createManually.addEventListener("click", () => {
-                    dropdownMenu.classList.remove("show");
-                    createManually.classList.add("active");
-                    generateWithAI.classList.remove("active");
-                    generateButton.style.display = "none"; // Cacher le bouton "Générer avec l'IA"
-                    continueButton.style.display = "inline-block"; // Afficher le bouton "Continuer"
-                    dropdownButton.textContent = "Créer manuellement";
-                });
-
-            </script>
-            <script defer src="../js/recup-quizz.js"></script>
-            <script defer src="../js/security-quizz.js"></script>
-            <script defer src="../js/delete-quizz.js"></script>
-            <script defer src="../js/modal-questions.js"></script>
-            <script defer src="../js/create-quizz.js"></script>
-            <script defer src="../js/generate-quizz-with-ai.js"></script>
+        <link rel="stylesheet" href="../css/all_modal_style.css">
+        <script defer src="../js/recup-quizz.js"></script>
+        <script defer src="../js/security-quizz.js"></script>
+        <script defer src="../js/delete-quizz.js"></script>
+        <script defer src="../js/modal-questions.js"></script>
+        <script defer src="../js/create-quizz.js"></script>
+        <script defer src="../js/generate-quizz-with-ai.js"></script>
 </body>
 
 </html>
