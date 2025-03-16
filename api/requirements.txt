@@ -6,3 +6,4 @@ python-dateutil
 ollama
 pandas
 openpyxl
+qrcode[pil]
