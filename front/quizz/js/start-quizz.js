@@ -1,3 +1,10 @@
+async function get_ip() {
+    const response = await fetch('/get_ip');
+    const data = await response.json();
+    return data["ip"];
+}
+
+
 // Récupération des paramètres dans l'URL
 const params = new URLSearchParams(window.location.search);
 const quizzId = params.get("quizz_id");
@@ -7,12 +14,16 @@ function myQuizzPage() {
     window.location.href = "/my-quizz";
 }
 
-const socket = io("http://localhost:5050", {
-    transports: ["websocket"],
-    withCredentials: true,
-});
-
-document.addEventListener("DOMContentLoaded", function () {
+var socket = null;
+var url="";
+document.addEventListener("DOMContentLoaded", async function () {
+    await get_ip().then((ip) => {
+        url = ip;
+        socket = io(`http://${url}:5050`, {
+            transports: ["websocket"],
+            withCredentials: true,
+        });
+    })
     const user_id = localStorage.user_id;
     socket.emit("createSession", { user_id: user_id });
     socket.on("sessionCreated", ({ code }) => {
@@ -30,7 +41,7 @@ startQuizzButton.addEventListener("click", () => {
         redirect: "follow",
     };
 
-    fetch(`http://127.0.0.1:5000/quizz?quizz_id=${quizzId}`, requestOptions)
+    fetch(`http://${url}:5000/quizz?quizz_id=${quizzId}`, requestOptions)
         .then((response) => response.json())
         .then((result) => {
             const input_number_of_question =
@@ -49,7 +60,6 @@ startQuizzButton.addEventListener("click", () => {
                 document.getElementById("startQuizz").textContent = "Question suivante";
 
                 if (code && title) {
-                    console.log(questions.length, number_of_question);
                     socket.emit("sendQuestion", {
                         code: code,
                         question: title,
@@ -60,7 +70,6 @@ startQuizzButton.addEventListener("click", () => {
                     input_number_of_question.value = number_of_question + 1;
                 }
             } else {
-                console.log("fin du quizz");
                 document.getElementById("title_quizz_direct").textContent = `Quizz terminé !`;
                 document.getElementById("text_quizz_direct").textContent = `Résultats :`;
                 document.getElementById("startQuizz").style.display = "none";
@@ -70,7 +79,7 @@ startQuizzButton.addEventListener("click", () => {
 
                 const code = sessionCodeDisplay.textContent.split(": ")[1];
                 
-                fetch("http://127.0.0.1:5000/session?session_code="+code, requestOptions)
+                fetch(`http://${url}:5000/session?session_code=`+code, requestOptions)
                 .then((response) => response.json())
                 .then((result) => {
                     users = JSON.parse(result["users"].replace(/'/g, `"`))
@@ -86,10 +95,10 @@ startQuizzButton.addEventListener("click", () => {
                 generate_exel_file.textContent = "Génerer un fichier exel"
                 
                 generate_exel_file.addEventListener("click", () => {
-                    // fetch("http://127.0.0.1:5000/generate_exel?session_data="+JSON.stringify(users), requestOptions)
+                    // fetch("http://192.168.1.117:5000/generate_exel?session_data="+JSON.stringify(users), requestOptions)
                     // .then((response) => response.json())
                     // .then((result) => {})
-                    window.location.href = "http://127.0.0.1:5000/generate_exel?session_data="+JSON.stringify(users)
+                    window.location.href = `http://${url}:5000/generate_exel?session_data=`+JSON.stringify(users)
                 })
                 // div_quizz_direct.appendChild(generate_exel_file)
                 div_quizz_direct.children[0].insertAdjacentElement("afterend", generate_exel_file)
@@ -109,6 +118,6 @@ startQuizzButton.addEventListener("click", () => {
 // });
 
 // Admin : Voir les réponses des joueurs
-socket.on("userAnswer", ({ userId, answer }) => {
-    console.log(`Réponse reçue de ${userId} : ${answer}`);
-});
+// socket.on("userAnswer", ({ userId, answer }) => {
+//     console.log(`Réponse reçue de ${userId} : ${answer}`);
+// });

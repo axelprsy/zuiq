@@ -27,10 +27,9 @@ document.getElementById("form_modifyacount").addEventListener("submit", function
     redirect: "follow"
     };
 
-    fetch("http://127.0.0.1:5000/user", requestOptions)
+    fetch(`http://${url}:5000/user`, requestOptions)
     .then((response) => response.text() )
     .then((result) => {
-        console.log(result)
         localStorage.setItem("username", username);
         localStorage.setItem("email", email);
         document.getElementById("modal_error_message").innerText = "Votre compte a bien été modifié";

@@ -1,3 +1,10 @@
+async function get_ip() {
+  const response = await fetch('/get_ip');
+  const data = await response.json();
+  return data["ip"];
+}
+
+
 const user_id = localStorage.getItem("user_id");
 
 function startSession(quizz_id) {
@@ -8,12 +15,14 @@ const requestOptions = {
   method: "GET",
   redirect: "follow",
 };
-
-fetch(`http://127.0.0.1:5000/quizz?user_id=${user_id}`, requestOptions)
+window.onload = async function() {
+  await get_ip().then((ip) => {
+    url = ip;
+  })
+  fetch(`http://${url}:5000/quizz?user_id=${user_id}`, requestOptions)
   .then((response) => response.json())
   .then((result) => {
     const allQuizz = result.quizz;
-    console.log(allQuizz)
 
     function trunkText(text) {
       if (text.length > 25) {
@@ -40,5 +49,7 @@ fetch(`http://127.0.0.1:5000/quizz?user_id=${user_id}`, requestOptions)
 
   })
   .catch((error) => console.error(error));
+};
+
 
 

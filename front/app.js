@@ -1,7 +1,10 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const port = 3000;
+
+const config_file = require("./config.json");
+const port = config_file.front_port;
+
 
 // Configuration des dossier statiques
 app.use(express.static(path.join(__dirname, 'auth')));
@@ -15,6 +18,6 @@ const indexRouter = require('./routes/routes.js');
 app.use('/', indexRouter);
 
 // Démarrage du serveur
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Server is running`);
 });
