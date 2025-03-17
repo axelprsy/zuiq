@@ -11,9 +11,9 @@ class GenerateQrCode(Resource):
         Générer un fichier exel avec le resultat de la session.
         """
         parser = reqparse.RequestParser()
-        parser.add_argument("session_code", required=True, location="args")
+        parser.add_argument("session_url", required=True, location="args")
         args = parser.parse_args()
-        session_code = args["session_code"]
+        session_url = args["session_url"]
 
         # Génération du QR code
         qr = qrcode.QRCode(
@@ -22,7 +22,7 @@ class GenerateQrCode(Resource):
             box_size=10,
             border=4,
         )
-        qr.add_data(session_code)
+        qr.add_data(session_url)
         qr.make(fit=True)
 
         img = qr.make_image(fill_color="black", back_color="white")
@@ -33,5 +33,5 @@ class GenerateQrCode(Resource):
 
         img_base64 = base64.b64encode(buffer.read()).decode()
         data_url = f"data:image/png;base64,{img_base64}"
-        
+
         return jsonify({"qr_code": data_url})
