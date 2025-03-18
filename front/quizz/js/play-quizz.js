@@ -30,66 +30,68 @@ socket.on("newQuestion", ({ question, answers, quizz_id, question_id }) => {
     // Création de la question
     const questionElement = document.createElement("p");
     questionElement.textContent = `Question : ${question}`;
+    questionElement.classList.add("text-xl", "font-semibold", "mb-4");
     questionsDiv.appendChild(questionElement);
 
     // Création des boutons de réponse
     answers.forEach((answer, index) => {
         const button = document.createElement("button");
         button.id = "buttonQuizz";
-        button.classList.add("buttonQuizz");
+        button.classList.add("buttonQuizz", "bg-[#3F72AF]", "text-white", "py-2", "px-4", "rounded-lg", "mt-2", "w-full", "hover:bg-[#112D4E]", "transition-all", "duration-200");
         button.textContent = answer;
         button.onclick = () => sendResponse(index + 1, quizz_id, question_id);
         questionsDiv.appendChild(button);
     });
 });
 
-socket.on("quizzEnded", async ({quizz_id, code}) => {
+socket.on("quizzEnded", async ({ quizz_id, code }) => {
     const questionsDiv = document.getElementById("questionsDiv");
     questionsDiv.innerHTML = ""
     var p_finsh = document.createElement("p")
     p_finsh.textContent = "Fin du quizz"
+    p_finsh.classList.add("text-xl", "font-bold", "text-center", "mb-4");
     questionsDiv.append(p_finsh)
 
     const requestOptions = {
         method: "GET",
         redirect: "follow"
-      };
-      
-      fetch("http://127.0.0.1:5000/session?session_code="+code, requestOptions)
+    };
+
+    fetch("http://127.0.0.1:5000/session?session_code=" + code, requestOptions)
         .then((response) => response.json())
         .then((result) => {
             users = JSON.parse(result["users"].replace(/'/g, `"`))
-            for (i = 0; i < users.length; i++) {
-                console.log(users[i]["user_id"], user_id)
+            for (let i = 0; i < users.length; i++) {
                 if (users[i]["user_id"] == user_id) {
                     var p_score = document.createElement("p")
                     p_score.textContent = "Votre score : " + users[i]["points"]
+                    p_score.classList.add("text-lg", "font-semibold", "text-center", "mb-4");
                     questionsDiv.append(p_score)
 
                     var button_return_home = document.createElement("button")
-                    button_return_home.textContent = "Retourner a l'accueil"
-                    button_return_home.onclick = () => {window.location.href = "/"}
+                    button_return_home.textContent = "Retourner à l'accueil"
+                    button_return_home.classList.add("bg-[#3F72AF]", "text-white", "py-2", "px-4", "rounded-lg", "mt-2", "w-full", "hover:bg-[#112D4E]", "transition-all", "duration-200");
+                    button_return_home.onclick = () => { window.location.href = "/" };
                     questionsDiv.append(button_return_home)
                 }
-            }    
+            }
         })
-} )
+});
 
 // Envoi de la réponse au serveur
 function sendResponse(answer, quizz_id, question_id) {
     if (sessionId && answer && userName) {
         // Changer la couleur des boutons et le curseur
         const allButtons = document.querySelectorAll(".buttonQuizz");
-        allButtons.forEach((allButtons) => {
-            allButtons.style.backgroundColor = "darkgrey";
-            allButtons.style.cursor = "not-allowed";
-            allButtons.style.transition = "none";
-            allButtons.style.transform = "none";
-            allButtons.style.boxShadow = "none";
+        allButtons.forEach((button) => {
+            button.classList.add("bg-gray-500", "cursor-not-allowed", "opacity-50");
+            button.classList.remove("hover:bg-[#112D4E]");
         });
+
         // ajouter une phrase d'attente
         const sentence_wait = document.createElement("p");
         sentence_wait.textContent = "En attente de la prochaine question...";
+        sentence_wait.classList.add("text-center", "text-lg", "italic", "mt-4");
         const questionsDiv = document.getElementById("questionsDiv");
         questionsDiv.appendChild(sentence_wait);
 
@@ -97,7 +99,7 @@ function sendResponse(answer, quizz_id, question_id) {
             code: sessionId,
             answer,
             username: userName,
-            user_id:user_id,
+            user_id: user_id,
             quizz_id,
             question_id,
         });

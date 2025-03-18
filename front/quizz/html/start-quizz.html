@@ -1,34 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
-    <link rel="stylesheet" href="../css/start-quizz.css">
-
+    <title>Admin - Zuiq</title>
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="header">
-        <h1>Espace Administrateur de Quizz</h1>
-    </div>
 
-    <div class="admin-container">
-        <h2>Interface de gestion de quizz</h2>
-        <p id="sessionCode">Code de session : <span>XXXX</span></p>
-        <button id="startQuizz" class="button">Lancer le quizz</button>
-        <button id="endQuizz" onclick="myQuizzPage()" class="button">Revenir à la page d'accueil</button>
-        <input hidden id="numberOfQuestion" type="text" value="0">
+<body class="bg-[#F9F7F7] text-[#112D4E] flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="flex items-center justify-between px-8 py-4 bg-[#DBE2EF] shadow-md fade-in">
+        <div class="text-xl font-semibold text-[#112D4E]">
+            Zuiq
+        </div>
+        <div class="flex items-center space-x-4">
+            <img src="https://as2.ftcdn.net/jpg/04/10/43/77/1000_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"
+                alt="User Avatar" class="rounded-full w-12 h-12">
+            <span id="username" class="text-sm text-[#112D4E]"></span>
+            <a href="/dashboard" class="text-[#3F72AF] hover:text-[#112D4E]">Dashboard</a>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div id="admin-container" class="bg-[#DBE2EF] p-10 rounded-xl shadow-lg flex w-4/5 max-w-7xl mt-10 mx-auto">
+
+        <!-- Partie gauche : Rejoindre le quizz -->
+        <div id="join-quiz" class="w-1/2 pr-4 flex flex-col items-center">
+            <h2 class="text-xl font-semibold text-[#112D4E]">Rejoindre le quiz</h2>
+            <p id="sessionCode" class="text-lg text-[#112D4E] font-bold">Code de session : <span
+                    class="font-normal">XXXX</span></p>
+            <div id="qrCode" class="mt-4">
+            </div>
+        </div>
+
+        <!-- Barre de séparation -->
+        <div class="w-px bg-[#112D4E] mx-4"></div>
+
+        <!-- Partie droite : Quiz en cours -->
+        <div id="div_quizz-direct" class="w-1/2 flex flex-col items-center">
+            <h2 class="text-xl font-semibold text-[#112D4E]">Votre quiz</h2>
+            <div id="connectedUsers" class="bg-[#112D4E] text-white p-6 rounded-lg w-full mt-2">
+                <p class="text-lg font-semibold" id="title_quizz_direct">Joueurs connectés</p>
+                <p id="text_quizz_direct" class="text-lg mb-4"></p>
+                <ul class="mt-2" id="listConnectedUsers">
+                    <li>- Aymeric</li>
+                    <li>- Sandrine</li>
+                    <li>- Benedicte</li>
+                    <li>- Abdelaziz</li>
+                </ul>
+            </div>
+            <button id="startQuizz"
+                class="mt-6 bg-[#112D4E] text-white py-3 px-6 rounded-lg hover:bg-[#3F72AF] transition duration-300">
+                Lancer le quiz
+            </button>
+        </div>
     </div>
-    <div id="div_quizz-direct" class="admin-container">
-        <h2 id="title_quizz_direct">En attente de joueurs...</h2>
-        <p id="text_quizz_direct"></p>
-    </div>
-    <footer class="footer-container">
-        <p>&copy; 2025 SB & AP - Kadoute</p>
-        <p><a href="/my-quizz">Retourner a l'accueil</a></p>
-    </footer>
 
     <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
     <script src="../js/start-quizz.js"></script>
 </body>
+
 </html>

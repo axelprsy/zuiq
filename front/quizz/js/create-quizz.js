@@ -27,7 +27,6 @@ async function recupInfoForm() {
     const numberOfQuestions = window.numberOfQuestions || document.querySelectorAll(".form-group").length;
     const title = document.getElementById("quizz_name")?.value.trim();
 
-    // Création du tableau des questions
     const questionsArray = [];
 
     for (let i = 1; i <= numberOfQuestions; i++) {

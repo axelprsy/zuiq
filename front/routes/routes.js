@@ -40,6 +40,9 @@ router.get("/create-quizz", (req, res) => {
 router.get("/my-quizz", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../quizz/html/my-quizz.html"));
 });
+router.get("/dashboard", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../quizz/html/my-quizz.html"));
+});
 // Définition de la route pour /play-quizz
 router.get("/play", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../quizz/html/play-quizz.html"));
@@ -47,6 +50,10 @@ router.get("/play", (req, res) => {
 // Définition de la route pour /start-my-quizz
 router.get("/start-my-quizz", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../quizz/html/start-quizz.html"));
+});
+// Définition de la route pour /modify (temp)
+router.get('/modify', (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../quizz/html/modify.html"));
 });
 
 module.exports = router;
