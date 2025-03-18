@@ -8,13 +8,11 @@ get_ip().then((ip) => {
 })
 
 async function hashPassword(password) {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(password);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
-    return hashHex;
-  }
+    // Hachage SHA-256 avec CryptoJS
+    const hash = CryptoJS.SHA256(password);
+    // Convertir en chaîne Hexadécimale
+    return hash.toString(CryptoJS.enc.Hex);
+}
   
 document.getElementById("loginForm").addEventListener("submit", async function (e) {
     e.preventDefault();
