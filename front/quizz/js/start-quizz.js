@@ -79,8 +79,8 @@ startQuizzButton.addEventListener("click", () => {
 
     let currentQuestionIndex = 0;
 
-    function loadQuestion() {
-        fetch(`http://127.0.0.1:5000/quizz?quizz_id=${quizzId}`)
+    async function loadQuestion() {
+        fetch(`http://${url}:5000/quizz?quizz_id=${quizzId}`)
             .then((response) => response.json())
             .then((result) => {
                 const questions = result.quizz[0]["questions"];
@@ -143,7 +143,7 @@ startQuizzButton.addEventListener("click", () => {
                     adminContainer.appendChild(resultsContainer);
 
                     const code = sessionCodeDisplay.textContent.split(": ")[1];
-                    fetch(`http://${url}:5000/quizz?quizz_id=${quizzId}`)
+                    fetch(`http://${url}:5000/session?session_code=${code}`)
                         .then((response) => response.json())
                         .then((result) => {
                             const users = JSON.parse(result["users"].replace(/'/g, `"`));
@@ -194,25 +194,26 @@ startQuizzButton.addEventListener("click", () => {
 });
 
 
-
-// Admin : Voir les réponses des joueurs
-socket.on("userAnswer", ({ userId, answer }) => {
-    console.log(`Réponse reçue de ${userId} : ${answer}`);
-});
+// // Admin : Voir les réponses des joueurs
+// socket.on("userAnswer", ({ userId, answer }) => {
+//     console.log(`Réponse reçue de ${userId} : ${answer}`);
+// });
 
 // Admin : Générer un QR code
-function generateQRCode(code) {
+async function generateQRCode(code) {
     const qrCodeImage = document.createElement("img");
-    fetch(`http://localhost:5000/generate_qrcode?session_url=http://localhost:3000/join?code_session=${code}`,{
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
+    await get_ip().then((ip) =>{
+        fetch(`http://${ip}:5000/generate_qrcode?session_url=http://${ip}:3000/play-quizz?code_session=${code}`,{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then((response) => response.json())
+        .then((result) => {
+            qrCodeImage.src = `${result.qr_code}`;
+            qrCodeImage.alt = "QR Code";
+            qrCodeContainer.appendChild(qrCodeImage);
+        });
     })
-    .then((response) => response.json())
-    .then((result) => {
-        qrCodeImage.src = `${result.qr_code}`;
-        qrCodeImage.alt = "QR Code";
-        qrCodeContainer.appendChild(qrCodeImage);
-    });
 }

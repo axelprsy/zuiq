@@ -36,22 +36,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     socket.on("newQuestion", ({ question, answers, quizz_id, question_id }) => {
         const questionsDiv = document.getElementById("questionsDiv");
         questionsDiv.innerHTML = ""; // Vide les anciennes questions
+        // Création de la question
+        const questionElement = document.createElement("p");
+        questionElement.textContent = `Question : ${question}`;
+        questionElement.classList.add("text-xl", "font-semibold", "mb-4");
+        questionsDiv.appendChild(questionElement);
+        // Création des boutons de réponse
+        answers.forEach((answer, index) => {
+            const button = document.createElement("button");
+            button.id = "buttonQuizz";
+            button.classList.add("buttonQuizz", "bg-[#3F72AF]", "text-white", "py-2", "px-4", "rounded-lg", "mt-2", "w-full", "hover:bg-[#112D4E]", "transition-all", "duration-200");
+            button.textContent = answer;
+            button.onclick = () => sendResponse(index + 1, quizz_id, question_id);
+            questionsDiv.appendChild(button);
+        });
     })
-    // Création de la question
-    const questionElement = document.createElement("p");
-    questionElement.textContent = `Question : ${question}`;
-    questionElement.classList.add("text-xl", "font-semibold", "mb-4");
-    questionsDiv.appendChild(questionElement);
-
-    // Création des boutons de réponse
-    answers.forEach((answer, index) => {
-        const button = document.createElement("button");
-        button.id = "buttonQuizz";
-        button.classList.add("buttonQuizz", "bg-[#3F72AF]", "text-white", "py-2", "px-4", "rounded-lg", "mt-2", "w-full", "hover:bg-[#112D4E]", "transition-all", "duration-200");
-        button.textContent = answer;
-        button.onclick = () => sendResponse(index + 1, quizz_id, question_id);
-        questionsDiv.appendChild(button);
-    });
 
 socket.on("quizzEnded", async ({ quizz_id, code }) => {
     const questionsDiv = document.getElementById("questionsDiv");
