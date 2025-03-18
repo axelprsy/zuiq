@@ -195,7 +195,16 @@ socket.on("userAnswer", ({ userId, answer }) => {
 // Admin : Générer un QR code
 function generateQRCode(code) {
     const qrCodeImage = document.createElement("img");
-    qrCodeImage.src = `https://api.qrserver.com/v1/create-qr-code/?data=http://localhost:3000/join-quizz?code_session=${code}`;
-    qrCodeImage.alt = "QR Code";
-    qrCodeContainer.appendChild(qrCodeImage);
+    fetch(`http://localhost:5000/generate_qrcode?session_url=http://localhost:3000/join?code_session=${code}`,{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then((response) => response.json())
+    .then((result) => {
+        qrCodeImage.src = `${result.qr_code}`;
+        qrCodeImage.alt = "QR Code";
+        qrCodeContainer.appendChild(qrCodeImage);
+    });
 }
