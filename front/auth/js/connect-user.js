@@ -7,18 +7,20 @@ get_ip().then((ip) => {
     url = ip;
 })
 
-// FONCTION POUR HASH LE PASSWORD
 async function hashPassword(password) {
-    const hash = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
-    return hash;
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+    return hashHex;
   }
   
-document.getElementById("form").addEventListener("submit", async function (e) {
+document.getElementById("loginForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    // Hash le password recupéré par le form
+    const username = document.getElementById("loginUsername").value;
+    const password = document.getElementById("loginPassword").value;
     const password_hash = await hashPassword(password);
 
     const requestOptions = {
@@ -38,12 +40,12 @@ document.getElementById("form").addEventListener("submit", async function (e) {
                 localStorage.setItem("email", allinfo.email);
                 window.location.replace("/profile");
             }else{
-                document.getElementById("error_message").innerText = "Le nom d'utilisateur ou le mot de passe est incorrect";
+                document.getElementById("loginErrorMessage").innerText = "Le nom d'utilisateur ou le mot de passe est incorrect";
             }
         })
         .catch((error) => {
             console.error(error)
-            document.getElementById("error_message").innerText = "Le nom d'utilisateur ou le mot de passe est incorrect";
+            document.getElementById("loginErrorMessage").innerText = "Le nom d'utilisateur ou le mot de passe est incorrect";
         });
 });
 

@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     socket.on("newQuestion", ({ question, answers, quizz_id, question_id }) => {
         const questionsDiv = document.getElementById("questionsDiv");
         questionsDiv.innerHTML = ""; // Vide les anciennes questions
-
+    })
     // Création de la question
     const questionElement = document.createElement("p");
     questionElement.textContent = `Question : ${question}`;
@@ -113,4 +113,5 @@ function sendResponse(answer, quizz_id, question_id) {
             question_id,
         });
     }
-});
+};
+})
