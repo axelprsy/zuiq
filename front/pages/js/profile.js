@@ -1,3 +1,12 @@
+async function get_ip() {
+    const response = await fetch('/get_ip');
+    const data = await response.json();
+    return data["ip"];
+}
+get_ip().then((ip) => {
+    url = ip;
+})
+
 document.getElementById('id').innerText = `ID : ${localStorage.getItem('user_id')}`;
 document.getElementById('username').innerText = `Nom d'utilisateur : ${localStorage.getItem('username')}`;
 document.getElementById('email').innerText = `Email : ${localStorage.getItem('email')}`;
@@ -18,11 +27,9 @@ async function delete_my_account() {
         body: formdata,
         redirect: "follow"
     };
-
-    await fetch("http://127.0.0.1:5000/user", requestOptions)
-        .then((response) => response.text())
-        .then((result) => console.log(result))
-        .catch((error) => console.error(error));
+  
+    await fetch(`http://${url}:5000/user`, requestOptions)
+    .then((response) => response.text())
 
     localStorage.clear();
     window.location.replace("/signup");

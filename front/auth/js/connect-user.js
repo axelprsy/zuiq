@@ -1,11 +1,16 @@
+async function get_ip() {
+    const response = await fetch('/get_ip');
+    const data = await response.json();
+    return data["ip"];
+}
+get_ip().then((ip) => {
+    url = ip;
+})
+
 // FONCTION POUR HASH LE PASSWORD
 async function hashPassword(password) {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(password);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
-    return hashHex;
+    const hash = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex);
+    return hash;
   }
   
 document.getElementById("form").addEventListener("submit", async function (e) {
@@ -22,7 +27,7 @@ document.getElementById("form").addEventListener("submit", async function (e) {
     };
 
     // Recupere l'user avec son username
-    fetch(`http://127.0.0.1:5000/user?username=${username}`, requestOptions)
+    fetch(`http://${url}:5000/user?username=${username}`, requestOptions)
         .then((response) => response.json())
         .then((result) => { 
             const allinfo = result.res;

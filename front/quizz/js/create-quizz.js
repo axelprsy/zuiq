@@ -1,3 +1,12 @@
+async function get_ip() {
+    const response = await fetch('/get_ip');
+    const data = await response.json();
+    return data["ip"];
+}
+get_ip().then((ip) => {
+    url = ip;
+})
+
 async function addDB(title, questions) {
     const formdata = new FormData();
     formdata.append("name", title);
@@ -10,10 +19,9 @@ async function addDB(title, questions) {
         redirect: "follow",
     };
 
-    fetch("http://127.0.0.1:5000/quizz", requestOptions)
+    fetch(`http://${url}:5000/quizz`, requestOptions)
         .then((response) => response.text())
         .then((result) => {
-            console.log(result)
             window.location.replace("/my-quizz");
         })
         .catch((error) => {

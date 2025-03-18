@@ -1,10 +1,19 @@
+async function get_ip() {
+    const response = await fetch('/get_ip');
+    const data = await response.json();
+    return data["ip"];
+}
+get_ip().then((ip) => {
+    url = ip;
+})
+
 async function connect_user(username) {
     const requestOptions = {
         method: "GET",
         redirect: "follow"
     };
 
-    fetch(`http://127.0.0.1:5000/user?username=${username}`, requestOptions)
+    fetch(`http://${url}:5000/user?username=${username}`, requestOptions)
         .then((response) => response.json())
         .then((result) => { 
             const allinfo = result.res;
@@ -40,7 +49,7 @@ document.getElementById("form").addEventListener("submit", function (e) {
         redirect: "follow"
         };
 
-        fetch("http://127.0.0.1:5000/user", requestOptions)
+        fetch(`http://${url}:5000/user`, requestOptions)
         .then((response) => {
             if (!response.ok) {
                 document.getElementById("error_message").innerText = "Une erreur est survenue";
@@ -49,7 +58,6 @@ document.getElementById("form").addEventListener("submit", function (e) {
             connect_user(username);
             return response.text();
         })
-        .then((result) => console.log(result))
         .catch((error) => {
             console.error('Erreur :', error);
             document.getElementById("error_message").innerText = "Le nom d'utilisateur ou l'email est déjà utilisé";

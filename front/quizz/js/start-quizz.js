@@ -1,19 +1,27 @@
+async function get_ip() {
+    const response = await fetch('/get_ip');
+    const data = await response.json();
+    return data["ip"];
+}
+
+
 // Récupération des paramètres dans l'URL
 const params = new URLSearchParams(window.location.search);
 const quizzId = params.get("quizz_id");
 document.getElementById('username').innerText = `${localStorage.getItem('username')}`;
 
 
-const socket = io("http://localhost:5050", {
-    transports: ["websocket"],
-    withCredentials: true,
-});
 
-function reload() {
-    location.reload();
-}
-
-document.addEventListener("DOMContentLoaded", function () {
+var socket = null;
+var url="";
+document.addEventListener("DOMContentLoaded", async function () {
+    await get_ip().then((ip) => {
+        url = ip;
+        socket = io(`http://${url}:5050`, {
+            transports: ["websocket"],
+            withCredentials: true,
+        });
+    })
     const user_id = localStorage.user_id;
     socket.emit("createSession", { user_id: user_id });
     socket.on("sessionCreated", ({ code }) => {
@@ -135,7 +143,7 @@ startQuizzButton.addEventListener("click", () => {
                     adminContainer.appendChild(resultsContainer);
 
                     const code = sessionCodeDisplay.textContent.split(": ")[1];
-                    fetch(`http://127.0.0.1:5000/session?session_code=${code}`)
+                    fetch(`http://${url}:5000/quizz?quizz_id=${quizzId}`)
                         .then((response) => response.json())
                         .then((result) => {
                             const users = JSON.parse(result["users"].replace(/'/g, `"`));

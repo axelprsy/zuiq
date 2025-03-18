@@ -1,7 +1,8 @@
-const socket = io("http://localhost:5050", {
-    transports: ["websocket"],
-    withCredentials: true,
-});
+async function get_ip() {
+    const response = await fetch('/get_ip');
+    const data = await response.json();
+    return data["ip"];
+}
 
 // Récupération des paramètres dans l'URL
 const params = new URLSearchParams(window.location.search);
@@ -11,21 +12,30 @@ var user_id = ""
 
 document.getElementById("userName").textContent = userName;
 
-// Joueur : Rejoindre une session
-if (sessionId && userName) {
-    socket.emit("joinSession", { code: sessionId, username: userName });
-}
+var socket = null;
+var url = "";
+document.addEventListener("DOMContentLoaded", async () => {
+    await get_ip().then((ip) => {
+        url = ip;
+        socket = io(`http://${url}:5050`, {
+            transports: ["websocket"],
+            withCredentials: true,
+        });
+    })
 
-// Confirmation de connexion
-socket.on("joinedSession", ({ room, userId }) => {
-    document.getElementById("connected").textContent = `Vous êtes connecté à la session : ${sessionId}`;
-    user_id = userId
-});
+    if (sessionId && userName) {
+        socket.emit("joinSession", { code: sessionId, username: userName });
+    }
+    // Confirmation de connexion
+    socket.on("joinedSession", ({ room, userId }) => {
+        document.getElementById("connected").textContent = `Vous êtes connecté à la session : ${sessionId}`;
+        user_id = userId
+    });
 
-// Joueur : Recevoir une nouvelle question
-socket.on("newQuestion", ({ question, answers, quizz_id, question_id }) => {
-    const questionsDiv = document.getElementById("questionsDiv");
-    questionsDiv.innerHTML = ""; // Vide les anciennes questions
+    // Joueur : Recevoir une nouvelle question
+    socket.on("newQuestion", ({ question, answers, quizz_id, question_id }) => {
+        const questionsDiv = document.getElementById("questionsDiv");
+        questionsDiv.innerHTML = ""; // Vide les anciennes questions
 
     // Création de la question
     const questionElement = document.createElement("p");
@@ -42,7 +52,6 @@ socket.on("newQuestion", ({ question, answers, quizz_id, question_id }) => {
         button.onclick = () => sendResponse(index + 1, quizz_id, question_id);
         questionsDiv.appendChild(button);
     });
-});
 
 socket.on("quizzEnded", async ({ quizz_id, code }) => {
     const questionsDiv = document.getElementById("questionsDiv");
@@ -57,7 +66,7 @@ socket.on("quizzEnded", async ({ quizz_id, code }) => {
         redirect: "follow"
     };
 
-    fetch("http://127.0.0.1:5000/session?session_code=" + code, requestOptions)
+    fetch(`http://${url}:5000/session?session_code=`+code, requestOptions)
         .then((response) => response.json())
         .then((result) => {
             users = JSON.parse(result["users"].replace(/'/g, `"`))
@@ -104,4 +113,4 @@ function sendResponse(answer, quizz_id, question_id) {
             question_id,
         });
     }
-}
+});
