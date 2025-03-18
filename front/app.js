@@ -10,6 +10,7 @@ const port = config_file.front_port;
 app.use(express.static(path.join(__dirname, 'auth')));
 app.use(express.static(path.join(__dirname, 'pages')));
 app.use(express.static(path.join(__dirname, 'quizz')));
+app.use(express.static(path.join(__dirname, 'assets')));
 
 // Importation des routes
 const indexRouter = require('./routes/routes.js');

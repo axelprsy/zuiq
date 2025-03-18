@@ -1,63 +1,110 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil - Kadoute</title>
-    <link rel="stylesheet" href="../css/form-modal.css">
-    <link rel="stylesheet" href="../css/profile.css">
-    
+    <script src="https://kit.fontawesome.com/1f76485fee.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Profil - Zuiq</title>
 </head>
-<body>
-    <div class="header">
-        <h1>Profil Utilisateur</h1>
-    </div>
-    <div class="profile-container">
-        <div class="profile-section">
-            <h2>Mes Informations</h2>
-            <p id="id" class="profile-info"><strong>ID :</strong> ID inconnu</p>
-            <p id="username" class="profile-info"><strong>Nom d'utilisateur :</strong> Nom d'utilisateur inconnu</p>
-            <p id="email" class="profile-info"><strong>Email :</strong> Email inconnu</p>
+
+<body class="bg-[#F9F7F7] text-[#112D4E]">
+    <!-- Navbar -->
+    <nav class="flex items-center justify-between px-8 py-4 bg-[#DBE2EF] shadow-md fade-in">
+        <div class="text-xl font-semibold text-[#112D4E]">
+            Zuiq
         </div>
-        <div class="actions">
-            <button onclick="window.location.href='/my-quizz'">Mes Quizz</button>
-            <button onclick="modal_modify_account()">Modifier le Profil</button>
-            <button onclick="logout()">Se Déconnecter</button>
-            <button onclick="delete_my_account()" style="background-color: #a90707;">Supprimer mon compte</button>
+        <div class="flex items-center space-x-4">
+            <img src="https://as2.ftcdn.net/jpg/04/10/43/77/1000_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"
+                alt="User Avatar" class="rounded-full w-12 h-12">
+            <span id="nav-username" class="text-sm text-[#112D4E]">Nom d'utilisateur</span>
+            <a href="/dashboard" class="text-[#3F72AF] hover:text-[#112D4E]">Dashboard</a>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="container mx-auto px-8 py-12 fade-in">
+        <h1 class="text-3xl font-bold mb-8 slide-in text-[#112D4E]">Profil Utilisateur</h1>
+
+        <div class="bg-[#DBE2EF] p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-2xl font-semibold mb-4">Mes Informations</h2>
+            <p id="id"><strong>ID :</strong> ID inconnu</p>
+            <p id="username"><strong>Nom d'utilisateur :</strong> Nom inconnu</p>
+            <p id="email"><strong>Email :</strong> Email inconnu</p>
+        </div>
+
+        <!-- Boutons d'action -->
+        <div class="flex space-x-4">
+            <button onclick="window.location.href='/my-quizz'"
+                class="bg-[#3F72AF] text-white px-4 py-2 rounded hover:bg-[#112D4E] flex items-center">
+                <i class="fa-solid fa-list mr-2"></i> Mes Quizz
+            </button>
+            <button onclick="openModal()"
+                class="bg-[#3F72AF] text-white px-4 py-2 rounded hover:bg-[#112D4E] flex items-center">
+                <i class="fa-solid fa-pen mr-2"></i> Modifier le Profil
+            </button>
+            <button onclick="logout()"
+                class="bg-[#3F72AF] text-white px-4 py-2 rounded hover:bg-[#112D4E] flex items-center">
+                <i class="fa-solid fa-sign-out-alt mr-2"></i> Se Déconnecter
+            </button>
+            <button onclick="delete_my_account()"
+                class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-800 flex items-center">
+                <i class="fa-solid fa-trash mr-2"></i> Supprimer mon compte
+            </button>
         </div>
     </div>
 
     <!-- MODAL -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h1>Modifier son compte</h1>
-            <form id="form_modifyacount">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="modal_email" name="email" required>
+    <div id="modal" class="modal hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+            <span class="close text-right cursor-pointer text-gray-500 text-2xl">&times;</span>
+            <h2 class="text-xl font-semibold mb-4">Modifier son profil</h2>
+            <form id="form_modify_account">
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium">Email</label>
+                    <input type="email" id="modal_email" name="email" required
+                        class="w-full px-3 py-2 border rounded shadow-sm focus:ring focus:ring-blue-300">
                 </div>
-                <div class="form-group">
-                    <label for="username">Nom d'utilisateur</label>
-                    <input type="text" id="modal_username" name="username" required>
+                <div class="mb-4">
+                    <label for="username" class="block text-sm font-medium">Nom d'utilisateur</label>
+                    <input type="text" id="modal_username" name="username" required
+                        class="w-full px-3 py-2 border rounded shadow-sm focus:ring focus:ring-blue-300">
                 </div>
-                <div class="form-group">
-                    <label for="password">Mot de passe</label>
-                    <input type="password" id="modal_password" name="password" placeholder="Laisser vide pour ne pas modifier">
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium">Mot de passe</label>
+                    <input type="password" id="modal_password" name="password"
+                        placeholder="Laisser vide pour ne pas modifier"
+                        class="w-full px-3 py-2 border rounded shadow-sm focus:ring focus:ring-blue-300">
                 </div>
-                <button type="submit" class="btn">Modifier</button>
-                <p id="modal_error_message" class="error_message"></p>
+                <button type="submit"
+                    class="bg-[#3F72AF] text-white px-4 py-2 rounded hover:bg-[#112D4E] w-full">Modifier</button>
+                <p id="modal_error_message" class="text-red-500 mt-2 text-sm"></p>
             </form>
         </div>
     </div>
-    <!-- FIN DU MODAL -->
 
-    <footer class="footer-container">
-        <p>&copy; 2025 SB & AP - Kadoute</p>
-        <p><a href="/join-quizz">Rejoindre une partie</a></p>
-    </footer>
-    <script defer src="../js/security-pages.js"></script>
+    <!-- SCRIPTS -->
+    <script>
+        function openModal() {
+            document.getElementById('modal').classList.remove('hidden');
+        }
+        document.querySelector('.close').addEventListener('click', () => {
+            document.getElementById('modal').classList.add('hidden');
+        });
+
+        // Ajout d'une animation sur les boutons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mouseover', () => {
+                button.classList.add('animate-pulse');
+            });
+            button.addEventListener('mouseout', () => {
+                button.classList.remove('animate-pulse');
+            });
+        });
+    </script>
     <script defer src="../js/profile.js"></script>
     <script defer src="../js/edit-profile.js"></script>
 </body>
+
 </html>

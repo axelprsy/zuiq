@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join Game - Kadoute</title>
-    <link rel="stylesheet" href="../css/form.css">
+    <title>Join Game - Zuiq</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="content">
-        <div class="form-container">
-            <h1>Rejoindre</h1>
-            <div class="form-group">
-                <input type="text" id="joinCodeInput" placeholder="Code de la session" required>
+
+<body class="bg-[#F9F7F7] text-[#112D4E] flex flex-col min-h-screen">
+    <nav class="flex items-center justify-between px-8 py-4 bg-[#DBE2EF] shadow-md">
+        <div class="text-xl font-semibold text-[#112D4E]">
+            Zuiq
+        </div>
+    </nav>
+
+    <div class="content flex-grow flex items-center justify-center">
+        <div class="form-container bg-[#DBE2EF] p-8 rounded-lg shadow-md w-full max-w-md">
+            <h1 class="text-2xl font-bold mb-6">Rejoindre</h1>
+            <div class="form-group mb-4">
+                <input type="text" id="joinCodeInput" placeholder="Code de la session" required
+                    class="w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#3F72AF]">
             </div>
-            <div class="form-group">
-                <input type="text" id="usernameInput" placeholder="Pseudo" required>
+            <div class="form-group mb-4">
+                <input type="text" id="usernameInput" placeholder="Pseudo" required
+                    class="w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#3F72AF]">
             </div>
-            <button class="btn" id="joinQuiz">Rejoindre</button>
+            <button class="btn bg-[#3F72AF] text-white py-2 px-4 rounded-md hover:bg-[#2c527a] transition duration-300"
+                id="joinQuiz">Rejoindre</button>
         </div>
     </div>
-    <div id="questions"></div>
-    <footer class="footer-container">
-        <p>&copy; 2025 SB & AP - Kadoute</p>
-        <p><a href="/login">Créer un Quizz</a></p>
-    </footer>
 
-    
     <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
-    <script defer src="../js/join-quizz.js"></script>
+    <script defer src="../js/join-quiz.js"></script>
 </body>
+
 </html>
