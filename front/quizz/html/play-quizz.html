@@ -5,21 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quizz</title>
-    <link rel="stylesheet" href="../css/play-quizz.css">
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="bg-[#F9F7F7] text-[#112D4E] flex flex-col min-h-screen quizz-container">
+
     <!-- HEADER -->
-    <div class="header">
-        <h1>Bienvenue, <span id="userName"></span> !</h1>
-        <p id="connected">Connexion en cours...</p>
+    <div class="header bg-[#DBE2EF] shadow-md py-4 px-8 text-center">
+        <h1 class="text-2xl font-bold">Bienvenue, <span id="userName"></span> !</h1>
+        <p id="connected" class="text-lg">Connexion en cours...</p>
     </div>
 
     <!-- CONTENEUR DES QUESTIONS -->
-    <div class="quizz-container">
-        <div class="quizz" id="questionsDiv">
-            <p>En attente de l'hote...</p>
-            <!-- Ici s'afficheront les questions avec leurs questions -->
+    <div class="quizz-container flex justify-center items-center mt-10">
+        <div class="quizz bg-[#DBE2EF] p-6 rounded-xl shadow-lg w-4/5 max-w-4xl text-center" id="questionsDiv">
+            <p class="text-xl">En attente de l'hôte...</p>
         </div>
     </div>
 
@@ -27,9 +28,5 @@
     <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
     <script src="../js/play-quizz.js"></script>
 </body>
-<footer class="footer-container">
-    <p>&copy; 2025 SB & AP - Zuiq</p>
-    <p><a href="/join-quizz">Rejoindre une partie</a></p>
-</footer>
 
 </html>

@@ -5,10 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Zuiq</title>
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-[#F9F7F7] text-[#112D4E] flex flex-col min-h-screen">
+
+    <!-- Navbar -->
     <nav class="flex items-center justify-between px-8 py-4 bg-[#DBE2EF] shadow-md fade-in">
         <div class="text-xl font-semibold text-[#112D4E]">
             Zuiq
@@ -21,37 +24,53 @@
         </div>
     </nav>
 
-    <div class="header flex items-center justify-center py-8">
-        <h1 class="text-3xl font-bold">Administration du Quiz</h1>
-    </div>
+    <!-- Contenu principal -->
+    <div id="admin-container" class="bg-[#DBE2EF] p-10 rounded-xl shadow-lg flex w-4/5 max-w-7xl mt-10 mx-auto">
 
-    <div class="admin-container flex flex-col items-center justify-center py-8">
-        <div class="flex flex-col items-center mb-4">
-            <p id="sessionCode" class="text-lg mb-2">Code de session :</p>
-            <div id="qrCode">
-                <!-- Le QR code sera affiché ici -->
+        <!-- Partie gauche : Rejoindre le quizz -->
+        <div id="join-quiz" class="w-1/2 pr-4 flex flex-col items-center">
+            <h2 class="text-xl font-semibold text-[#112D4E]">Rejoindre le quiz</h2>
+            <p id="sessionCode" class="text-lg text-[#112D4E] font-bold">Code de session : <span
+                    class="font-normal">XXXX</span></p>
+            <div id="qrCode" class="mt-4">
             </div>
         </div>
-        <button id="startQuizz"
-            class="btn bg-[#3F72AF] text-white py-2 px-4 rounded-md hover:bg-[#2c527a] transition duration-300 mb-4">
-            Lancer le quizz
-        </button>
-        <input hidden id="numberOfQuestion" type="text" value="0">
-    </div>
 
+        <!-- Barre de séparation -->
+        <div class="w-px bg-[#112D4E] mx-4"></div>
 
-    <div class="connected-users-container flex flex-col items-center justify-center py-8">
-        <h1 class="text-2xl font-bold mb-4">Utilisateurs connectés</h1>
-        <div id="connectedUsers" class="flex flex-col space-y-2">
-            <!-- Les utilisateurs connectés seront affichés ici -->
-            <div id="div_quizz-direct" class="admin-container flex flex-col items-center justify-center py-8">
-                <h3 id="title_quizz_direct" class="text-2xl font-bold mb-4">En attente de joueurs...</h3>
+        <!-- Partie droite : Quiz en cours -->
+        <div id="div_quizz-direct" class="w-1/2 flex flex-col items-center">
+            <h2 class="text-xl font-semibold text-[#112D4E]">Votre quiz</h2>
+            <div id="connectedUsers" class="bg-[#112D4E] text-white p-6 rounded-lg w-full mt-2">
+                <p class="text-lg font-semibold" id="title_quizz_direct">Joueurs connectés</p>
                 <p id="text_quizz_direct" class="text-lg mb-4"></p>
+                <ul class="mt-2" id="listConnectedUsers">
+                    <li>- Aymeric</li>
+                    <li>- Sandrine</li>
+                    <li>- Benedicte</li>
+                    <li>- Abdelaziz</li>
+                </ul>
             </div>
+            <button id="startQuizz"
+                class="mt-6 bg-[#112D4E] text-white py-3 px-6 rounded-lg hover:bg-[#3F72AF] transition duration-300">
+                Lancer le quiz
+            </button>
+            <button id="endQuizz" onclick="reload()"
+                class="mt-6 bg-[#112D4E] text-white py-3 px-6 rounded-lg hover:bg-[#3F72AF] transition duration-300"
+                style="display: none;">
+                Relancer le quiz
+            </button>
+            <button id="generate_exel_file"
+                class="mt-6 bg-[#112D4E] text-white py-3 px-6 rounded-lg hover:bg-[#3F72AF] transition duration-300 button"
+                style="display: none;">
+                Génerer un fichier Excel
+            </button>
+            <input hidden id="numberOfQuestion" type="text" value="0">
         </div>
     </div>
-    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js">
-    </script>
+
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
     <script src="../js/start-quizz.js"></script>
 </body>
 
