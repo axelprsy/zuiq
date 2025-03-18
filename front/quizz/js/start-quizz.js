@@ -162,17 +162,17 @@ startQuizzButton.addEventListener("click", () => {
                             resultsContainer.appendChild(generateExcelButton);
 
                             generateExcelButton.addEventListener("click", () => {
-                                window.location.href = "http://127.0.0.1:5000/generate_exel?session_data=" + JSON.stringify(users);
+                                window.location.href = `http://${url}:5000/generate_exel?session_data=` + JSON.stringify(users);
                             });
 
                             // Bouton relancer un quizz
-                            const restartButton = document.createElement("button");
-                            restartButton.textContent = "Relancer un quizz";
-                            restartButton.classList.add("bg-blue-500", "text-white", "py-2", "px-4", "rounded-lg", "mt-4", "hover:bg-blue-700");
-                            resultsContainer.appendChild(restartButton);
+                            const goToHome = document.createElement("button");
+                            goToHome.textContent = "Retourner a l'accueil";
+                            goToHome.classList.add("bg-blue-500", "text-white", "py-2", "px-4", "rounded-lg", "mt-4", "hover:bg-blue-700");
+                            resultsContainer.appendChild(goToHome);
 
-                            restartButton.addEventListener("click", () => {
-                                location.reload();
+                            goToHome.addEventListener("click", () => {
+                                location.href = "/my-quizz";
                             });
                         });
 
