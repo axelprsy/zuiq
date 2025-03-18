@@ -1,4 +1,5 @@
 const user_id = localStorage.getItem("user_id");
+document.getElementById('nav-username').innerText = `${localStorage.getItem('username')}`;
 
 function startSession(quizz_id) {
   window.location.href = `/start-my-quizz?quizz_id=${quizz_id}`;

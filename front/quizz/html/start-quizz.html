@@ -19,7 +19,7 @@
         <div class="flex items-center space-x-4">
             <img src="https://as2.ftcdn.net/jpg/04/10/43/77/1000_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"
                 alt="User Avatar" class="rounded-full w-12 h-12">
-            <span class="text-sm text-[#112D4E]">Saaaandrine Parsy</span>
+            <span id="username" class="text-sm text-[#112D4E]"></span>
             <a href="/dashboard" class="text-[#3F72AF] hover:text-[#112D4E]">Dashboard</a>
         </div>
     </nav>
@@ -56,17 +56,6 @@
                 class="mt-6 bg-[#112D4E] text-white py-3 px-6 rounded-lg hover:bg-[#3F72AF] transition duration-300">
                 Lancer le quiz
             </button>
-            <button id="endQuizz" onclick="reload()"
-                class="mt-6 bg-[#112D4E] text-white py-3 px-6 rounded-lg hover:bg-[#3F72AF] transition duration-300"
-                style="display: none;">
-                Relancer le quiz
-            </button>
-            <button id="generate_exel_file"
-                class="mt-6 bg-[#112D4E] text-white py-3 px-6 rounded-lg hover:bg-[#3F72AF] transition duration-300 button"
-                style="display: none;">
-                Génerer un fichier Excel
-            </button>
-            <input hidden id="numberOfQuestion" type="text" value="0">
         </div>
     </div>
 
