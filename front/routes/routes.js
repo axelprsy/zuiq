@@ -84,4 +84,8 @@ router.get('/modify', (req, res) => {
   res.sendFile(path.resolve(__dirname, "../quizz/html/modify.html"));
 });
 
+router.all('*', (req, res) => {
+  res.status(404).sendFile(path.resolve(__dirname, "../pages/html/page-404.html"));
+});
+
 module.exports = router;
