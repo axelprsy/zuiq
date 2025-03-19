@@ -57,32 +57,33 @@
 
     <!-- MODAL -->
     <div id="modal" class="modal hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-        <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+        <div class="modal-content bg-white p-6 rounded-lg shadow-lg w-96">
             <span class="close text-right cursor-pointer text-gray-500 text-2xl">&times;</span>
-            <h2 class="text-xl font-semibold mb-4">Modifier son profil</h2>
-            <form id="form_modify_account">
-                <div class="mb-4">
+            <h1 class="text-xl font-semibold mb-4">Modifier son compte</h1>
+            <form id="form_modifyacount">
+                <div class="form-group mb-4">
                     <label for="email" class="block text-sm font-medium">Email</label>
                     <input type="email" id="modal_email" name="email" required
                         class="w-full px-3 py-2 border rounded shadow-sm focus:ring focus:ring-blue-300">
                 </div>
-                <div class="mb-4">
+                <div class="form-group mb-4">
                     <label for="username" class="block text-sm font-medium">Nom d'utilisateur</label>
                     <input type="text" id="modal_username" name="username" required
                         class="w-full px-3 py-2 border rounded shadow-sm focus:ring focus:ring-blue-300">
                 </div>
-                <div class="mb-4">
+                <div class="form-group mb-4">
                     <label for="password" class="block text-sm font-medium">Mot de passe</label>
                     <input type="password" id="modal_password" name="password"
                         placeholder="Laisser vide pour ne pas modifier"
                         class="w-full px-3 py-2 border rounded shadow-sm focus:ring focus:ring-blue-300">
                 </div>
                 <button type="submit"
-                    class="bg-[#3F72AF] text-white px-4 py-2 rounded hover:bg-[#112D4E] w-full">Modifier</button>
-                <p id="modal_error_message" class="text-red-500 mt-2 text-sm"></p>
+                    class="btn bg-[#3F72AF] text-white px-4 py-2 rounded hover:bg-[#112D4E] w-full">Modifier</button>
+                <p id="modal_error_message" class="error_message text-red-500 mt-2 text-sm"></p>
             </form>
         </div>
     </div>
+
 
     <!-- SCRIPTS -->
     <script>
