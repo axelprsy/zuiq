@@ -1,8 +1,12 @@
-# Kadoute
+# Zuiq
 Projet : Refaire “Kahoot” a notre manière - Application de quizz
 
-## Description
 Création d’un site permettant de crée un quizz par soit même ou a l’aide d’une ia. Il permettra également de faire jouer les utilisateurs.
+
+
+<p align="center">
+  <img width="712" height="450" src="https://cdn.discordapp.com/attachments/1005937387140022302/1351960670673043616/banniere.png?ex=67dc46fe&is=67daf57e&hm=0fa068f0cff7dac843d357ee591eab80afafc725783bf8b96a33762ac5b3b8cc&">
+</p>
 
 ---
 
@@ -99,8 +103,7 @@ cd api
     ```
 
 ### Étape 3 : Initialiser l'API
-Initialisez la base de données et installez les dépendances en executant :
-***Cela peut être un peu long car un model d'IA est téléchargé pour le bon fonctionnement du projet.***
+Initialisez la base de donnée / api et installez les dépendances en executant :
 
 #### Linux/MacOS
 ```bash
