@@ -20,16 +20,19 @@ const indexRouter = require('./routes/routes.js');
 // Utilisation des routes
 app.use('/', indexRouter);
 
-const interfaces = os.networkInterfaces();
+function getLocalIPAddress() {
+  const interfaces = os.networkInterfaces();
 
-var ip;
-for (const interfaceName in interfaces) {
-  for (const interface of interfaces[interfaceName]) {
-    if (interface.family === "IPv4" && !interface.internal) {
-      ip = interface.address;
+  for (const interfaceName in interfaces) {
+    for (const interface of interfaces[interfaceName]) {
+      if (interface.family === "IPv4" && !interface.internal) {
+        return interface.address; 
+      }
     }
   }
+  return null; 
 }
+const ip = getLocalIPAddress();
 // Démarrage du serveur
 app.listen(port, "0.0.0.0", () => {
   console.log(`Server is running : http://${ip}:${port}`);

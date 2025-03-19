@@ -84,10 +84,15 @@ startQuizzButton.addEventListener("click", () => {
     nextQuestionButton.textContent = "Question suivante";
     nextQuestionButton.classList.add("bg-[#3F72AF]", "text-white", "py-2", "px-6", "rounded-lg", "hover:bg-[#2B5A8A]");
 
+    const pIndexQuestion = document.createElement("p");
+    pIndexQuestion.id = "indexQuestion";
+    pIndexQuestion.classList.add("text-lg", "font-medium", "text-[#3F72AF]");
+
     adminContainer.appendChild(quizTitle);
     adminContainer.appendChild(questionTitle);
     adminContainer.appendChild(answersContainer);
     bottomContainer.appendChild(playerCount);
+    bottomContainer.appendChild(pIndexQuestion);
     bottomContainer.appendChild(nextQuestionButton);
     adminContainer.appendChild(bottomContainer);
 
@@ -98,6 +103,8 @@ startQuizzButton.addEventListener("click", () => {
             .then((response) => response.json())
             .then((result) => {
                 const questions = result.quizz[0]["questions"];
+                pIndexQuestion.textContent = `Question ${currentQuestionIndex+1} / ${questions.length}`;
+
 
                 if (currentQuestionIndex < questions.length) {
                     const code = sessionCodeDisplay.textContent.split(": ")[1];
@@ -144,6 +151,7 @@ startQuizzButton.addEventListener("click", () => {
                     currentQuestionIndex++;
                 } else {
                     // Fin du quizz
+                    pIndexQuestion.remove()
                     quizTitle.textContent = "Quizz terminé !";
                     questionTitle.textContent = "Résultats des joueurs :";
                     answersContainer.innerHTML = "";

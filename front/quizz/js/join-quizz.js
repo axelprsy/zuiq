@@ -17,8 +17,14 @@ document.addEventListener('DOMContentLoaded', async function() {
     const joinCodeInput = document.getElementById('joinCodeInput');
     const questionsDiv = document.getElementById('questions');
     const usernameInput = document.getElementById('usernameInput');
+
+    const params = new URLSearchParams(window.location.search);
+    const sessionCode = params.get("code_session");
     
-    
+    if (sessionCode !== null) {
+        joinCodeInput.value = sessionCode;
+    }
+
     // Joueur : Rejoindre une session
     joinQuizButton.addEventListener('click', () => {
         const code = joinCodeInput.value;
