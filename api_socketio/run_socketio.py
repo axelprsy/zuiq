@@ -122,11 +122,7 @@ def submit_answer(data):
                     if u["user_id"] == user_id:
                         u["points"] += 1
                         requests.patch(url_session, data={"session_code":code ,"users":str(users_list)})
-
-
-    if room_name:
-        print(f"Réponse de {user_id} dans la room {room_name}: {answer}")
-
+    emit("userAnswered", {"user_id": user_id}, to=room_name)
 @socketio.on("endQuizz")
 def end_quizz(data):
     code = data.get('code')

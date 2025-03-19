@@ -28,20 +28,27 @@ const requestOptions = {
   method: "GET",
   redirect: "follow",
 };
-
-fetch(`http://127.0.0.1:5000/quizz?quizz_id=2`, requestOptions)
-  .then((response) => response.json())
-  .then((result) => {
-    const allQuizz = result.quizz[0];
-
-    document.getElementById("quizz_name").value = allQuizz.name;
-
-    for (let i = 0; i < allQuizz.questions.length; i++) {
-      const [title, correctAnswer, rep1, rep2, rep3, rep4] = recupInfoQuestions(
-        allQuizz.questions[i]
-      );
-
-      addNewQuestion(title, correctAnswer, rep1, rep2, rep3, rep4);
-    }
-  })
-  .catch((error) => console.error(error));
+async function get_ip() {
+  const response = await fetch('/get_ip');
+  const data = await response.json();
+  return data["ip"];
+}
+get_ip().then((ip) => {
+  url = ip;
+  fetch(`http://${url}:5000/quizz?quizz_id=2`, requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+      const allQuizz = result.quizz[0];
+  
+      document.getElementById("quizz_name").value = allQuizz.name;
+  
+      for (let i = 0; i < allQuizz.questions.length; i++) {
+        const [title, correctAnswer, rep1, rep2, rep3, rep4] = recupInfoQuestions(
+          allQuizz.questions[i]
+        );
+  
+        addNewQuestion(title, correctAnswer, rep1, rep2, rep3, rep4);
+      }
+    })
+    .catch((error) => console.error(error));
+})

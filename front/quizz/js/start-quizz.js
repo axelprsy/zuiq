@@ -14,12 +14,26 @@ document.getElementById('username').innerText = `${localStorage.getItem('usernam
 
 var socket = null;
 var url="";
+var number_connectedUsers = 0;
 document.addEventListener("DOMContentLoaded", async function () {
     await get_ip().then((ip) => {
         url = ip;
         socket = io(`http://${url}:5050`, {
             transports: ["websocket"],
             withCredentials: true,
+        });
+        socket.on("userJoined", ({ username }) => {
+            number_connectedUsers++;
+            var list_connectedUsers = document.getElementById("listConnectedUsers")
+            const userElement = document.createElement("li");
+            userElement.textContent = `- ${username}`;
+            list_connectedUsers.appendChild(userElement);
+        })
+        socket.on("userAnswered", ({user_id}) => {
+            const playerCount = document.getElementById("playerCount");
+            const currentCount = playerCount.textContent.split("/")[0];
+            const newCount = parseInt(currentCount) + 1;
+            playerCount.textContent = `${newCount} / ${number_connectedUsers} joueurs ont répondu`;
         });
     })
     const user_id = localStorage.user_id;
@@ -95,7 +109,7 @@ startQuizzButton.addEventListener("click", () => {
 
                     questionTitle.textContent = title;
                     nextQuestionButton.textContent = "Question suivante";
-                    playerCount.textContent = "0/24 joueurs ont répondu";
+                    playerCount.textContent = `0 / ${number_connectedUsers} joueurs ont répondu`;
 
                     answersContainer.innerHTML = "";
                     answers.forEach((answer, index) => {
@@ -127,7 +141,6 @@ startQuizzButton.addEventListener("click", () => {
                         quizz_id: quizz_id,
                         question_id: question_id,
                     });
-
                     currentQuestionIndex++;
                 } else {
                     // Fin du quizz
@@ -188,11 +201,7 @@ startQuizzButton.addEventListener("click", () => {
 
     nextQuestionButton.addEventListener("click", loadQuestion);
 
-    socket.on("userAnswer", ({ totalPlayers, answeredPlayers }) => {
-        playerCount.textContent = `${answeredPlayers}/${totalPlayers} joueurs ont répondu`;
-    });
 });
-
 
 // // Admin : Voir les réponses des joueurs
 // socket.on("userAnswer", ({ userId, answer }) => {
