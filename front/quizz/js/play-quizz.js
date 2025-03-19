@@ -49,15 +49,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         answersContainer.classList.add("grid", "grid-cols-1", "md:grid-cols-2", "gap-4", "w-full", "max-w-2xl", "mx-auto", "px-4");
         questionsDiv.appendChild(answersContainer);
 
-        // Couleurs façon Kahoot
-        const kahootColors = ["bg-red-500", "bg-blue-500", "bg-yellow-500", "bg-green-500"];
+        // Couleurs façon zuiq
+        const zuiqColors = ["bg-red-500", "bg-blue-500", "bg-yellow-500", "bg-green-500"];
 
         // Création des boutons de réponse
         answers.forEach((answer, index) => {
             const button = document.createElement("button");
             button.classList.add(
                 "buttonQuizz",
-                kahootColors[index % 4], // Couleurs Kahoot
+                zuiqColors[index % 4],
                 "text-white",
                 "py-4",
                 "px-6",
