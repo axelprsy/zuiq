@@ -8,10 +8,11 @@ const port = config_file.front_port;
 
 
 // Configuration des dossier statiques
+app.use(express.static(path.join(__dirname, 'assets')));
 app.use(express.static(path.join(__dirname, 'auth')));
 app.use(express.static(path.join(__dirname, 'pages')));
 app.use(express.static(path.join(__dirname, 'quizz')));
-app.use(express.static(path.join(__dirname, 'assets')));
+
 
 // Importation des routes
 const indexRouter = require('./routes/routes.js');
@@ -25,7 +26,7 @@ var ip;
 for (const interfaceName in interfaces) {
   for (const interface of interfaces[interfaceName]) {
     if (interface.family === "IPv4" && !interface.internal) {
-      ip = interface.address; 
+      ip = interface.address;
     }
   }
 }
