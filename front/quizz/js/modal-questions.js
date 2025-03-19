@@ -38,22 +38,35 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function addNewQuestion() {
+        console.log("Ajout d'une nouvelle question");
         const questionCount = questions.length + 1;
         const questionTemplate = `
-            <div class="form-group next">
-                <h1>Question ${questionCount}</h1>
-                <label for="title_question${questionCount}">Titre de la Question</label>
-                <input id="title_question${questionCount}" type="text" name="title_question${questionCount}" required class="border border-gray-300 rounded-md py-2 px-4 mt-1 focus:outline-none focus:ring-2 focus:ring-[#3F72AF]">
-                <label for="answer1_question${questionCount}">Réponse 1</label>
-                <input id="answer1_question${questionCount}" type="text" name="answer1_question${questionCount}" required class="border border-gray-300 rounded-md py-2 px-4 mt-1 focus:outline-none focus:ring-2 focus:ring-[#3F72AF]">
-                <label for="answer2_question${questionCount}">Réponse 2</label>
-                <input id="answer2_question${questionCount}" type="text" name="answer2_question${questionCount}" required class="border border-gray-300 rounded-md py-2 px-4 mt-1 focus:outline-none focus:ring-2 focus:ring-[#3F72AF]">
-                <label for="answer3_question${questionCount}">Réponse 3</label>
-                <input id="answer3_question${questionCount}" type="text" name="answer3_question${questionCount}" required class="border border-gray-300 rounded-md py-2 px-4 mt-1 focus:outline-none focus:ring-2 focus:ring-[#3F72AF]">
-                <label for="answer4_question${questionCount}">Réponse 4</label>
-                <input id="answer4_question${questionCount}" type="text" name="answer4_question${questionCount}" required class="border border-gray-300 rounded-md py-2 px-4 mt-1 focus:outline-none focus:ring-2 focus:ring-[#3F72AF]">
-                <label for="correct_answer_question${questionCount}">Réponse correcte*</label>
-                <select id="correct_answer_question${questionCount}" name="correct_answer_question${questionCount}" required class="border border-gray-300 rounded-md py-2 px-4 mt-1 focus:outline-none focus:ring-2 focus:ring-[#3F72AF]">
+            <div class="form-group ${questionCount === 1 ? 'active' : 'next'} space-y-4 p-6 bg-[#F9F7F7]">
+                <h1 class="text-2xl font-bold text-[#112D4E]">Question ${questionCount}</h1>
+                
+                <label for="title_question${questionCount}" class="text-[#112D4E] font-semibold">Titre de la Question</label>
+                <input id="title_question${questionCount}" type="text" name="title_question${questionCount}" required
+                    class="border border-gray-300 rounded-md py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-[#3F72AF]">
+                
+                <label for="answer1_question${questionCount}" class="text-[#112D4E] font-semibold">Réponse 1</label>
+                <input id="answer1_question${questionCount}" type="text" name="answer1_question${questionCount}" required
+                    class="border border-gray-300 rounded-md py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-[#3F72AF]">
+                
+                <label for="answer2_question${questionCount}" class="text-[#112D4E] font-semibold">Réponse 2</label>
+                <input id="answer2_question${questionCount}" type="text" name="answer2_question${questionCount}" required
+                    class="border border-gray-300 rounded-md py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-[#3F72AF]">
+                
+                <label for="answer3_question${questionCount}" class="text-[#112D4E] font-semibold">Réponse 3</label>
+                <input id="answer3_question${questionCount}" type="text" name="answer3_question${questionCount}" required
+                    class="border border-gray-300 rounded-md py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-[#3F72AF]">
+                
+                <label for="answer4_question${questionCount}" class="text-[#112D4E] font-semibold">Réponse 4</label>
+                <input id="answer4_question${questionCount}" type="text" name="answer4_question${questionCount}" required
+                    class="border border-gray-300 rounded-md py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-[#3F72AF]">
+                
+                <label for="correct_answer_question${questionCount}" class="text-[#112D4E] font-semibold">Réponse correcte*</label>
+                <select id="correct_answer_question${questionCount}" name="correct_answer_question${questionCount}" required
+                    class="border border-gray-300 rounded-md py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-[#3F72AF]">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -64,15 +77,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         questionContainer.insertAdjacentHTML("beforeend", questionTemplate);
         questions = document.querySelectorAll(".form-group");
+        console.log("Nombre total de questions :", questions.length);
+
         setTimeout(() => {
             currentQuestionIndex = questions.length - 1;
             updateQuestionDisplay();
         }, 50);
     }
 
+
     function updateQuestionDisplay() {
         questions.forEach((q, index) => {
             q.classList.remove("active", "previous", "next");
+
             if (index === currentQuestionIndex) {
                 q.classList.add("active");
             } else if (index < currentQuestionIndex) {
