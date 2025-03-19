@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script src="https://kit.fontawesome.com/1f76485fee.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Page Non Trouvée - Zuiq</title>
+</head>
+
+<body class="bg-[#F9F7F7] text-[#112D4E]">
+    <!-- Contenu principal -->
+    <div class="container mx-auto px-8 py-12 fade-in">
+        <h1 class="text-3xl font-bold mb-8 slide-in text-[#112D4E]">Page Non Trouvée</h1>
+
+        <div class="bg-[#DBE2EF] p-6 rounded-lg shadow-md mb-6 text-center">
+            <h2 class="text-2xl font-semibold mb-4">Oups !</h2>
+            <p>La page que vous cherchez n'existe pas.</p>
+            <p>Vous pouvez rejoindre un<a href="/" class="text-[#3F72AF] hover:text-[#112D4E]"> quiz</a> ou
+            <a href="/signup" class="text-[#3F72AF] hover:text-[#112D4E]"> vous connectez</a> </p>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Ajout d'une animation sur les liens
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('mouseover', () => {
+                link.classList.add('animate-pulse');
+            });
+            link.addEventListener('mouseout', () => {
+                link.classList.remove('animate-pulse');
+            });
+        });
+    </script>
+</body>
+
+</html>
