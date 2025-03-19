@@ -28,7 +28,7 @@ class GenerateQuizz(Resource):
             Crée un quiz amusant et éducatif sur le thème {args['theme']} avec {args['number_of_questions']} questions.
             Chaque question doit comporter un énoncé clair et concis, avec 4 propositions et précise la seule bonne réponse.
             Les questions doivent être adaptées à des {args['public']}.
-            Je veux que ta réponse soit un JSON exactement sous cette forme, je veux uniquement le json, pas de phrase et n'indiquer pas le langage :
+            Je veux que ta réponse soit un JSON exactement sous cette forme, je veux uniquement le json, pas de phrase, n'indique pas le langage ni le markdown. :
 
             {{
                 "quizz" : {{
@@ -51,7 +51,6 @@ class GenerateQuizz(Resource):
             """
         }
         ])
-        print(response.message.content)
         quizz=json.loads(response.message.content)
         quizz["quizz"]["created_at"]=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         return jsonify({"status": 200, "quizz": quizz})
