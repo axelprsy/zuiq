@@ -33,6 +33,31 @@ document.addEventListener("DOMContentLoaded", async () => {
         user_id = userId;
     });
 
+    socket.on('questionResult', ({ correct_answer }) => {
+
+        // Désactiver les boutons après réponse
+        const allButtons = document.querySelectorAll(".buttonQuizz");
+        allButtons.forEach((button) => {
+            button.classList.add("bg-gray-500", "cursor-not-allowed", "opacity-50");
+            button.classList.remove("hover:opacity-80");
+            button.disabled = true;
+        });
+
+        const buttonCorrectAnswer = document.getElementById(`answer-${correct_answer - 1}`);
+        buttonCorrectAnswer.style.backgroundColor = "green";
+
+        // Message d'attente
+        if (document.getElementById("sentence_wait")) {
+        } else {
+            const sentence_wait = document.createElement("p");
+            sentence_wait.textContent = "En attente de la prochaine question...";
+            sentence_wait.classList.add("text-center", "text-lg", "italic", "mt-4");
+            const questionsDiv = document.getElementById("questionsDiv");
+            questionsDiv.appendChild(sentence_wait);
+        }
+
+    });
+
     // Joueur : Recevoir une nouvelle question
     socket.on("newQuestion", ({ question, answers, quizz_id, question_id }) => {
         const questionsDiv = document.getElementById("questionsDiv");
@@ -76,11 +101,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 "justify-center",
                 "text-center"
             );
+            button.id = `answer-${index}`;
             button.textContent = answer;
             button.onclick = () => sendResponse(index + 1, quizz_id, question_id);
             answersContainer.appendChild(button);
         });
     });
+
+
 
     // Fin du quizz
     socket.on("quizzEnded", async ({ quizz_id, code }) => {
@@ -137,6 +165,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             // Message d'attente
             const sentence_wait = document.createElement("p");
+            sentence_wait.id = "sentence_wait";
             sentence_wait.textContent = "En attente de la prochaine question...";
             sentence_wait.classList.add("text-center", "text-lg", "italic", "mt-4");
             const questionsDiv = document.getElementById("questionsDiv");

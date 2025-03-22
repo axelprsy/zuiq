@@ -127,6 +127,7 @@ def answer_result(data):
     code = data.get('code')
     correct_answer = data.get('correct_answer')
     room_name = active_sessions.get(code)
+    print(correct_answer)
     emit("questionResult", {"correct_answer": correct_answer}, to=room_name)
 
 @socketio.on("endQuizz")

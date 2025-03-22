@@ -87,6 +87,13 @@ startQuizzButton.addEventListener("click", () => {
     nextQuestionButton.id = "nextQuestion";
     nextQuestionButton.textContent = "Question suivante";
     nextQuestionButton.classList.add("bg-[#3F72AF]", "text-white", "py-2", "px-6", "rounded-lg", "hover:bg-[#2B5A8A]");
+    nextQuestionButton.style.display = "none";
+
+    const displayAnswer = document.createElement("button");
+    displayAnswer.id = "Afficher la réponse";
+    displayAnswer.textContent = "Afficher la réponse";
+    displayAnswer.classList.add("bg-[#3F72AF]", "text-white", "py-2", "px-6", "rounded-lg", "hover:bg-[#2B5A8A]");
+
 
     const pIndexQuestion = document.createElement("p");
     pIndexQuestion.id = "indexQuestion";
@@ -98,11 +105,15 @@ startQuizzButton.addEventListener("click", () => {
     bottomContainer.appendChild(playerCount);
     bottomContainer.appendChild(pIndexQuestion);
     bottomContainer.appendChild(nextQuestionButton);
+    bottomContainer.appendChild(displayAnswer);
     adminContainer.appendChild(bottomContainer);
 
     let currentQuestionIndex = 0;
 
     async function loadQuestion() {
+        nextQuestionButton.style.display = "none";
+        displayAnswer.style.display = "block";
+
         fetch(`http://${url}:5000/quizz?quizz_id=${quizzId}`)
             .then((response) => response.json())
             .then((result) => {
@@ -126,7 +137,7 @@ startQuizzButton.addEventListener("click", () => {
                     answers.forEach((answer, index) => {
                         const answerBlock = document.createElement("div");
                         answerBlock.classList.add(
-                            "answerBlock",
+                            `answerBlock`,
                             "p-6",
                             "rounded-lg",
                             "shadow-md",
@@ -137,6 +148,8 @@ startQuizzButton.addEventListener("click", () => {
                             "justify-center",
                             "items-center"
                         );
+
+                        answerBlock.id = `answerBlock${index}`;
 
                         const ZuiqColors = ["bg-red-500", "bg-blue-500", "bg-yellow-500", "bg-green-500"];
                         answerBlock.classList.add(ZuiqColors[index % 4]);
@@ -212,14 +225,29 @@ startQuizzButton.addEventListener("click", () => {
 
     loadQuestion();
 
+    displayAnswer.addEventListener("click", () => {
+        fetch(`http://${url}:5000/quizz?quizz_id=${quizzId}`)
+            .then((response) => response.json())
+            .then((result) => {
+                const questions = result.quizz[0]["questions"];
+                const question = questions[currentQuestionIndex - 1];
+                const correctAnswer = question.correct_answer;
+
+                socket.emit("answerResult", { correct_answer: correctAnswer, code: sessionCodeDisplay.textContent.split(": ")[1] });
+
+                document.querySelectorAll(".answerBlock").forEach(e => {
+                    e.style.background = "grey";
+                });
+                const correctAnswerIndex = correctAnswer - 1;
+                const answerBlocks = document.getElementById(`answerBlock${correctAnswerIndex}`);
+                answerBlocks.style.background = "green";
+                nextQuestionButton.style.display = "block";
+                displayAnswer.style.display = "none";
+            });
+    });
     nextQuestionButton.addEventListener("click", loadQuestion);
 
 });
-
-// // Admin : Voir les réponses des joueurs
-// socket.on("userAnswer", ({ userId, answer }) => {
-//     console.log(`Réponse reçue de ${userId} : ${answer}`);
-// });
 
 // Admin : Générer un QR code
 async function generateQRCode(code) {
