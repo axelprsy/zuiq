@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#DBE2EF" />
+    <title>Zuiq - Quiz interactifs</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .animate-slide-up {
+            animation: slideUp 1s ease-out;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F9F7F7] text-[#112D4E] flex flex-col min-h-screen">
+    <div
+        class="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-[#DBE2EF] to-[#3F72AF] overflow-hidden px-6">
+        <div class="absolute inset-0 bg-noise opacity-10"></div>
+        <div
+            class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-12 items-center animate-fade-in text-center md:text-left">
+            <div>
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg">Bienvenue sur <span
+                        class="text-[#112D4E]">Zuiq</span></h1>
+                <p class="text-md md:text-lg text-white mt-4 drop-shadow-md">
+                    Découvrez un moyen innovant d'apprendre et de tester vos connaissances avec des quiz interactifs.
+                    Défiez vos amis, créez vos propres quiz et devenez un expert dans n'importe quel domaine !
+                </p>
+                <div
+                    class="mt-6 flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="/jouer"
+                        class="px-6 py-3 bg-[#112D4E] text-white font-semibold text-lg rounded-lg shadow-lg hover:bg-[#3F72AF] transition-transform transform hover:scale-105">Jouer</a>
+                    <a href="/creer"
+                        class="px-6 py-3 bg-white text-[#112D4E] font-semibold text-lg rounded-lg shadow-lg hover:bg-[#DBE2EF] transition-transform transform hover:scale-105">Créer
+                        un quiz</a>
+                </div>
+            </div>
+            <div class="relative flex justify-center">
+                <img src="Zuiq_z_nobg.png   " alt="Quiz" class="w-full max-w-xs md:max-w-md mx-auto drop-shadow-xl">
+            </div>
+        </div>
+    </div>
+
+    <section
+        class="mt-16 w-full max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6 animate-slide-up">
+        <div class="p-6 bg-white shadow-xl rounded-lg transform transition duration-500 hover:scale-105 text-center">
+            <h4 class="text-xl font-bold">🎯 Ludique</h4>
+            <p>Jouez seul ou en équipe pour tester vos connaissances tout en vous amusant.</p>
+        </div>
+        <div class="p-6 bg-white shadow-xl rounded-lg transform transition duration-500 hover:scale-105 text-center">
+            <h4 class="text-xl font-bold">📚 Éducatif</h4>
+            <p>Apprenez de nouvelles choses à chaque quiz et améliorez vos compétences.</p>
+        </div>
+        <div class="p-6 bg-white shadow-xl rounded-lg transform transition duration-500 hover:scale-105 text-center">
+            <h4 class="text-xl font-bold">⚡ Dynamique</h4>
+            <p>Des quiz interactifs et engageants pour une expérience unique.</p>
+        </div>
+    </section>
+
+    <section class="mt-16 w-full max-w-6xl mx-auto text-center animate-slide-up px-6">
+        <h3 class="text-3xl md:text-4xl font-semibold text-[#3F72AF] mb-6">Fonctionnalités de Zuiq</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
+            <ul class="text-md md:text-lg text-[#112D4E] space-y-4">
+                <li>✅ Créez des quiz personnalisés avec des images et des vidéos.</li>
+                <li>✅ Jouez en temps réel avec vos amis ou en solo.</li>
+                <li>✅ Explorez une large bibliothèque de quiz sur divers sujets.</li>
+                <li>✅ Suivez vos progrès et améliorez vos performances.</li>
+                <li>✅ Interface intuitive et design moderne.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="mt-16 w-full max-w-6xl mx-auto text-center animate-slide-up px-6">
+        <h3 class="text-3xl md:text-4xl font-semibold text-[#3F72AF] mb-6">Rejoignez la communauté Zuiq</h3>
+        <p class="text-md md:text-lg text-[#112D4E] mb-6 max-w-2xl mx-auto">
+            Inscrivez-vous dès maintenant et commencez à apprendre de manière interactive avec des quiz engageants et
+            stimulants !
+        </p>
+        <a href="/inscription"
+            class="px-8 py-4 bg-[#3F72AF] text-white font-semibold text-lg rounded-lg shadow-lg hover:bg-[#112D4E] transition-transform transform hover:scale-105">S'inscrire</a>
+    </section>
+</body>
+
+</html>

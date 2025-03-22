@@ -72,9 +72,13 @@ router.get("/play", (req, res) => {
 router.get("/start-my-quizz", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../quizz/html/start-quizz.html"));
 });
-// Définition de la route pour /modify (temp)
+// Définition de la route pour /modify
 router.get('/modify', (req, res) => {
   res.sendFile(path.resolve(__dirname, "../quizz/html/modify.html"));
+});
+// Définition de la route pour /index (tmp)
+router.get('/index', (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../pages/html/index.html"));
 });
 
 router.all('*', (req, res) => {
