@@ -152,6 +152,7 @@ startQuizzButton.addEventListener("click", () => {
                 } else {
                     // Fin du quizz
                     pIndexQuestion.remove()
+                    bottomContainer.remove() // Suppression de la div avec le compteur
                     quizTitle.textContent = "Quizz terminé !";
                     questionTitle.textContent = "Résultats des joueurs :";
                     answersContainer.innerHTML = "";
@@ -160,7 +161,7 @@ startQuizzButton.addEventListener("click", () => {
 
                     const resultsContainer = document.createElement("div");
                     resultsContainer.id = "resultsContainer";
-                    resultsContainer.classList.add("mt-6", "text-center");
+                    resultsContainer.classList.add("text-center");
                     adminContainer.appendChild(resultsContainer);
 
                     const code = sessionCodeDisplay.textContent.split(": ")[1];
