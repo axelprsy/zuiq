@@ -58,9 +58,10 @@ git clone https://github.com/LunityAxel/kadoute.git
     ```
 
 ### Démarrer le projet
-Il suffit uniquement d'executer cette ligne afin d'initialiser la base de donnée, l'api etc.
+Il suffit uniquement d'executer ces 2 ligne afin d'initialiser la base de donnée, l'api etc.
 ```bash
-docker compose up --build
+chmod +x start.sh
+. ./start.sh
 ```
 
 ## Option 2 (déconseillée):

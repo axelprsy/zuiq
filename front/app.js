@@ -4,7 +4,6 @@ const app = express();
 const os = require("os");
 
 const config_file = require("./config.json");
-const port = config_file.front_port;
 
 
 // Configuration des dossier statiques
@@ -21,19 +20,24 @@ const indexRouter = require('./routes/routes.js');
 app.use('/', indexRouter);
 
 function getLocalIPAddress() {
-  const interfaces = os.networkInterfaces();
-
-  for (const interfaceName in interfaces) {
-    for (const interface of interfaces[interfaceName]) {
-      if (interface.family === "IPv4" && !interface.internal) {
-        return interface.address; 
+  if (config_file.url != "") {
+    return config_file.url;
+  } else if (process.env.HOST_IP != undefined) {
+    return process.env.HOST_IP;
+  } else {
+    const interfaces = os.networkInterfaces();
+    for (const interfaceName in interfaces) {
+      for (const interface of interfaces[interfaceName]) {
+        if (interface.family === "IPv4" && !interface.internal) {
+          return interface.address;
+        }
       }
     }
   }
-  return null; 
 }
 const ip = getLocalIPAddress();
+console.log(ip);
 // Démarrage du serveur
-app.listen(port, "0.0.0.0", () => {
-  console.log(`Server is running : http://${ip}:${port}`);
+app.listen("3000", "0.0.0.0", () => {
+  console.log(`Server is running : http://${ip}:3000`);
 });

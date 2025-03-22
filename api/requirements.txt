@@ -7,3 +7,4 @@ ollama
 pandas
 openpyxl
 qrcode[pil]
+dotenv

@@ -28,6 +28,8 @@ services:
       - "3000:3000"
     networks:
       - app_network
+    environment:
+      - HOST_IP=${HOST_IP}
     depends_on:
       - api  
       - api_socketio
