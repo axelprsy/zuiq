@@ -37,7 +37,7 @@ Création d’un site permettant de crée un quizz par soit même ou a l’aide 
 ### 1. Clonez le dépôt
 Clonez le code source sur votre machine a l'aide de la commande suivante :
 ```bash
-git clone https://github.com/LunityAxel/kadoute.git
+git clone https://github.com/axelprsy/zuiq.git
 ```
 
 --- 

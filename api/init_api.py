@@ -3,15 +3,6 @@ import subprocess
 import sys
 import sqlite3
 
-def ollama_installed():
-    """
-    Vérifie si Ollama est installé.
-    """
-    try:
-        subprocess.run(["ollama", "--version"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
-        return True
-    except:
-        return False
 
 def install_requirements():
     """
@@ -69,49 +60,12 @@ def init_db():
         print(f"❌ Une erreur est survenue lors de l'exécution de 'init_db.py' : {e}")
         sys.exit(1)
 
-def install_mistral():
-    """
-    Installe Mistral.
-    """
-    print("🔧 Installation de Mistral...")
-    
-    try:
-        subprocess.run(["ollama", "pull", "mistral"], check=True)
-        print("\n\n✅ Mistral a été installé avec succès.")
-    except subprocess.CalledProcessError as e:
-        print(f"❌ Erreur lors de l'installation de Mistral : {e}")
-        sys.exit(1)
-
-def install_ollama():
-    """
-    Installe Ollama.
-    """
-    print("🔧 Installation de Ollama...")
-
-    try:
-        if os.name == "nt":
-            subprocess.run(["winget", "install", "ollama.ollama"], check=True)
-        elif sys.platform == "darwin":
-            subprocess.run(["brew", "install", "ollama"], check=True)
-        elif sys.platform == "linux":
-            subprocess.run(["curl", "-fsSL", "https://ollama.com/install.sh", "|", "sh"], check=True)
-        else:
-            print("❌ Système d'exploitation non supporté.")
-            sys.exit(1)
-        print("\n\n✅ Ollama a été installé avec succès.")
-    except subprocess.CalledProcessError as e:
-        print(f"❌ Erreur lors de l'installation de Ollama : {e}")
-        sys.exit(1)
-
 
 if __name__ == "__main__":
 
     install_requirements()
 
     create_db()
-
-    if ollama_installed():
-        install_mistral()
 
     init_db()
 
