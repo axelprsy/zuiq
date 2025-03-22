@@ -6,8 +6,8 @@ const config = require('../config.json');
 
 // ------------------------------------------------
 function getLocalIPAddress() {
-  if (config_file.url != "") {
-    return config_file.url;
+  if (config.url != "") {
+    return config.url;
   } else if (process.env.HOST_IP != undefined) {
     return process.env.HOST_IP;
   } else {
