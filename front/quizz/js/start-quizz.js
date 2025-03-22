@@ -13,7 +13,7 @@ document.getElementById('username').innerText = `${localStorage.getItem('usernam
 
 
 var socket = null;
-var url="";
+var url = "";
 var number_connectedUsers = 0;
 document.addEventListener("DOMContentLoaded", async function () {
     await get_ip().then((ip) => {
@@ -24,12 +24,16 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
         socket.on("userJoined", ({ username }) => {
             number_connectedUsers++;
-            var list_connectedUsers = document.getElementById("listConnectedUsers")
+            var list_connectedUsers = document.getElementById("listConnectedUsers");
             const userElement = document.createElement("li");
-            userElement.textContent = `- ${username}`;
+
+            userElement.textContent = username.toUpperCase();  // Nom en majuscule
+            userElement.classList.add("flex", "items-center", "bg-[#94AFC8]", "text-[#112D4E]", "py-3", "px-6", "rounded-lg", "text-sm", "my-1");
+
             list_connectedUsers.appendChild(userElement);
+
         })
-        socket.on("userAnswered", ({user_id}) => {
+        socket.on("userAnswered", ({ user_id }) => {
             const playerCount = document.getElementById("playerCount");
             const currentCount = playerCount.textContent.split("/")[0];
             const newCount = parseInt(currentCount) + 1;
@@ -76,7 +80,7 @@ startQuizzButton.addEventListener("click", () => {
 
     const playerCount = document.createElement("p");
     playerCount.id = "playerCount";
-    playerCount.textContent = "0/24 joueurs ont répondu";
+    playerCount.textContent = "0/0 joueurs ont répondu";
     playerCount.classList.add("text-lg", "font-medium", "text-[#3F72AF]");
 
     const nextQuestionButton = document.createElement("button");
@@ -103,7 +107,7 @@ startQuizzButton.addEventListener("click", () => {
             .then((response) => response.json())
             .then((result) => {
                 const questions = result.quizz[0]["questions"];
-                pIndexQuestion.textContent = `Question ${currentQuestionIndex+1} / ${questions.length}`;
+                pIndexQuestion.textContent = `Question ${currentQuestionIndex + 1} / ${questions.length}`;
 
 
                 if (currentQuestionIndex < questions.length) {
@@ -220,18 +224,18 @@ startQuizzButton.addEventListener("click", () => {
 // Admin : Générer un QR code
 async function generateQRCode(code) {
     const qrCodeImage = document.createElement("img");
-    await get_ip().then((ip) =>{
-        fetch(`http://${ip}:5000/generate_qrcode?session_url=http://${ip}:3000/play-quizz?code_session=${code}`,{
+    await get_ip().then((ip) => {
+        fetch(`http://${ip}:5000/generate_qrcode?session_url=http://${ip}:3000/play-quizz?code_session=${code}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
         })
-        .then((response) => response.json())
-        .then((result) => {
-            qrCodeImage.src = `${result.qr_code}`;
-            qrCodeImage.alt = "QR Code";
-            qrCodeContainer.appendChild(qrCodeImage);
-        });
+            .then((response) => response.json())
+            .then((result) => {
+                qrCodeImage.src = `${result.qr_code}`;
+                qrCodeImage.alt = "QR Code";
+                qrCodeContainer.appendChild(qrCodeImage);
+            });
     })
 }
