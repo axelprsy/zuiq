@@ -6,10 +6,10 @@ from flask import jsonify, send_file, make_response
 from flask_restful import Resource, reqparse
 
 
-class GenerateExel(Resource):
+class GenerateExcel(Resource):
     def get(self):
         """
-        Générer un fichier exel avec le resultat de la session.
+        Générer un fichier excel avec le resultat de la session.
         """
         parser = reqparse.RequestParser()
         parser.add_argument("session_data", required=True, location="args")
