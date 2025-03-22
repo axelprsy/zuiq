@@ -5,8 +5,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     res=$(ip addr show | grep "inet " | grep -v 127.0.0.1 | awk '{print $2}' | cut -d'/' -f1 | head -n1)
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     res=$(ifconfig | grep "inet " | grep -v 127.0.0.1 | awk '{print $2}' | head -n1)
-elif [[ "$OSTYPE" == "cygwin" ]] || [[ "$OSTYPE" == "msys" ]]; then
-    res=$(ipconfig | findstr IPv4 | awk '{print $NF}' | head -n1)
 else
     echo "OS non pris en charge : $OSTYPE"
     exit 1

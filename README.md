@@ -59,6 +59,13 @@ git clone https://github.com/LunityAxel/kadoute.git
 
 ### Démarrer le projet
 Il suffit uniquement d'executer ces 2 ligne afin d'initialiser la base de donnée, l'api etc.
+
+**Windows**
+```bash
+bash start.ps1
+```
+
+**Mac OS / Linux**
 ```bash
 chmod +x start.sh
 . ./start.sh
