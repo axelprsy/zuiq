@@ -16,24 +16,24 @@ const requestOptions = {
   method: "GET",
   redirect: "follow",
 };
-window.onload = async function() {
+window.onload = async function () {
   await get_ip().then((ip) => {
     url = ip;
   })
   fetch(`http://${url}:5000/quizz?user_id=${user_id}`, requestOptions)
-  .then((response) => response.json())
-  .then((result) => {
-    const allQuizz = result.quizz;
+    .then((response) => response.json())
+    .then((result) => {
+      const allQuizz = result.quizz;
 
-    function trunkText(text) {
-      if (text.length > 40) {
-        return text.substring(0, 40) + "...";
+      function trunkText(text) {
+        if (text.length > 40) {
+          return text.substring(0, 40) + "...";
+        }
+        return text;
       }
-      return text;
-    }
 
-    for (let i = 0; i < allQuizz.length; i++) {
-      const quizzTemplate = `
+      for (let i = 0; i < allQuizz.length; i++) {
+        const quizzTemplate = `
         <!-- Exemple de quiz -->
         <div class="bg-[#DBE2EF] p-6 rounded-lg mb-6 shadow-md fade-in">
             <div class="flex items-center justify-between mb-4">
@@ -41,7 +41,7 @@ window.onload = async function() {
                 <span class="text-[#3F72AF]">${allQuizz[i].questions.length} Questions</span>
             </div>
             <div class="flex space-x-4">
-                <button onclick="editQuizz(${allQuizz[i].quizz_id})" class="bg-[#3F72AF] text-white px-4 py-2 rounded hover:bg-[#112D4E] flex items-center">
+                <button onclick="window.location.href='/modify?quizz_id=${allQuizz[i].quizz_id}';" class="bg-[#3F72AF] text-white px-4 py-2 rounded hover:bg-[#112D4E] flex items-center">
                     <!-- Icone Modifier -->
                     <i class="fa-solid fa-pen mr-2"></i>
                     Modifier
@@ -62,12 +62,12 @@ window.onload = async function() {
 
       `;
 
-      const quizzContainer = document.getElementById("quizz-container");
-      quizzContainer.insertAdjacentHTML("beforeend", quizzTemplate);
-    }
+        const quizzContainer = document.getElementById("quizz-container");
+        quizzContainer.insertAdjacentHTML("beforeend", quizzTemplate);
+      }
 
-  })
-  .catch((error) => console.error(error));
+    })
+    .catch((error) => console.error(error));
 };
 
 

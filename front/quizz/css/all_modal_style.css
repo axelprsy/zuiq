@@ -7,6 +7,7 @@
     display: none;
 }
 
+
 /* Gestion des transitions des modals */
 .form-group {
     position: absolute;
@@ -29,6 +30,27 @@
     opacity: 0;
     transform: translateX(20%);
 }
+
+
+.form-group_modify {
+    position: absolute;
+    width: 100%;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+.form-group_modify.active_modify {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+.form-group_modify.previous_modify {
+    opacity: 0;
+    transform: translateX(-20%);
+}
+.form-group_modify.next_modify {
+    opacity: 0;
+    transform: translateX(20%);
+}
+
 
 .loader-container {
     display: none;
