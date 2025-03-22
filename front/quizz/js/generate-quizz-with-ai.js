@@ -60,7 +60,7 @@ async function generateWithAi() {
 }
 
 function closeModalIA() {
-  document.getElementById('modal').style.display = "none";
+  window.location.reload();
 }
 
 async function CreateFormToGenerateWithAi() {
