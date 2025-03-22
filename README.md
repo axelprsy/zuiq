@@ -77,13 +77,13 @@ chmod +x start.sh
 Pour démarrer l'API, suivez les étapes ci-dessous selon votre système d'exploitation :
 
 ### Documentation
-Rendez vous sur la [documentation de l'api](https://verdant-budget-6c4.notion.site/Documentation-API-Kadoute-19caef7c06d880068d5ee16283895db9) pour comprendre son fonctionnement.
+Rendez vous sur la [documentation de l'api](https://verdant-budget-6c4.notion.site/Documentation-API-Zuiq-19caef7c06d880068d5ee16283895db9) pour comprendre son fonctionnement.
 
 ### Étape 1 : Accéder au répertoire de l'API
 Commencez par naviger dans le dossier contenant l'api :
 
 ```bash
-cd kadoute
+cd zuiq
 cd api
 ```
 
