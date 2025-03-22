@@ -111,9 +111,7 @@ def submit_answer(data):
     res_quizz=response_quizz.json()
     for i in res_quizz["quizz"][0]["questions"]:
         if i["question_id"] == question_id:
-            print(int(answer), int(i["correct_answer"]))
             if int(answer) == int(i["correct_answer"]):
-                print(int(answer), int(i["correct_answer"]))
                 url_session = url_api+"/session"
                 response_session = requests.get(url_session+f"?session_code="+code)
                 res_session = response_session.json()
@@ -123,6 +121,14 @@ def submit_answer(data):
                         u["points"] += 1
                         requests.patch(url_session, data={"session_code":code ,"users":str(users_list)})
     emit("userAnswered", {"user_id": user_id}, to=room_name)
+
+@socketio.on("answerResult")
+def answer_result(data):
+    code = data.get('code')
+    correct_answer = data.get('correct_answer')
+    room_name = active_sessions.get(code)
+    emit("questionResult", {"correct_answer": correct_answer}, to=room_name)
+
 @socketio.on("endQuizz")
 def end_quizz(data):
     code = data.get('code')
