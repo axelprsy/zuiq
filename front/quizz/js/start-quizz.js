@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             const userElement = document.createElement("li");
 
             userElement.textContent = username.toUpperCase();  // Nom en majuscule
-            userElement.classList.add("flex", "items-center", "bg-[#94AFC8]", "text-[#112D4E]", "py-3", "px-6", "rounded-lg", "text-sm", "my-1");
+            userElement.classList.add("flex", "items-center", "bg-[#94AFC8]", "text-[#112D4E]", "py-3", "px-6", "rounded-lg", "text-lg", "font-semibold", "justify-center", "my-1");
 
             list_connectedUsers.appendChild(userElement);
 
@@ -215,11 +215,6 @@ startQuizzButton.addEventListener("click", () => {
     nextQuestionButton.addEventListener("click", loadQuestion);
 
 });
-
-// // Admin : Voir les réponses des joueurs
-// socket.on("userAnswer", ({ userId, answer }) => {
-//     console.log(`Réponse reçue de ${userId} : ${answer}`);
-// });
 
 // Admin : Générer un QR code
 async function generateQRCode(code) {

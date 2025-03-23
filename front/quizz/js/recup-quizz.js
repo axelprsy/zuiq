@@ -34,31 +34,36 @@ window.onload = async function () {
 
       for (let i = 0; i < allQuizz.length; i++) {
         const quizzTemplate = `
-        <!-- Exemple de quiz -->
         <div class="bg-[#DBE2EF] p-6 rounded-lg mb-6 shadow-md fade-in">
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="text-xl font-semibold text-[#112D4E]">${trunkText(allQuizz[i].name)}</h2>
-                <span class="text-[#3F72AF]">${allQuizz[i].questions.length} Questions</span>
-            </div>
-            <div class="flex space-x-4">
-                <button onclick="window.location.href='/modify?quizz_id=${allQuizz[i].quizz_id}';" class="bg-[#3F72AF] text-white px-4 py-2 rounded hover:bg-[#112D4E] flex items-center">
-                    <!-- Icone Modifier -->
-                    <i class="fa-solid fa-pen mr-2"></i>
-                    Modifier
-                </button>
-                <button onclick="deleteQuizz(${allQuizz[i].quizz_id})" class="bg-[#3F72AF] text-white px-4 py-2 rounded hover:bg-[#112D4E] flex items-center">
-                    <!-- Icone Supprimer -->
-                    <i class="fa-solid fa-trash mr-2"></i>
-                    Supprimer
-                </button>
-                <button onclick="startSession(${allQuizz[i].quizz_id})" class="bg-[#3F72AF] text-white px-4 py-2 rounded hover:bg-[#112D4E] flex items-center">
-                    <!-- Icone Lancer -->
-                    <i class="fa-solid fa-play mr-2"></i>
-                    Lancer
-                </button>
-            </div>
+          <div class="flex flex-col sm:flex-row items-center sm:justify-between mb-4">
+              <h2 class="text-xl sm:text-2xl font-semibold text-[#112D4E] w-full sm:w-auto">
+                  ${trunkText(allQuizz[i].name)}
+              </h2>
+              <span class="text-[#3F72AF] mt-2 sm:mt-0 sm:text-lg">
+                  ${allQuizz[i].questions.length} Questions
+              </span>
+          </div>
+          <div class="flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0">
+              <button onclick="window.location.href='/modify?quizz_id=${allQuizz[i].quizz_id}';"
+                  class="bg-[#3F72AF] text-white px-4 py-2 rounded hover:bg-[#112D4E] flex items-center justify-center">
+                  <!-- Icone Modifier -->
+                  <i class="fa-solid fa-pen mr-2"></i>
+                  Modifier
+              </button>
+              <button onclick="deleteQuizz(${allQuizz[i].quizz_id})"
+                  class="bg-[#3F72AF] text-white px-4 py-2 rounded hover:bg-[#112D4E] flex items-center justify-center">
+                  <!-- Icone Supprimer -->
+                  <i class="fa-solid fa-trash mr-2"></i>
+                  Supprimer
+              </button>
+              <button onclick="startSession(${allQuizz[i].quizz_id})"
+                  class="bg-[#3F72AF] text-white px-4 py-2 rounded hover:bg-[#112D4E] flex items-center justify-center">
+                  <!-- Icone Lancer -->
+                  <i class="fa-solid fa-play mr-2"></i>
+                  Lancer
+              </button>
+          </div>
         </div>
-
 
       `;
 
