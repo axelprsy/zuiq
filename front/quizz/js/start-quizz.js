@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             const userElement = document.createElement("li");
 
             userElement.textContent = username.toUpperCase();  // Nom en majuscule
-            userElement.classList.add("flex", "items-center", "bg-[#94AFC8]", "text-[#112D4E]", "py-3", "px-6", "rounded-lg", "text-sm", "my-1");
+            userElement.classList.add("flex", "items-center", "bg-[#94AFC8]", "text-[#112D4E]", "py-3", "px-6", "rounded-lg", "text-lg", "font-semibold", "justify-center", "my-1");
 
             list_connectedUsers.appendChild(userElement);
 
@@ -201,7 +201,7 @@ startQuizzButton.addEventListener("click", () => {
                             resultsContainer.appendChild(generateExcelButton);
 
                             generateExcelButton.addEventListener("click", () => {
-                                window.location.href = `http://${url}:5000/generate_exel?session_data=` + JSON.stringify(users);
+                                window.location.href = `http://${url}:5000/generate_excel?session_data=` + JSON.stringify(users);
                             });
 
                             // Bouton relancer un quizz

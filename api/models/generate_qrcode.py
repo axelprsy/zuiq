@@ -8,7 +8,7 @@ from flask_restful import Resource, reqparse
 class GenerateQrCode(Resource):
     def get(self):
         """
-        Générer un fichier exel avec le resultat de la session.
+        Générer un fichier excel avec le resultat de la session.
         """
         parser = reqparse.RequestParser()
         parser.add_argument("session_url", required=True, location="args")
