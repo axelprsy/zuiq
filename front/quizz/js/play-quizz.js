@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             button.disabled = true;
         });
 
+
         const buttonCorrectAnswer = document.getElementById(`answer-${correct_answer - 1}`);
         buttonCorrectAnswer.style.backgroundColor = "green";
 
@@ -155,6 +156,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Envoi de la réponse au serveur
     function sendResponse(answer, quizz_id, question_id) {
         if (sessionId && answer && userName) {
+
+
+
             // Désactiver les boutons après réponse
             const allButtons = document.querySelectorAll(".buttonQuizz");
             allButtons.forEach((button) => {
@@ -162,6 +166,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                 button.classList.remove("hover:opacity-80");
                 button.disabled = true;
             });
+
+            const buttonAnswer = document.getElementById(`answer-${answer - 1}`);
+            buttonAnswer.style.backgroundColor = "blue";
 
             // Message d'attente
             const sentence_wait = document.createElement("p");
