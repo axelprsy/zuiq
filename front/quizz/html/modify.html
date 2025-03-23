@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -19,10 +19,23 @@
             </a>
         </div>
         <div class="flex items-center space-x-4">
-            <img src="https://as2.ftcdn.net/jpg/04/10/43/77/1000_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"
-                alt="User Avatar" class="rounded-full w-12 h-12">
-            <span id="nav-username" class="text-sm text-[#112D4E]">Nom d'utilisateur</span>
-            <a href="/profile" class="text-[#3F72AF] hover:text-[#112D4E]">Gérer mon profil</a>
+            <div class="flex items-center space-x-2 cursor-pointer">
+                <a href="/profile"></a>
+                <img src="https://as2.ftcdn.net/jpg/04/10/43/77/1000_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"
+                    alt="User Avatar"
+                    class="rounded-full w-12 h-12 border-2 border-white hover:opacity-80 transition-opacity duration-200">
+                </a>
+                <a href="/profile" id="nav-username"
+                    class="text-sm text-[#112D4E] font-medium hover:text-[#3F72AF] transition-colors duration-200">
+                    Nom d'utilisateur
+                </a>
+            </div>
+            <a href="/profile">
+                <button
+                    class="bg-[#3F72AF] text-white px-6 py-2 rounded-lg hover:bg-[#112D4E] transition-all duration-200">
+                    Gérer mon profil
+                </button>
+            </a>
         </div>
     </nav>
 

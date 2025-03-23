@@ -10,7 +10,7 @@
     <title>Profil Utilisateur - Zuiq</title>
 </head>
 
-<body class="bg-[#F9F7F7] text-[#112D4E]">
+<body class="bg-[#F9F7F7] text-[#112D4E] font-sans">
     <!-- Navbar -->
     <nav class="flex items-center justify-between px-8 py-4 bg-[#DBE2EF] shadow-md fade-in">
         <div class="text-xl font-semibold text-[#112D4E]">
@@ -19,93 +19,94 @@
             </a>
         </div>
         <div class="flex items-center space-x-4">
-            <img src="https://as2.ftcdn.net/jpg/04/10/43/77/1000_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"
-                alt="User Avatar" class="rounded-full w-12 h-12">
-            <span id="nav-username" class="text-sm text-[#112D4E]">Nom d'utilisateur</span>
-            <a href="/dashboard" class="text-[#3F72AF] hover:text-[#112D4E]">Dashboard</a>
+            <div class="flex items-center space-x-2 cursor-pointer">
+                <a href="/profile"></a>
+                <img src="https://as2.ftcdn.net/jpg/04/10/43/77/1000_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"
+                    alt="User Avatar"
+                    class="rounded-full w-12 h-12 border-2 border-white hover:opacity-80 transition-opacity duration-200">
+                </a>
+                <a href="/profile" id="nav-username"
+                    class="text-sm text-[#112D4E] font-medium hover:text-[#3F72AF] transition-colors duration-200">
+                    Nom d'utilisateur
+                </a>
+            </div>
+            <a href="/dashboard">
+                <button
+                    class="bg-[#3F72AF] text-white px-6 py-2 rounded-lg hover:bg-[#112D4E] transition-all duration-200">
+                    Dashboard
+                </button>
+            </a>
         </div>
     </nav>
-    <!-- Contenu principal -->
-    <div class="container mx-auto px-8 py-12 fade-in">
-        <h1 class="text-3xl font-bold mb-8 slide-in text-[#112D4E]">Profil Utilisateur</h1>
 
-        <div class="bg-[#DBE2E  F] p-6 rounded-lg shadow-md mb-6">
-            <h2 class="text-2xl font-semibold mb-4">Mes Informations</h2>
-            <p id="id"><strong>ID :</strong> ID inconnu</p>
-            <p id="username"><strong>Nom d'utilisateur :</strong> Nom inconnu</p>
-            <p id="email"><strong>Email :</strong> Email inconnu</p>
+
+
+    <!-- Contenu principal -->
+    <div class="container mx-auto px-6 py-12">
+        <h1 class="text-4xl font-bold mb-6 text-[#112D4E]">Profil Utilisateur</h1>
+
+        <div class="bg-white p-8 rounded-xl shadow-lg mb-8">
+            <h2 class="text-2xl font-semibold mb-4 text-[#3F72AF]">Mes Informations</h2>
+            <p id="id" class="text-lg text-gray-600"><strong>ID :</strong> ID inconnu</p>
+            <p id="username" class="text-lg text-gray-600"><strong>Nom d'utilisateur :</strong> Nom inconnu</p>
+            <p id="email" class="text-lg text-gray-600"><strong>Email :</strong> Email inconnu</p>
         </div>
 
         <!-- Boutons d'action -->
-        <div class="flex space-x-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <button onclick="window.location.href='/my-quizz'"
-                class="bg-[#3F72AF] text-white px-4 py-2 rounded hover:bg-[#112D4E] flex items-center">
-                <i class="fa-solid fa-list mr-2"></i> Mes Quizz
+                class="bg-[#3F72AF] text-white px-6 py-3 rounded-lg shadow-md hover:bg-[#112D4E] transition-all duration-200 flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-list"></i>
+                <span>Mes Quizz</span>
             </button>
-            <button onclick="openModal()"
-                class="bg-[#3F72AF] text-white px-4 py-2 rounded hover:bg-[#112D4E] flex items-center">
-                <i class="fa-solid fa-pen mr-2"></i> Modifier le Profil
+            <button onclick="modal_modify_account()"
+                class="bg-[#3F72AF] text-white px-6 py-3 rounded-lg shadow-md hover:bg-[#112D4E] transition-all duration-200 flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-pen"></i>
+                <span>Modifier le Profil</span>
             </button>
             <button onclick="logout()"
-                class="bg-[#3F72AF] text-white px-4 py-2 rounded hover:bg-[#112D4E] flex items-center">
-                <i class="fa-solid fa-sign-out-alt mr-2"></i> Se Déconnecter
+                class="bg-[#3F72AF] text-white px-6 py-3 rounded-lg shadow-md hover:bg-[#112D4E] transition-all duration-200 flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-sign-out-alt"></i>
+                <span>Se Déconnecter</span>
             </button>
             <button onclick="delete_my_account()"
-                class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-800 flex items-center">
-                <i class="fa-solid fa-trash mr-2"></i> Supprimer mon compte
+                class="bg-red-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-red-800 transition-all duration-200 flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-trash"></i>
+                <span>Supprimer mon compte</span>
             </button>
         </div>
     </div>
 
-    <!-- MODAL -->
+    <!-- Modal -->
     <div id="modal" class="modal hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-        <div class="modal-content bg-white p-6 rounded-lg shadow-lg w-96">
-            <span class="close text-right cursor-pointer text-gray-500 text-2xl">&times;</span>
-            <h1 class="text-xl font-semibold mb-4">Modifier son compte</h1>
+        <div class="modal-content bg-white p-8 rounded-xl shadow-lg w-96">
+            <span class="close text-right cursor-pointer text-gray-500 text-3xl">&times;</span>
+            <h1 class="text-xl font-semibold mb-4 text-[#3F72AF]">Modifier son compte</h1>
             <form id="form_modifyacount">
                 <div class="form-group mb-4">
-                    <label for="email" class="block text-sm font-medium">Email</label>
+                    <label for="email" class="block text-sm font-medium text-[#2D3748]">Email</label>
                     <input type="email" id="modal_email" name="email" required
-                        class="w-full px-3 py-2 border rounded shadow-sm focus:ring focus:ring-blue-300">
+                        class="w-full px-4 py-3 border rounded-lg shadow-sm focus:ring focus:ring-blue-300">
                 </div>
                 <div class="form-group mb-4">
-                    <label for="username" class="block text-sm font-medium">Nom d'utilisateur</label>
+                    <label for="username" class="block text-sm font-medium text-[#2D3748]">Nom d'utilisateur</label>
                     <input type="text" id="modal_username" name="username" required
-                        class="w-full px-3 py-2 border rounded shadow-sm focus:ring focus:ring-blue-300">
+                        class="w-full px-4 py-3 border rounded-lg shadow-sm focus:ring focus:ring-blue-300">
                 </div>
                 <div class="form-group mb-4">
-                    <label for="password" class="block text-sm font-medium">Mot de passe</label>
+                    <label for="password" class="block text-sm font-medium text-[#2D3748]">Mot de passe</label>
                     <input type="password" id="modal_password" name="password"
                         placeholder="Laisser vide pour ne pas modifier"
-                        class="w-full px-3 py-2 border rounded shadow-sm focus:ring focus:ring-blue-300">
+                        class="w-full px-4 py-3 border rounded-lg shadow-sm focus:ring focus:ring-blue-300">
                 </div>
                 <button type="submit"
-                    class="btn bg-[#3F72AF] text-white px-4 py-2 rounded hover:bg-[#112D4E] w-full">Modifier</button>
+                    class="bg-[#3F72AF] text-white px-6 py-3 rounded-lg hover:bg-[#112D4E] w-full">Modifier</button>
                 <p id="modal_error_message" class="error_message text-red-500 mt-2 text-sm"></p>
             </form>
         </div>
     </div>
 
-
-    <!-- SCRIPTS -->
-    <script>
-        function openModal() {
-            document.getElementById('modal').classList.remove('hidden');
-        }
-        document.querySelector('.close').addEventListener('click', () => {
-            document.getElementById('modal').classList.add('hidden');
-        });
-
-        // Ajout d'une animation sur les boutons
-        document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('mouseover', () => {
-                button.classList.add('animate-pulse');
-            });
-            button.addEventListener('mouseout', () => {
-                button.classList.remove('animate-pulse');
-            });
-        });
-    </script>
+    <!-- Scripts -->
     <script defer src="../js/security-pages.js"></script>
     <script defer src="../js/profile.js"></script>
     <script defer src="../js/edit-profile.js"></script>
