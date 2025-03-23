@@ -18,7 +18,7 @@ class GenerateQuizz(Resource):
         args = parser.parse_args()
 
         client = Client(
-        host=os.getenv('OLLAMA_URL', 'http://ollama.lunity.dev:11434'),
+        host="http://ollama.lunity.dev:11434",
         headers={'x-some-header': 'some-value'}
         )
         response = client.chat(model='mistral', messages=[
