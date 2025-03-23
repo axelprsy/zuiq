@@ -32,9 +32,6 @@ router.get("/login", (req, res) => {
 });
 
 // Définition de la route pour la page d'accueil
-router.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../quizz/html/join-game.html"));
-});
 router.get("/join-quizz", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../quizz/html/join-game.html"));
 });
@@ -77,7 +74,7 @@ router.get('/modify', (req, res) => {
   res.sendFile(path.resolve(__dirname, "../quizz/html/modify.html"));
 });
 // Définition de la route pour /index (tmp)
-router.get('/index', (req, res) => {
+router.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, "../pages/html/index.html"));
 });
 

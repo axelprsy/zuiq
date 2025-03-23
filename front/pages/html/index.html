@@ -52,63 +52,116 @@
             <div>
                 <h1 class="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg">Bienvenue sur <span
                         class="text-[#112D4E]">Zuiq</span></h1>
-                <p class="text-md md:text-lg text-white mt-4 drop-shadow-md">
-                    Découvrez un moyen innovant d'apprendre et de tester vos connaissances avec des quiz interactifs.
-                    Défiez vos amis, créez vos propres quiz et devenez un expert dans n'importe quel domaine !
+                <p class="text-md md:text-lg text-white mt-4 drop-shadow-md md:w-4/5">
+                    Découvrez un moyen innovant d'apprendre et de tester vos connaissances avec des quiz interactifs. Défiez vos amis,
+                    créez vos propres quiz et devenez un expert dans n'importe quel domaine !
                 </p>
                 <div
                     class="mt-6 flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="/jouer"
+                    <a href="/join-quizz"
                         class="px-6 py-3 bg-[#112D4E] text-white font-semibold text-lg rounded-lg shadow-lg hover:bg-[#3F72AF] transition-transform transform hover:scale-105">Jouer</a>
-                    <a href="/creer"
+                    <a href="/login"
                         class="px-6 py-3 bg-white text-[#112D4E] font-semibold text-lg rounded-lg shadow-lg hover:bg-[#DBE2EF] transition-transform transform hover:scale-105">Créer
                         un quiz</a>
                 </div>
             </div>
             <div class="relative flex justify-center">
-                <img src="Zuiq_z_nobg.png   " alt="Quiz" class="w-full max-w-xs md:max-w-md mx-auto drop-shadow-xl">
+                <img src="Zuiq_z_nobg.png" alt="Quiz" class="w-full max-w-xs md:max-w-md mx-auto drop-shadow-xl">
             </div>
         </div>
     </div>
 
-    <section
-        class="mt-16 w-full max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6 animate-slide-up">
-        <div class="p-6 bg-white shadow-xl rounded-lg transform transition duration-500 hover:scale-105 text-center">
-            <h4 class="text-xl font-bold">🎯 Ludique</h4>
-            <p>Jouez seul ou en équipe pour tester vos connaissances tout en vous amusant.</p>
-        </div>
-        <div class="p-6 bg-white shadow-xl rounded-lg transform transition duration-500 hover:scale-105 text-center">
-            <h4 class="text-xl font-bold">📚 Éducatif</h4>
-            <p>Apprenez de nouvelles choses à chaque quiz et améliorez vos compétences.</p>
-        </div>
-        <div class="p-6 bg-white shadow-xl rounded-lg transform transition duration-500 hover:scale-105 text-center">
-            <h4 class="text-xl font-bold">⚡ Dynamique</h4>
-            <p>Des quiz interactifs et engageants pour une expérience unique.</p>
+    <section class="py-20 w-full max-w-6xl mx-auto px-6 animate-slide-up">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+                <img src="/users.png" alt="Ludique" class="w-full max-w-md mx-auto rounded-lg shadow-lg">
+            </div>
+            <div>
+                <h3 class="text-4xl font-bold text-[#3F72AF] mb-4">👨🏻‍🎓 Une expérience ludique</h3>
+                <p class="text-lg text-[#112D4E]">
+                    Testez vos connaissances et amusez-vous avec des quiz engageants. Défiez vos amis pour revivre
+                    l'excitation d'un jeu interactif stimulant et captivant.
+                </p>
+            </div>
         </div>
     </section>
 
-    <section class="mt-16 w-full max-w-6xl mx-auto text-center animate-slide-up px-6">
-        <h3 class="text-3xl md:text-4xl font-semibold text-[#3F72AF] mb-6">Fonctionnalités de Zuiq</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
-            <ul class="text-md md:text-lg text-[#112D4E] space-y-4">
-                <li>✅ Créez des quiz personnalisés avec des images et des vidéos.</li>
-                <li>✅ Jouez en temps réel avec vos amis ou en solo.</li>
-                <li>✅ Explorez une large bibliothèque de quiz sur divers sujets.</li>
-                <li>✅ Suivez vos progrès et améliorez vos performances.</li>
-                <li>✅ Interface intuitive et design moderne.</li>
+    <section class="py-20 w-full max-w-6xl mx-auto px-6 animate-slide-up">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center md:flex-row-reverse">
+            <div>
+                <img src="/livrebanniere.png" alt="Éducatif" class="w-full max-w-md mx-auto rounded-lg shadow-lg">
+            </div>
+            <div>
+                <h3 class="text-4xl font-bold text-[#3F72AF] mb-4">📚 Découvrez des connaissances</h3>
+                <p class="text-lg text-[#112D4E]">
+                    Plongez dans des quiz conçus pour éveiller la curiosité et enrichir le savoir. Chaque question devient une opportunité d'apprendre et de grandir.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 w-full max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6 animate-slide-up">
+        <div class="p-6 bg-white shadow-xl rounded-lg transform transition duration-500 hover:scale-105 text-center">
+            <h4 class="text-2xl font-bold p-4">⚡ Dynamique</h4>
+            <p class="text-md">Des expériences quiz dynamiques qui rendent chaque session unique.</p>
+        </div>
+        <div class="p-6 bg-white shadow-xl rounded-lg transform transition duration-500 hover:scale-105 text-center">
+            <h4 class="text-2xl font-bold p-4">🤖 Quiz générer par IA</h4>
+            <p class="text-md">Créez des quiz uniques et personnalisés en un instant grâce à l'intelligence artificielle !</p>
+        </div>
+        <div class="p-6 bg-white shadow-xl rounded-lg transform transition duration-500 hover:scale-105 text-center">
+            <h4 class="text-2xl font-bold p-4">👨🏻‍🏫 Un outil pensé pour les professeurs</h4>
+            <p class="text-md">Créez rapidement des quiz adaptés à vos cours grâce à l'intelligence artificielle, pour engager vos élèves tout en gagnant du temps précieux !</p>
+        </div>
+    </section>
+
+    <section class="py-20 w-full max-w-6xl mx-auto px-6 animate-slide-up">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+                <img src="/github.png" alt="Contribuer sur GitHub" class="w-full max-w-md mx-auto rounded-lg shadow-lg">
+            </div>
+            <div>
+                <h3 class="text-4xl font-bold text-[#3F72AF] mb-4">📂 Découvez sur GitHub</h3>
+                <p class="text-lg text-[#112D4E] mb-6">
+                    Découvrez notre projet open-source et explorez son code ! Rendez-vous sur notre dépôt GitHub pour en apprendre plus sur comment fonctionne Zuiq, et profitez des ressources disponibles.
+                </p>
+                <a href="https://github.com/axelprsy/zuiq" target="_blank"
+                    class="px-8 py-4 bg-[#112D4E] text-white font-semibold text-lg rounded-lg shadow-lg hover:bg-[#3F72AF] transition-transform transform hover:scale-105">
+                    Voir le projet sur GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <footer style="background-color: #112D4E; color: #ffffff; padding: 40px 20px; margin-top: 30px; font-size: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; max-width: 1200px; margin: auto;">
+          
+          <div style="flex: 1; min-width: 250px; margin: 10px;">
+            <h3 style="color: #61dafb; margin-bottom: 15px;">À propos du projet</h3>
+            <p>Un projet innovant conçu pour simplifier la création de quiz, utilisant des technologies modernes, une interface intuitive et des API, réalisé dans le cadre des Trophées NSI.</p>
+          </div>
+      
+          <div style="flex: 1; min-width: 250px; margin: 10px;">
+            <h3 style="color: #61dafb; margin-bottom: 15px;">Équipe de développement</h3>
+            <ul style="list-style-type: none; padding: 0;">
+              <li><a href="https://github.com/solozambously">Solal B.</a></li>
+              <li><a href="https://github.com/axelprsy">Axel P.</a></li>
             </ul>
+          </div>
+      
+          <div style="flex: 1; min-width: 250px; margin: 10px;">
+            <h3 style="color: #61dafb; margin-bottom: 15px;">Liens utiles</h3>
+            <ul style="list-style-type: none; padding: 0;">
+              <li><a href="https://verdant-budget-6c4.notion.site/Documentation-API-Zuiq-19caef7c06d880068d5ee16283895db9" target="_blank" style="text-decoration: none; color: #ffffff;">Documentation de l'API</a></li>
+              <li><a href="https://github.com/axelprsy/zuiq" target="_blank" style="text-decoration: none; color: #ffffff;">Code source</a></li>
+            </ul>
+          </div>
+          
         </div>
-    </section>
 
-    <section class="mt-16 w-full max-w-6xl mx-auto text-center animate-slide-up px-6">
-        <h3 class="text-3xl md:text-4xl font-semibold text-[#3F72AF] mb-6">Rejoignez la communauté Zuiq</h3>
-        <p class="text-md md:text-lg text-[#112D4E] mb-6 max-w-2xl mx-auto">
-            Inscrivez-vous dès maintenant et commencez à apprendre de manière interactive avec des quiz engageants et
-            stimulants !
-        </p>
-        <a href="/inscription"
-            class="px-8 py-4 bg-[#3F72AF] text-white font-semibold text-lg rounded-lg shadow-lg hover:bg-[#112D4E] transition-transform transform hover:scale-105">S'inscrire</a>
-    </section>
+      </footer>
+      
+
 </body>
 
 </html>
