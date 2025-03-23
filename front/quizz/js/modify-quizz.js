@@ -32,7 +32,14 @@ const requestOptionsRecupInfo = {
   redirect: "follow",
 };
 
-fetch(`http://127.0.0.1:5000/quizz?quizz_id=${quizzID}`, requestOptionsRecupInfo)
+async function get_ip() {
+  const response = await fetch('/get_ip');
+  const data = await response.json();
+  return data["ip"];
+}
+
+get_ip().then((ip) => {
+  fetch(`http://${ip}:5000/quizz?quizz_id=${quizzID}`, requestOptionsRecupInfo)
   .then((response) => response.json())
   .then((result) => {
     const allQuizz = result.quizz[0];
@@ -48,6 +55,7 @@ fetch(`http://127.0.0.1:5000/quizz?quizz_id=${quizzID}`, requestOptionsRecupInfo
     }
   })
   .catch((error) => console.error(error));
+});
 
 
 function addDB(title, questions) {
@@ -61,14 +69,15 @@ function addDB(title, questions) {
     body: formdata,
     redirect: "follow",
   };
-
-  fetch("http://127.0.0.1:5000/quizz", requestOptions)
-    .then((response) => response.text())
-    .then((result) => {
-      console.log(result);
-      window.location.replace("/my-quizz");
-    })
-    .catch((error) => console.error(error));
+  get_ip().then((ip) => {
+    fetch(`http://${ip}:5000/quizz`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        console.log(result);
+        window.location.replace("/my-quizz");
+      })
+      .catch((error) => console.error(error));
+  });
 }
 
 function modifyQuizz() {
