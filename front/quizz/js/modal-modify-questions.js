@@ -119,7 +119,7 @@ function prevQuestionModify(event) {
 // Fonction pour fermer les modals
 closeButtonsModify.forEach((button) => {
   button.addEventListener("click", function () {
-    this.parentElement.parentElement.style.display = "none"; // Cache la modal
+    window.location.href = "/my-quizz";
   });
 });
 
