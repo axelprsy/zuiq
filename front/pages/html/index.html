@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#DBE2EF" />
+    <title>Zuiq - Quiz interactifs</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .animate-slide-up {
+            animation: slideUp 1s ease-out;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F9F7F7] text-[#112D4E] flex flex-col min-h-screen">
+    <div
+        class="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-[#DBE2EF] to-[#3F72AF] overflow-hidden px-6">
+        <div class="absolute inset-0 bg-noise opacity-10"></div>
+        <div
+            class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-12 items-center animate-fade-in text-center md:text-left">
+            <div>
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg">Bienvenue sur <span
+                        class="text-[#112D4E]">Zuiq</span></h1>
+                <p class="text-md md:text-lg text-white mt-4 drop-shadow-md md:w-4/5">
+                    Découvrez un moyen innovant d'apprendre et de tester vos connaissances avec des quiz interactifs. Défiez vos amis,
+                    créez vos propres quiz et devenez un expert dans n'importe quel domaine !
+                </p>
+                <div
+                    class="mt-6 flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="/join-quizz"
+                        class="px-6 py-3 bg-[#112D4E] text-white font-semibold text-lg rounded-lg shadow-lg hover:bg-[#3F72AF] transition-transform transform hover:scale-105">Jouer</a>
+                    <a href="/login"
+                        class="px-6 py-3 bg-white text-[#112D4E] font-semibold text-lg rounded-lg shadow-lg hover:bg-[#DBE2EF] transition-transform transform hover:scale-105">Créer
+                        un quiz</a>
+                </div>
+            </div>
+            <div class="relative flex justify-center">
+                <img src="Zuiq_z_nobg.png" alt="Quiz" class="w-full max-w-xs md:max-w-md mx-auto drop-shadow-xl">
+            </div>
+        </div>
+    </div>
+
+    <section class="py-20 w-full max-w-6xl mx-auto px-6 animate-slide-up">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+                <img src="/users.png" alt="Ludique" class="w-full max-w-md mx-auto rounded-lg shadow-lg">
+            </div>
+            <div>
+                <h3 class="text-4xl font-bold text-[#3F72AF] mb-4">👨🏻‍🎓 Une expérience ludique</h3>
+                <p class="text-lg text-[#112D4E]">
+                    Testez vos connaissances et amusez-vous avec des quiz engageants. Défiez vos amis pour revivre
+                    l'excitation d'un jeu interactif stimulant et captivant.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 w-full max-w-6xl mx-auto px-6 animate-slide-up">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center md:flex-row-reverse">
+            <div>
+                <img src="/livrebanniere.png" alt="Éducatif" class="w-full max-w-md mx-auto rounded-lg shadow-lg">
+            </div>
+            <div>
+                <h3 class="text-4xl font-bold text-[#3F72AF] mb-4">📚 Découvrez des connaissances</h3>
+                <p class="text-lg text-[#112D4E]">
+                    Plongez dans des quiz conçus pour éveiller la curiosité et enrichir le savoir. Chaque question devient une opportunité d'apprendre et de grandir.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 w-full max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6 animate-slide-up">
+        <div class="p-6 bg-white shadow-xl rounded-lg transform transition duration-500 hover:scale-105 text-center">
+            <h4 class="text-2xl font-bold p-4">⚡ Dynamique</h4>
+            <p class="text-md">Des expériences quiz dynamiques qui rendent chaque session unique.</p>
+        </div>
+        <div class="p-6 bg-white shadow-xl rounded-lg transform transition duration-500 hover:scale-105 text-center">
+            <h4 class="text-2xl font-bold p-4">🤖 Quiz générer par IA</h4>
+            <p class="text-md">Créez des quiz uniques et personnalisés en un instant grâce à l'intelligence artificielle !</p>
+        </div>
+        <div class="p-6 bg-white shadow-xl rounded-lg transform transition duration-500 hover:scale-105 text-center">
+            <h4 class="text-2xl font-bold p-4">👨🏻‍🏫 Un outil pensé pour les professeurs</h4>
+            <p class="text-md">Créez rapidement des quiz adaptés à vos cours grâce à l'intelligence artificielle, pour engager vos élèves tout en gagnant du temps précieux !</p>
+        </div>
+    </section>
+
+    <section class="py-20 w-full max-w-6xl mx-auto px-6 animate-slide-up">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+                <img src="/github.png" alt="Contribuer sur GitHub" class="w-full max-w-md mx-auto rounded-lg shadow-lg">
+            </div>
+            <div>
+                <h3 class="text-4xl font-bold text-[#3F72AF] mb-4">📂 Découvez sur GitHub</h3>
+                <p class="text-lg text-[#112D4E] mb-6">
+                    Découvrez notre projet open-source et explorez son code ! Rendez-vous sur notre dépôt GitHub pour en apprendre plus sur comment fonctionne Zuiq, et profitez des ressources disponibles.
+                </p>
+                <a href="https://github.com/axelprsy/zuiq" target="_blank"
+                    class="px-8 py-4 bg-[#112D4E] text-white font-semibold text-lg rounded-lg shadow-lg hover:bg-[#3F72AF] transition-transform transform hover:scale-105">
+                    Voir le projet sur GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <footer style="background-color: #112D4E; color: #ffffff; padding: 40px 20px; margin-top: 30px; font-size: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; max-width: 1200px; margin: auto;">
+          
+          <div style="flex: 1; min-width: 250px; margin: 10px;">
+            <h3 style="color: #61dafb; margin-bottom: 15px;">À propos du projet</h3>
+            <p>Un projet innovant conçu pour simplifier la création de quiz, utilisant des technologies modernes, une interface intuitive et des API, réalisé dans le cadre des Trophées NSI.</p>
+          </div>
+      
+          <div style="flex: 1; min-width: 250px; margin: 10px;">
+            <h3 style="color: #61dafb; margin-bottom: 15px;">Équipe de développement</h3>
+            <ul style="list-style-type: none; padding: 0;">
+              <li><a href="https://github.com/solozambously">Solal B.</a></li>
+              <li><a href="https://github.com/axelprsy">Axel P.</a></li>
+            </ul>
+          </div>
+      
+          <div style="flex: 1; min-width: 250px; margin: 10px;">
+            <h3 style="color: #61dafb; margin-bottom: 15px;">Liens utiles</h3>
+            <ul style="list-style-type: none; padding: 0;">
+              <li><a href="https://verdant-budget-6c4.notion.site/Documentation-API-Zuiq-19caef7c06d880068d5ee16283895db9" target="_blank" style="text-decoration: none; color: #ffffff;">Documentation de l'API</a></li>
+              <li><a href="https://github.com/axelprsy/zuiq" target="_blank" style="text-decoration: none; color: #ffffff;">Code source</a></li>
+            </ul>
+          </div>
+          
+        </div>
+
+      </footer>
+      
+
+</body>
+
+</html>
