@@ -173,7 +173,7 @@ cython_debug/
 # db
 db/
 # node js
-front/node_modules/
+node_modules/
 
 # fichier cash mac
 .DS_Store

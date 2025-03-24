@@ -38,11 +38,11 @@ class GenerateQuizz(Resource):
                             "question_id": 1,
                             "title": "[intitulé_de_la_question]",
                             "answers": ["[option_1]", "[option_2]", "[option_3]", "[option_4]"],
-                            "correct_answer": donne le numéro de la bonne réponse (1, 2, 3 ou 4),
+                            "correct_answer": donne le numéro de la bonne réponse (1, 2, 3 ou 4)
                         }},
                         // autres questions...
                     ]
-                    "total_questions": [nombre total de questions],
+                    "total_questions": [nombre total de questions]
                 }}
             }}
 
@@ -51,6 +51,7 @@ class GenerateQuizz(Resource):
             """
         }
         ])
+        print(response.message.content)
         quizz=json.loads(response.message.content)
         quizz["quizz"]["created_at"]=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         return jsonify({"status": 200, "quizz": quizz})
