@@ -28,7 +28,7 @@ class GenerateQuizz(Resource):
             Crée un quiz amusant et éducatif sur le thème {args['theme']} avec {args['number_of_questions']} questions.
             Chaque question doit comporter un énoncé clair et concis, avec 4 propositions et précise la seule bonne réponse.
             Les questions doivent être adaptées à des {args['public']}.
-            Je veux que ta réponse soit un JSON exactement sous cette forme, je veux uniquement le json, pas de phrase, n'indique pas le langage ni le markdown. :
+            Je veux que ta réponse soit exclusivement un objet JSON structuré sous cette forme (sans préfixes ou balises Markdown, oublie le ```json et toute indication de langage) :
 
             {{
                 "quizz" : {{
