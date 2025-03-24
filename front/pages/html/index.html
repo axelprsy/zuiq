@@ -8,39 +8,7 @@
     <title>Zuiq - Quiz interactifs</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-fade-in {
-            animation: fadeIn 1s ease-out;
-        }
-
-        .animate-slide-up {
-            animation: slideUp 1s ease-out;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/index.css">
 </head>
 
 <body class="bg-[#F9F7F7] text-[#112D4E] flex flex-col min-h-screen">
@@ -109,14 +77,14 @@
             <p class="text-md">Des expériences quiz dynamiques qui rendent chaque session unique.</p>
         </div>
         <div class="p-6 bg-white shadow-xl rounded-lg transform transition duration-500 hover:scale-105 text-center">
-            <h4 class="text-2xl font-bold p-4">🤖 Quiz générer par IA</h4>
+            <h4 class="text-2xl font-bold p-4">🤖 Quiz générés par IA</h4>
             <p class="text-md">Créez des quiz uniques et personnalisés en un instant grâce à l'intelligence
                 artificielle !</p>
         </div>
         <div class="p-6 bg-white shadow-xl rounded-lg transform transition duration-500 hover:scale-105 text-center">
             <h4 class="text-2xl font-bold p-4">👨🏻‍🏫 Un outil pensé pour les professeurs</h4>
             <p class="text-md">Créez rapidement des quiz adaptés à vos cours grâce à l'intelligence artificielle, pour
-                engager vos élèves tout en gagnant du temps précieux !</p>
+                engager vos élèves tout en gagnant un temps précieux !</p>
         </div>
     </section>
 
@@ -129,7 +97,7 @@
                 <h3 class="text-4xl font-bold text-[#3F72AF] mb-4">📂 Découvez sur GitHub</h3>
                 <p class="text-lg text-[#112D4E] mb-6">
                     Découvrez notre projet open-source et explorez son code ! Rendez-vous sur notre dépôt GitHub pour en
-                    apprendre plus sur comment fonctionne Zuiq, et profitez des ressources disponibles.
+                    apprendre plus sur la façon dont fonctionne Zuiq, et profitez des ressources disponibles.
                 </p>
                 <a href="https://github.com/axelprsy/zuiq" target="_blank"
                     class="px-8 py-4 bg-[#112D4E] text-white font-semibold text-lg rounded-lg shadow-lg hover:bg-[#3F72AF] transition-transform transform hover:scale-105">

@@ -73,7 +73,7 @@ async function CreateFormToGenerateWithAi() {
       <h2 class="text-[#112D4E] text-2xl font-bold mb-4">Génération d'un quiz</h2>
       <label class="text-[#112D4E] font-bold">Thème :</label>
       <input type="text" id="theme" class="border border-gray-300 rounded-md py-2 px-4 mt-1 focus:outline-none focus:ring-2 focus:ring-[#3F72AF]">
-      <label class="text-[#112D4E] font-bold">Publique :</label>
+      <label class="text-[#112D4E] font-bold">Public :</label>
       <input type="text" id="public" class="border border-gray-300 rounded-md py-2 px-4 mt-1 focus:outline-none focus:ring-2 focus:ring-[#3F72AF]">
       <label class="text-[#112D4E] font-bold">Nombre de questions :</label>
       <input type="number" id="nbQuestions" class="border border-gray-300 rounded-md py-2 px-4 mt-1 focus:outline-none focus:ring-2 focus:ring-[#3F72AF]">

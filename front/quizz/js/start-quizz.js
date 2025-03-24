@@ -206,7 +206,7 @@ startQuizzButton.addEventListener("click", () => {
 
                             // Bouton relancer un quizz
                             const goToHome = document.createElement("button");
-                            goToHome.textContent = "Retourner a l'accueil";
+                            goToHome.textContent = "Retourner à l'accueil";
                             goToHome.classList.add("bg-blue-500", "text-white", "py-2", "px-4", "rounded-lg", "mt-4", "hover:bg-blue-700");
                             resultsContainer.appendChild(goToHome);
 
