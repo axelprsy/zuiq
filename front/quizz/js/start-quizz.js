@@ -4,13 +4,9 @@ async function get_ip() {
     return data["ip"];
 }
 
-
-// Récupération des paramètres dans l'URL
 const params = new URLSearchParams(window.location.search);
 const quizzId = params.get("quizz_id");
 document.getElementById('username').innerText = `${localStorage.getItem('username')}`;
-
-
 
 var socket = null;
 var url = "";
@@ -54,27 +50,22 @@ const connectedUsersContainer = document.getElementById("connectedUsers");
 const qrCodeContainer = document.getElementById("qrCode");
 const adminContainer = document.getElementById("admin-container");
 
-// Admin : Lancer le quizz
 startQuizzButton.addEventListener("click", () => {
     adminContainer.classList.remove("flex");
     adminContainer.innerHTML = "";
 
-    // Titre du quizz
     const quizTitle = document.createElement("h1");
     quizTitle.textContent = "Quizz en cours...";
     quizTitle.classList.add("text-4xl", "font-bold", "text-center", "mb-6");
 
-    // Titre de la question
     const questionTitle = document.createElement("h2");
     questionTitle.id = "title_quizz_direct";
     questionTitle.classList.add("text-2xl", "font-semibold", "text-center", "mb-6");
 
-    // Conteneur pour les réponses (grille 2x2)
     const answersContainer = document.createElement("div");
     answersContainer.id = "answersContainer";
     answersContainer.classList.add("grid", "grid-cols-2", "gap-6", "w-full", "max-w-xl", "mx-auto");
 
-    // Conteneur en bas (compteur + bouton)
     const bottomContainer = document.createElement("div");
     bottomContainer.classList.add("flex", "justify-between", "items-center", "mt-6", "w-full", "max-w-xl", "mx-auto");
 
@@ -167,9 +158,8 @@ startQuizzButton.addEventListener("click", () => {
                     });
                     currentQuestionIndex++;
                 } else {
-                    // Fin du quizz
                     pIndexQuestion.remove()
-                    bottomContainer.remove() // Suppression de la div avec le compteur
+                    bottomContainer.remove()
                     quizTitle.textContent = "Quizz terminé !";
                     questionTitle.textContent = "Résultats des joueurs :";
                     answersContainer.innerHTML = "";
@@ -193,7 +183,6 @@ startQuizzButton.addEventListener("click", () => {
                                 resultsContainer.appendChild(scoreEntry);
                             });
 
-                            // Bouton "Générer un Excel" debrouille toi il marche plus my bad bebou
                             const generateExcelButton = document.createElement("button");
                             generateExcelButton.textContent = "Générer un fichier Excel";
                             generateExcelButton.classList.add("bg-green-500", "text-white", "py-2", "px-4", "rounded-lg", "mt-4", "hover:bg-green-700",);
@@ -204,7 +193,6 @@ startQuizzButton.addEventListener("click", () => {
                                 window.location.href = `http://${url}:5000/generate_excel?session_data=` + JSON.stringify(users);
                             });
 
-                            // Bouton relancer un quizz
                             const goToHome = document.createElement("button");
                             goToHome.textContent = "Retourner à l'accueil";
                             goToHome.classList.add("bg-blue-500", "text-white", "py-2", "px-4", "rounded-lg", "mt-4", "hover:bg-blue-700");
@@ -249,7 +237,6 @@ startQuizzButton.addEventListener("click", () => {
 
 });
 
-// Admin : Générer un QR code
 async function generateQRCode(code) {
     const qrCodeImage = document.createElement("img");
     await get_ip().then((ip) => {

@@ -6,7 +6,6 @@ function recupInfoQuizz(questions) {
   let correct_answer = questions.correct_answer;
   let answers = questions.answers;
 
-  // Initialisez les variables pour chaque réponse
   let rep1 = "",
     rep2 = "",
     rep3 = "",
@@ -40,21 +39,21 @@ async function get_ip() {
 
 get_ip().then((ip) => {
   fetch(`http://${ip}:5000/quizz?quizz_id=${quizzID}`, requestOptionsRecupInfo)
-  .then((response) => response.json())
-  .then((result) => {
-    const allQuizz = result.quizz[0];
+    .then((response) => response.json())
+    .then((result) => {
+      const allQuizz = result.quizz[0];
 
-    document.getElementById("quizz_name_modify").value = allQuizz.name;
+      document.getElementById("quizz_name_modify").value = allQuizz.name;
 
-    for (let i = 0; i < allQuizz.questions.length; i++) {
-      const [title, correctAnswer, rep1, rep2, rep3, rep4] = recupInfoQuizz(
-        allQuizz.questions[i]
-      );
+      for (let i = 0; i < allQuizz.questions.length; i++) {
+        const [title, correctAnswer, rep1, rep2, rep3, rep4] = recupInfoQuizz(
+          allQuizz.questions[i]
+        );
 
-      addNewQuestionModify(title, correctAnswer, rep1, rep2, rep3, rep4);
-    }
-  })
-  .catch((error) => console.error(error));
+        addNewQuestionModify(title, correctAnswer, rep1, rep2, rep3, rep4);
+      }
+    })
+    .catch((error) => console.error(error));
 });
 
 

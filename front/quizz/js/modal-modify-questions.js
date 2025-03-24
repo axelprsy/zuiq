@@ -6,29 +6,24 @@ const nextQuestionModifyBtnModify = document.querySelector(".arrow-right_modify"
 const prevQuestionModifyBtnModify = document.querySelector(".arrow-left_modify");
 const closeButtonsModify = document.querySelectorAll(".close_modify");
 
-// Variables pour suivre l'index de la question actuelle et la liste des questions
 let currentQuestionIndexModify = 0;
 let questions = [];
 
-// Variable globale pour stocker le nombre de questions
 window.numberOfQuestions = 0;
 
-// Fonction pour ouvrir la modal du quiz
 function openmodalQuizzModify() {
-  modalQuizzModify.style.display = "flex"; // Affiche la modal
+  modalQuizzModify.style.display = "flex";
 }
 
-// Fonction pour ouvrir la modal des questions
 function openmodalQuestionsModifyModify() {
   modalQuestionsModifyModify.style.display = "flex";
   if (questions.length === 0) {
-    addNewQuestionModify();  // Ajoute une première question si aucune n'existe
+    addNewQuestionModify();
   }
   currentQuestionIndexModify = 0;
   updateQuestionDisplayModify();
 }
 
-// Fonction pour ajouter une nouvelle question
 async function addNewQuestionModify(title, correctAnswer, rep1, rep2, rep3, rep4) {
   const questionCount = questions.length + 1;
   const questionTemplate = `
@@ -82,49 +77,44 @@ async function addNewQuestionModify(title, correctAnswer, rep1, rep2, rep3, rep4
   }, 50);
 }
 
-// Fonction pour mettre à jour l'affichage des questions
 function updateQuestionDisplayModify() {
   questions.forEach((q, index) => {
-    q.classList.remove("active_modify", "previous_modify", "next_modify"); // Enlève les classes d'affichage
+    q.classList.remove("active_modify", "previous_modify", "next_modify");
     if (index === currentQuestionIndexModify) {
-      q.classList.add("active_modify"); // Affiche la question actuelle
+      q.classList.add("active_modify");
     } else if (index < currentQuestionIndexModify) {
-      q.classList.add("previous_modify"); // Cache les questions précédentes
+      q.classList.add("previous_modify");
     } else {
-      q.classList.add("next_modify"); // Cache les questions suivantes
+      q.classList.add("next_modify");
     }
   });
 }
 
-// Fonction pour passer à la question suivante
 function nextQuestionModify(event) {
-  event.preventDefault(); // Empêche le rechargement de la page
+  event.preventDefault();
   if (currentQuestionIndexModify === questions.length - 1) {
-    addNewQuestionModify(); // Ajoute une nouvelle question si c'est la dernière
+    addNewQuestionModify();
   } else {
-    currentQuestionIndexModify++; // Passe à la question suivante
-    updateQuestionDisplayModify(); // Met à jour l'affichage
+    currentQuestionIndexModify++;
+    updateQuestionDisplayModify();
   }
 }
 
-// Fonction pour revenir à la question précédente
 function prevQuestionModify(event) {
-  event.preventDefault(); // Empêche le rechargement de la page
+  event.preventDefault();
   if (currentQuestionIndexModify > 0) {
-    currentQuestionIndexModify--; // Revient à la question précédente
-    updateQuestionDisplayModify(); // Met à jour l'affichage
+    currentQuestionIndexModify--;
+    updateQuestionDisplayModify();
   }
 }
 
-// Fonction pour fermer les modals
 closeButtonsModify.forEach((button) => {
   button.addEventListener("click", function () {
     window.location.href = "/my-quizz";
   });
 });
 
-// Ajoute des écouteurs d'événements aux boutons
-openmodalQuizzModify(); // Ouvre la modal du quiz
+openmodalQuizzModify();
 document
   .getElementById("continue_modify")
   .addEventListener("click", openmodalQuestionsModifyModify);
