@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             var list_connectedUsers = document.getElementById("listConnectedUsers");
             const userElement = document.createElement("li");
 
-            userElement.textContent = username.toUpperCase();  // Nom en majuscule
+            userElement.textContent = username.toUpperCase();
             userElement.classList.add("flex", "items-center", "bg-[#94AFC8]", "text-[#112D4E]", "py-3", "px-6", "rounded-lg", "text-lg", "font-semibold", "justify-center", "my-1");
 
             list_connectedUsers.appendChild(userElement);
@@ -176,12 +176,24 @@ startQuizzButton.addEventListener("click", () => {
                         .then((response) => response.json())
                         .then((result) => {
                             const users = JSON.parse(result["users"].replace(/'/g, `"`));
-                            users.forEach((user) => {
+
+                            users.sort((a, b) => b.points - a.points);
+                            const podiumLabels = ["🥇 1er", "🥈 2ème", "🥉 3ème"];
+
+                            users.forEach((user, index) => {
                                 const scoreEntry = document.createElement("p");
-                                scoreEntry.textContent = `${user["username"]} : ${user["points"]}`;
-                                scoreEntry.classList.add("text-lg", "font-semibold");
+
+                                if (index < 3) {
+                                    scoreEntry.textContent = `${podiumLabels[index]} - ${user["username"]} : ${user["points"]}`;
+                                    scoreEntry.classList.add("text-xl", "font-bold");
+                                } else {
+                                    scoreEntry.textContent = `${index + 1}ème - ${user["username"]} : ${user["points"]}`;
+                                    scoreEntry.classList.add("text-lg", "font-semibold");
+                                }
+
                                 resultsContainer.appendChild(scoreEntry);
                             });
+
 
                             const generateExcelButton = document.createElement("button");
                             generateExcelButton.textContent = "Générer un fichier Excel";
