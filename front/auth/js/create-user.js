@@ -13,7 +13,7 @@ async function connect_user(username) {
         redirect: "follow"
     };
 
-    fetch(`http://${url}:5000/user?username=${username}`, requestOptions)
+    fetch(`https://api.zuiq.tech/user?username=${username}`, requestOptions)
         .then((response) => response.json())
         .then((result) => { 
             const allinfo = result.res;
@@ -49,7 +49,7 @@ document.getElementById("form").addEventListener("submit", function (e) {
         redirect: "follow"
         };
 
-        fetch(`http://${url}:5000/user`, requestOptions)
+        fetch(`https://api.zuiq.tech/user`, requestOptions)
         .then((response) => {
             if (!response.ok) {
                 document.getElementById("error_message").innerText = "Une erreur est survenue";

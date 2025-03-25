@@ -14,7 +14,7 @@ var number_connectedUsers = 0;
 document.addEventListener("DOMContentLoaded", async function () {
     await get_ip().then((ip) => {
         url = ip;
-        socket = io(`http://${url}:5050`, {
+        socket = io(`https://socket.zuiq.tech`, {
             transports: ["websocket"],
             withCredentials: true,
         });
@@ -105,7 +105,7 @@ startQuizzButton.addEventListener("click", () => {
         nextQuestionButton.style.display = "none";
         displayAnswer.style.display = "block";
 
-        fetch(`http://${url}:5000/quizz?quizz_id=${quizzId}`)
+        fetch(`https://api.zuiq.tech/quizz?quizz_id=${quizzId}`)
             .then((response) => response.json())
             .then((result) => {
                 const questions = result.quizz[0]["questions"];
@@ -172,7 +172,7 @@ startQuizzButton.addEventListener("click", () => {
                     adminContainer.appendChild(resultsContainer);
 
                     const code = sessionCodeDisplay.textContent.split(": ")[1];
-                    fetch(`http://${url}:5000/session?session_code=${code}`)
+                    fetch(`https://api.zuiq.tech/session?session_code=${code}`)
                         .then((response) => response.json())
                         .then((result) => {
                             const users = JSON.parse(result["users"].replace(/'/g, `"`));
@@ -202,7 +202,7 @@ startQuizzButton.addEventListener("click", () => {
                             resultsContainer.appendChild(generateExcelButton);
 
                             generateExcelButton.addEventListener("click", () => {
-                                window.location.href = `http://${url}:5000/generate_csv?session_data=` + JSON.stringify(users);
+                                window.location.href = `https://api.zuiq.tech/generate_csv?session_data=` + JSON.stringify(users);
                             });
 
                             const goToHome = document.createElement("button");
@@ -226,7 +226,7 @@ startQuizzButton.addEventListener("click", () => {
     loadQuestion();
 
     displayAnswer.addEventListener("click", () => {
-        fetch(`http://${url}:5000/quizz?quizz_id=${quizzId}`)
+        fetch(`https://api.zuiq.tech/quizz?quizz_id=${quizzId}`)
             .then((response) => response.json())
             .then((result) => {
                 const questions = result.quizz[0]["questions"];
@@ -252,7 +252,7 @@ startQuizzButton.addEventListener("click", () => {
 async function generateQRCode(code) {
     const qrCodeImage = document.createElement("img");
     await get_ip().then((ip) => {
-        fetch(`http://${ip}:5000/generate_qrcode?session_url=http://${ip}:3000/play-quizz?code_session=${code}`, {
+        fetch(`https://api.zuiq.tech/generate_qrcode?session_url=http://api.zuiq.tech/play-quizz?code_session=${code}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

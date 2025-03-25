@@ -24,7 +24,7 @@ document.getElementById("form_modifyacount").addEventListener("submit", function
         redirect: "follow"
     };
 
-    fetch(`http://${url}:5000/user`, requestOptions)
+    fetch(`https://api.zuiq.tech/user`, requestOptions)
         .then((response) => response.text())
         .then((result) => {
             localStorage.setItem("username", username);

@@ -20,7 +20,7 @@ window.onload = async function () {
   await get_ip().then((ip) => {
     url = ip;
   })
-  fetch(`http://${url}:5000/quizz?user_id=${user_id}`, requestOptions)
+  fetch(`https://api.zuiq.tech/quizz?user_id=${user_id}`, requestOptions)
     .then((response) => response.json())
     .then((result) => {
       const allQuizz = result.quizz;

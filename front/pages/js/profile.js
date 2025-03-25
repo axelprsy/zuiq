@@ -31,7 +31,7 @@ async function delete_my_account() {
         redirect: "follow"
     };
 
-    await fetch(`http://${url}:5000/user`, requestOptions)
+    await fetch(`https://api.zuiq.tech/user`, requestOptions)
         .then((response) => response.text())
 
     localStorage.clear();

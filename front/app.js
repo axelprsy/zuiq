@@ -34,5 +34,5 @@ const ip = getLocalIPAddress();
 console.log(ip);
 
 app.listen("3000", "0.0.0.0", () => {
-  console.log(`Server is running : http://${ip}:3000`);
+  console.log(`Server is running : https://${ip}:3000`);
 });

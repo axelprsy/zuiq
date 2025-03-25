@@ -16,7 +16,7 @@ var url = "";
 document.addEventListener("DOMContentLoaded", async () => {
     await get_ip().then((ip) => {
         url = ip;
-        socket = io(`http://${url}:5050`, {
+        socket = io(`https://socket.zuiq.tech`, {
             transports: ["websocket"],
             withCredentials: true,
         });
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         p_finish.classList.add("text-xl", "font-bold", "text-center", "mb-4");
         questionsDiv.append(p_finish);
 
-        fetch(`http://${url}:5000/session?session_code=${code}`)
+        fetch(`https://api.zuiq.tech/session?session_code=${code}`)
             .then((response) => response.json())
             .then((result) => {
                 users = JSON.parse(result["users"].replace(/'/g, `"`));

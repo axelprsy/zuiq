@@ -19,7 +19,7 @@ async function addDB(title, questions) {
         redirect: "follow",
     };
 
-    fetch(`http://${url}:5000/quizz`, requestOptions)
+    fetch(`https://api.zuiq.tech/quizz`, requestOptions)
         .then((response) => response.text())
         .then((result) => {
             window.location.replace("/my-quizz");

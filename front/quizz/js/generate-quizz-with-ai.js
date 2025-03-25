@@ -22,7 +22,7 @@ async function createQuizz(quizz) {
     redirect: "follow",
   };
 
-  fetch(`http://${url}:5000/quizz`, requestOptions)
+  fetch(`https://api.zuiq.tech/quizz`, requestOptions)
     .then((response) => response.text())
     .then((result) => {
       console.log(result)
@@ -51,7 +51,7 @@ async function generateWithAi() {
   button_generate.classList.add("bg-gray-500", "cursor-not-allowed", "opacity-50")
   button_generate.classList.remove("hover:bg-[#2c527a]");
 
-  fetch(`http://${url}:5000/generate_quizz?theme=${theme}&public=${public}&number_of_questions=${nbQuestions}`, requestOptions)
+  fetch(`https://api.zuiq.tech/generate_quizz?theme=${theme}&public=${public}&number_of_questions=${nbQuestions}`, requestOptions)
     .then((response) => response.json())
     .then((result) => {
       createQuizz(result["quizz"]["quizz"])

@@ -27,7 +27,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     };
 
     // Recupere l'user avec son username
-    fetch(`http://${url}:5000/user?username=${username}`, requestOptions)
+    fetch(`https://api.zuiq.tech/user?username=${username}`, requestOptions)
         .then((response) => response.json())
         .then((result) => { 
             const allinfo = result.res;

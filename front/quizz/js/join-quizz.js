@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         url = ip;
     })
 
-    const socket = io(`http://${url}:5050`, {
+    const socket = io(`https://socket.zuiq.tech`, {
         transports: ["websocket"],
         withCredentials: true
     });

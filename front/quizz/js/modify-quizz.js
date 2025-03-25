@@ -38,7 +38,7 @@ async function get_ip() {
 }
 
 get_ip().then((ip) => {
-  fetch(`http://${ip}:5000/quizz?quizz_id=${quizzID}`, requestOptionsRecupInfo)
+  fetch(`https://api.zuiq.tech/quizz?quizz_id=${quizzID}`, requestOptionsRecupInfo)
     .then((response) => response.json())
     .then((result) => {
       const allQuizz = result.quizz[0];
@@ -69,7 +69,7 @@ function addDB(title, questions) {
     redirect: "follow",
   };
   get_ip().then((ip) => {
-    fetch(`http://${ip}:5000/quizz`, requestOptions)
+    fetch(`https://api.zuiq.tech/quizz`, requestOptions)
       .then((response) => response.text())
       .then((result) => {
         console.log(result);
