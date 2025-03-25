@@ -5,7 +5,7 @@ from flask_cors import CORS
 from models.users import User, Users
 from models.quizz import Quizz
 from models.session import Session
-from models.generate_excel import GenerateExcel
+from models.generate_csv import GenerateCSV
 from models.generate_qrcode import GenerateQrCode
 
 api_blueprint = Blueprint("api,", __name__)
@@ -16,10 +16,10 @@ api.add_resource(User, "/user")
 api.add_resource(Users, "/users")
 api.add_resource(Quizz, "/quizz")
 api.add_resource(Session, "/session")
-api.add_resource(GenerateExcel, "/generate_excel")
+api.add_resource(GenerateCSV, "/generate_excel")
 api.add_resource(GenerateQrCode, "/generate_qrcode")
 
-try: # si ollama n'est pas installé generate quizz n'est pas ajouté a l'api
+try:
     from models.ai_quizz import GenerateQuizz
     api.add_resource(GenerateQuizz, "/generate_quizz")
 except ImportError:

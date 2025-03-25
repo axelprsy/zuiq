@@ -21,7 +21,7 @@ class GenerateQuizz(Resource):
         host="http://ollama.lunity.dev:11434",
         headers={'x-some-header': 'some-value'}
         )
-        response = client.chat(model='mistral', messages=[
+        response = client.chat(model='gemma:2b', messages=[
             {
             'role': 'user',
             'content': f"""
@@ -52,6 +52,6 @@ class GenerateQuizz(Resource):
         }
         ])
         print(response.message.content)
-        quizz=json.loads(response.message.content)
+        quizz=json.loads(response.message.content.replace("```json", "").replace("```", ""))
         quizz["quizz"]["created_at"]=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         return jsonify({"status": 200, "quizz": quizz})
