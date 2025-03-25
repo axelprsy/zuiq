@@ -68,7 +68,7 @@ Il suffit d’exécuter ces deux lignes pour initialiser la base de données, l�
 
 **Windows**  
 ```powershell
-./start.ps1
+powershell.exe -ExecutionPolicy Bypass -File .\start.ps1
 ```  
 
 **MacOS / Linux**  
