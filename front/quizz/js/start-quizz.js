@@ -202,7 +202,7 @@ startQuizzButton.addEventListener("click", () => {
                             resultsContainer.appendChild(generateExcelButton);
 
                             generateExcelButton.addEventListener("click", () => {
-                                window.location.href = `http://${url}:5000/generate_excel?session_data=` + JSON.stringify(users);
+                                window.location.href = `http://${url}:5000/generate_csv?session_data=` + JSON.stringify(users);
                             });
 
                             const goToHome = document.createElement("button");

@@ -18,6 +18,7 @@ Création d’un site permettant de crée un quizz par soit même ou a l’aide 
     python3 --version   # (Linux/MacOS)
     python --version    # (Windows)
     ```
+    Vous n'avez pas python ? Installez le [ici](https://www.python.org/downloads/).
 
 2. **Pip** (gestionnaire de paquets Python) doit être installé.
     - ***Vérifier l'installation :***
@@ -30,6 +31,7 @@ Création d’un site permettant de crée un quizz par soit même ou a l’aide 
     ```bash
     node --version
     ```
+    Vous n'avez pas nodejs ? Installez le [ici](https://nodejs.org/en/download).
 ---
 
 ## Installation
@@ -56,6 +58,7 @@ git clone https://github.com/axelprsy/zuiq.git
     ```bash
     docker --version
     ```
+    Vous n'avez pas docker ? Installez le [ici](https://docs.docker.com/engine/install/).
 
 ### Démarrer le projet
 Il suffit uniquement d'executer ces 2 ligne afin d'initialiser la base de donnée, l'api etc.
