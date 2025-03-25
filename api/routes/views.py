@@ -16,7 +16,7 @@ api.add_resource(User, "/user")
 api.add_resource(Users, "/users")
 api.add_resource(Quizz, "/quizz")
 api.add_resource(Session, "/session")
-api.add_resource(GenerateCSV, "/generate_excel")
+api.add_resource(GenerateCSV, "/generate_csv")
 api.add_resource(GenerateQrCode, "/generate_qrcode")
 
 try:

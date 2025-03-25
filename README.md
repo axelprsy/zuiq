@@ -12,25 +12,27 @@ Création d’un site permettant de créer un quiz soi-même ou à l’aide d’
 
 ## Prérequis
 
+1. **Python3.7** doit être installé sur votre machine.
+    - ***Vérifier l'installation :***
+    ```bash
+    python3 --version   # (Linux/MacOS)
+    python --version    # (Windows)
+    ```
+    Vous n'avez pas python ? Installez le [ici](https://www.python.org/downloads/).
 
-1. **Python 3.7** doit être installé sur votre machine.  
-   - ***Vérifier l’installation :***  
-   ```bash
-   python3 --version   # Linux/MacOS
-   python --version    # Windows
-   ```
+2. **Pip** (gestionnaire de paquets Python) doit être installé.
+    - ***Vérifier l'installation :***
+    ```bash
+    pip --version
+    ```
 
-2. **Pip** (le gestionnaire de paquets Python) doit être installé.  
-   - ***Vérifier l’installation :***  
-   ```bash
-   pip --version
-   ```
-
-3. **Node.js** doit être installé pour exécuter le front-end.  
-   - ***Vérifier l’installation :***  
-   ```bash
-   node --version
-   ```
+3. **NodeJS** doit être installé afin de pouvoir lancer le front.
+    - ***Vérifier l'installation :***
+    ```bash
+    node --version
+    ```
+    Vous n'avez pas nodejs ? Installez le [ici](https://nodejs.org/en/download).
+    
 ---
 
 ## Installation
@@ -58,6 +60,8 @@ git clone https://github.com/axelprsy/zuiq.git
   ```bash
   docker --version
   ```
+    Vous n'avez pas docker ? Installez le [ici](https://docs.docker.com/engine/install/).
+
 
 ### Démarrer le projet  
 Il suffit d’exécuter ces deux lignes pour initialiser la base de données, l’API, etc.  
