@@ -1,8 +1,9 @@
+// Récupère l'adresse IP de l'utilisateur en effectuant une requête vers l'endpoint '/get_ip' pour savoir sur quelle ip envoyé les donnés.
 async function get_ip() {
     const response = await fetch('/get_ip');
     const data = await response.json();
     return data["ip"];
-  }
+}
 get_ip().then((ip) => {
     url = ip;
 })
@@ -20,14 +21,17 @@ document.addEventListener("DOMContentLoaded", function () {
     let questions = [];
     window.numberOfQuestions = 0;
 
+    // Ouvre la modal de choix pour la création de quiz
     function openModalQuizz() {
         modalQuizz.style.display = "flex";
     }
 
+    // Ouvre la modal de création de quiz (le titre)
     function openModalCreateQuizz() {
         modalCreateQuizz.style.display = "flex";
     }
 
+    // Ouvre la modal de création de questions
     function openModalQuestions() {
         modalQuestions.style.display = "flex";
         questionContainer.innerHTML = "";
@@ -37,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
         addNewQuestion();
     }
 
+    // Ajoute un novueau formulaire de création de question
     function addNewQuestion() {
         console.log("Ajout d'une nouvelle question");
         const questionCount = questions.length + 1;
@@ -85,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 50);
     }
 
-
+    // Met à jour l'affichage des questions pour l'utilisateur
     function updateQuestionDisplay() {
         questions.forEach((q, index) => {
             q.classList.remove("active", "previous", "next");
@@ -100,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // Passe à la question suivante
     function nextQuestion(event) {
         event.preventDefault();
         if (currentQuestionIndex === questions.length - 1) {
@@ -110,6 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Passe à la question précédente
     function prevQuestion(event) {
         event.preventDefault();
         if (currentQuestionIndex > 0) {
@@ -118,6 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Ferme les modals
     function closeModal(event) {
         event.preventDefault();
         modalQuizz.style.display = "none";
@@ -134,6 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
     closeButtons.forEach(button => button.addEventListener("click", closeModal));
 });
 
+// Envoie les données du formulaire à la base de données
 async function addDB(title, questions) {
     const formdata = new FormData();
     formdata.append("name", title);
@@ -158,6 +167,7 @@ async function addDB(title, questions) {
         });
 }
 
+// Récupère les informations du formulaire
 async function recupInfoForm() {
     const numberOfQuestions = window.numberOfQuestions || document.querySelectorAll(".form-group").length;
     const title = document.getElementById("quizz_name")?.value.trim();

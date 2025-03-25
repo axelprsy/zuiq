@@ -1,3 +1,4 @@
+// Récupère l'adresse IP de l'utilisateur en effectuant une requête vers l'endpoint '/get_ip' pour savoir sur quelle ip envoyé les donnés.
 async function get_ip() {
     const response = await fetch('/get_ip');
     const data = await response.json();
@@ -22,15 +23,18 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     });
 
+    // Si les paramétres sont complets, on envoie une requête au socket pour rejoindre la session
     if (sessionId && userName) {
         socket.emit("joinSession", { code: sessionId, username: userName });
     }
 
+    // Lorsque l'utilisateur rejoint la session, on affiche un message de confirmation
     socket.on("joinedSession", ({ room, userId }) => {
         document.getElementById("connected").textContent = `Vous êtes connecté à la session : ${sessionId}`;
         user_id = userId;
     });
 
+    // Affiche les résultats de la question qui vient de se terminer
     socket.on('questionResult', ({ correct_answer }) => {
         const allButtons = document.querySelectorAll(".buttonQuizz");
         allButtons.forEach((button) => {
@@ -52,6 +56,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
+    // Affiche la nouvelle question et les réponses possibles
     socket.on("newQuestion", ({ question, answers, quizz_id, question_id }) => {
         const questionsDiv = document.getElementById("questionsDiv");
         questionsDiv.innerHTML = "";
@@ -97,6 +102,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     });
 
+    // Affiche le score de l'utilisateur et un bouton pour retourner à l'accueil quand le quiz est finis
     socket.on("quizzEnded", async ({ quizz_id, code }) => {
         const questionsDiv = document.getElementById("questionsDiv");
         questionsDiv.innerHTML = "";
@@ -138,6 +144,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
     });
 
+    // Envoie la réponse de l'utilisateur au socket pour la traiter
     function sendResponse(answer, quizz_id, question_id) {
         if (sessionId && answer && userName) {
             const allButtons = document.querySelectorAll(".buttonQuizz");

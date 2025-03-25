@@ -1,13 +1,14 @@
+// Récupère l'adresse IP de l'utilisateur en effectuant une requête vers l'endpoint '/get_ip' pour savoir sur quelle ip envoyé les donnés.
 async function get_ip() {
   const response = await fetch('/get_ip');
   const data = await response.json();
   return data["ip"];
 }
 
-
 const user_id = localStorage.getItem("user_id");
 document.getElementById('nav-username').innerText = `${localStorage.getItem('username')}`;
 
+// Rediriige l'utilisateur vers la page de lancement de session de quiz
 function startSession(quizz_id) {
   window.location.href = `/start-my-quizz?quizz_id=${quizz_id}`;
 };
@@ -16,6 +17,8 @@ const requestOptions = {
   method: "GET",
   redirect: "follow",
 };
+
+// Quand la fenetre est chargée, récupère les quiz de l'utilisateur connecté
 window.onload = async function () {
   await get_ip().then((ip) => {
     url = ip;

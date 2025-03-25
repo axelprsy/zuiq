@@ -1,6 +1,7 @@
 document.getElementById('modal_username').value = `${localStorage.getItem('username')}`;
 document.getElementById('modal_email').value = `${localStorage.getItem('email')}`;
 
+// Lorsque l'utilisateur clique sur le bouton de modification de compte, vérifie si les informations sont correctes puis les modifie dans la bdd
 document.getElementById("form_modifyacount").addEventListener("submit", function (e) {
     e.preventDefault();
 

@@ -1,6 +1,7 @@
 const params = new URLSearchParams(window.location.search);
 const quizzID = params.get("quizz_id");
 
+// Récupération des informations du quiz
 function recupInfoQuizz(questions) {
   let title = questions.title;
   let correct_answer = questions.correct_answer;
@@ -31,6 +32,7 @@ const requestOptionsRecupInfo = {
   redirect: "follow",
 };
 
+// Récupère l'adresse IP de l'utilisateur en effectuant une requête vers l'endpoint '/get_ip' pour savoir sur quelle ip envoyé les donnés.
 async function get_ip() {
   const response = await fetch('/get_ip');
   const data = await response.json();
@@ -56,7 +58,7 @@ get_ip().then((ip) => {
     .catch((error) => console.error(error));
 });
 
-
+// Modifie le quiz dans la Bdd
 function addDB(title, questions) {
   const formdata = new FormData();
   formdata.append("quizz_id", quizzID);
@@ -79,6 +81,7 @@ function addDB(title, questions) {
   });
 }
 
+// Récupére les infos du formulaire et les envoies à la Bdd
 function modifyQuizz() {
   const numberOfQuestions =
     window.numberOfQuestions || document.querySelectorAll(".form-group_modify").length;

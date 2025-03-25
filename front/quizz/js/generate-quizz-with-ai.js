@@ -1,3 +1,4 @@
+// Récupère l'adresse IP de l'utilisateur en effectuant une requête vers l'endpoint '/get_ip' pour savoir sur quelle ip envoyé les donnés.
 async function get_ip() {
   const response = await fetch('/get_ip');
   const data = await response.json();
@@ -7,6 +8,7 @@ get_ip().then((ip) => {
   url = ip;
 })
 
+// Crée un quiz dans la bdd
 async function createQuizz(quizz) {
   const title = quizz.name
   const questions = JSON.stringify(quizz.questions)
@@ -34,6 +36,7 @@ async function createQuizz(quizz) {
     });
 }
 
+// Récupére les informations du formulaire et les envoies à l'ia via l'API pour générer un quiz
 async function generateWithAi() {
   const requestOptions = {
     method: "GET",
@@ -59,10 +62,12 @@ async function generateWithAi() {
     .catch((error) => console.error(error));
 }
 
+// Ferme la modal
 function closeModalIA() {
   window.location.reload();
 }
 
+// Crée le formulaire pour générer un quiz avec l'IA
 async function CreateFormToGenerateWithAi() {
   const form_newquizz = document.getElementById('modal');
   form_newquizz.innerHTML = "";

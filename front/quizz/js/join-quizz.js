@@ -1,8 +1,10 @@
+// Récupère l'adresse IP de l'utilisateur en effectuant une requête vers l'endpoint '/get_ip' pour savoir sur quelle ip envoyé les donnés.
 async function get_ip() {
     const response = await fetch('/get_ip');
     const data = await response.json();
     return data["ip"];
 }
+
 document.addEventListener('DOMContentLoaded', async function () {
     await get_ip().then((ip) => {
         url = ip;
@@ -25,6 +27,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         joinCodeInput.value = sessionCode;
     }
 
+    // Rejoins la session demandée
     joinQuizButton.addEventListener('click', () => {
         const code = joinCodeInput.value;
         const username = usernameInput.value;
@@ -46,6 +49,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     });
 
+    // Envoie la réponse de l'utilisateur au socket pour la traiter
     function sendResponse(answer, quizz_id, question_id,) {
         const code = joinCodeInput.value;
         const username = usernameInput.value
