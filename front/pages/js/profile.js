@@ -1,3 +1,6 @@
+/**
+ * Récupère l'adresse IP de l'utilisateur en effectuant une requête vers l'endpoint '/get_ip' pour savoir sur quelle ip envoyé les donnés.
+ */
 async function get_ip() {
     const response = await fetch('/get_ip');
     const data = await response.json();
@@ -27,29 +30,25 @@ async function delete_my_account() {
         body: formdata,
         redirect: "follow"
     };
-  
+
     await fetch(`http://${url}:5000/user`, requestOptions)
-    .then((response) => response.text())
+        .then((response) => response.text())
 
     localStorage.clear();
     window.location.replace("/signup");
 }
 
-// MODAL
-
 async function modal_modify_account() {
 
     const modal = document.getElementById("modal");
     const span = document.getElementsByClassName("close")[0];
-    // Ouvrir le modal
+
     modal.style.display = "flex";
 
-    // Fonction pour fermer le modal
     span.onclick = function () {
         modal.style.display = "none";
     }
 
-    // Fonction pour fermer le modal lorsque l'utilisateur clique en dehors de celui-ci
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";

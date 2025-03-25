@@ -5,18 +5,12 @@ const os = require("os");
 
 const config_file = require("./config.json");
 
-
-// Configuration des dossier statiques
 app.use(express.static(path.join(__dirname, 'assets')));
 app.use(express.static(path.join(__dirname, 'auth')));
 app.use(express.static(path.join(__dirname, 'pages')));
 app.use(express.static(path.join(__dirname, 'quizz')));
 
-
-// Importation des routes
 const indexRouter = require('./routes/routes.js');
-
-// Utilisation des routes
 app.use('/', indexRouter);
 
 function getLocalIPAddress() {
@@ -35,9 +29,10 @@ function getLocalIPAddress() {
     }
   }
 }
+
 const ip = getLocalIPAddress();
 console.log(ip);
-// Démarrage du serveur
+
 app.listen("3000", "0.0.0.0", () => {
   console.log(`Server is running : http://${ip}:3000`);
 });

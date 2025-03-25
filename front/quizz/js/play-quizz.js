@@ -4,7 +4,6 @@ async function get_ip() {
     return data["ip"];
 }
 
-// Récupération des paramètres dans l'URL
 const params = new URLSearchParams(window.location.search);
 const sessionId = params.get("session_id");
 const userName = params.get("username");
@@ -27,15 +26,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         socket.emit("joinSession", { code: sessionId, username: userName });
     }
 
-    // Confirmation de connexion
     socket.on("joinedSession", ({ room, userId }) => {
         document.getElementById("connected").textContent = `Vous êtes connecté à la session : ${sessionId}`;
         user_id = userId;
     });
 
     socket.on('questionResult', ({ correct_answer }) => {
-
-        // Désactiver les boutons après réponse
         const allButtons = document.querySelectorAll(".buttonQuizz");
         allButtons.forEach((button) => {
             button.classList.add("bg-gray-500", "cursor-not-allowed", "opacity-50");
@@ -43,11 +39,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             button.disabled = true;
         });
 
-
         const buttonCorrectAnswer = document.getElementById(`answer-${correct_answer - 1}`);
         buttonCorrectAnswer.style.backgroundColor = "green";
 
-        // Message d'attente
         if (document.getElementById("sentence_wait")) {
         } else {
             const sentence_wait = document.createElement("p");
@@ -56,29 +50,23 @@ document.addEventListener("DOMContentLoaded", async () => {
             const questionsDiv = document.getElementById("questionsDiv");
             questionsDiv.appendChild(sentence_wait);
         }
-
     });
 
-    // Joueur : Recevoir une nouvelle question
     socket.on("newQuestion", ({ question, answers, quizz_id, question_id }) => {
         const questionsDiv = document.getElementById("questionsDiv");
-        questionsDiv.innerHTML = ""; // Vide les anciennes questions
+        questionsDiv.innerHTML = "";
 
-        // Création de la question
         const questionElement = document.createElement("p");
         questionElement.textContent = `Question : ${question}`;
         questionElement.classList.add("text-xl", "font-semibold", "text-center", "mb-4", "px-4");
         questionsDiv.appendChild(questionElement);
 
-        // Conteneur des réponses (grille 2x2, bien responsive)
         const answersContainer = document.createElement("div");
         answersContainer.classList.add("grid", "grid-cols-1", "md:grid-cols-2", "gap-4", "w-full", "max-w-2xl", "mx-auto", "px-4");
         questionsDiv.appendChild(answersContainer);
 
-        // Couleurs façon zuiq
         const zuiqColors = ["bg-red-500", "bg-blue-500", "bg-yellow-500", "bg-green-500"];
 
-        // Création des boutons de réponse
         answers.forEach((answer, index) => {
             const button = document.createElement("button");
             button.classList.add(
@@ -109,9 +97,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     });
 
-
-
-    // Fin du quizz
     socket.on("quizzEnded", async ({ quizz_id, code }) => {
         const questionsDiv = document.getElementById("questionsDiv");
         questionsDiv.innerHTML = "";
@@ -153,13 +138,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
     });
 
-    // Envoi de la réponse au serveur
     function sendResponse(answer, quizz_id, question_id) {
         if (sessionId && answer && userName) {
-
-
-
-            // Désactiver les boutons après réponse
             const allButtons = document.querySelectorAll(".buttonQuizz");
             allButtons.forEach((button) => {
                 button.classList.add("bg-gray-500", "cursor-not-allowed", "opacity-50");
@@ -170,7 +150,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             const buttonAnswer = document.getElementById(`answer-${answer - 1}`);
             buttonAnswer.style.backgroundColor = "blue";
 
-            // Message d'attente
             const sentence_wait = document.createElement("p");
             sentence_wait.id = "sentence_wait";
             sentence_wait.textContent = "En attente de la prochaine question...";
