@@ -252,7 +252,7 @@ startQuizzButton.addEventListener("click", () => {
 async function generateQRCode(code) {
     const qrCodeImage = document.createElement("img");
     await get_ip().then((ip) => {
-        fetch(`https://api.zuiq.tech/generate_qrcode?session_url=http://api.zuiq.tech/play-quizz?code_session=${code}`, {
+        fetch(`https://api.zuiq.tech/generate_qrcode?session_url=http://zuiq.tech/play-quizz?code_session=${code}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
