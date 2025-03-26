@@ -14,7 +14,7 @@ var number_connectedUsers = 0;
 document.addEventListener("DOMContentLoaded", async function () {
     await get_ip().then((ip) => {
         url = ip;
-        socket = io(`http://socket.zuiq.tech`, {
+        socket = io(`https://socket.zuiq.tech`, {
             transports: ["websocket"],
             withCredentials: true,
         });

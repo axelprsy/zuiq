@@ -16,7 +16,7 @@ var url = "";
 document.addEventListener("DOMContentLoaded", async () => {
     await get_ip().then((ip) => {
         url = ip;
-        socket = io(`http://socket.zuiq.tech`, {
+        socket = io(`https://socket.zuiq.tech`, {
             transports: ["websocket"],
             withCredentials: true,
         });
