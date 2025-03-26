@@ -11,10 +11,12 @@ let questions = [];
 
 window.numberOfQuestions = 0;
 
+// Ouvre la modal de modification de quiz (le titre)
 function openmodalQuizzModify() {
   modalQuizzModify.style.display = "flex";
 }
 
+// Ouvre la modal de modification de questions
 function openmodalQuestionsModifyModify() {
   modalQuestionsModifyModify.style.display = "flex";
   if (questions.length === 0) {
@@ -24,6 +26,7 @@ function openmodalQuestionsModifyModify() {
   updateQuestionDisplayModify();
 }
 
+// Ajoute une nouvelle question au formulaire de modification
 async function addNewQuestionModify(title, correctAnswer, rep1, rep2, rep3, rep4) {
   const questionCount = questions.length + 1;
   const questionTemplate = `
@@ -77,6 +80,7 @@ async function addNewQuestionModify(title, correctAnswer, rep1, rep2, rep3, rep4
   }, 50);
 }
 
+// Affiche la question demandé par l'utilisateur
 function updateQuestionDisplayModify() {
   questions.forEach((q, index) => {
     q.classList.remove("active_modify", "previous_modify", "next_modify");
@@ -90,6 +94,7 @@ function updateQuestionDisplayModify() {
   });
 }
 
+// Affiche le formulaire de la question suivante
 function nextQuestionModify(event) {
   event.preventDefault();
   if (currentQuestionIndexModify === questions.length - 1) {
@@ -100,6 +105,7 @@ function nextQuestionModify(event) {
   }
 }
 
+// Affiche le formulaire de la question précédente
 function prevQuestionModify(event) {
   event.preventDefault();
   if (currentQuestionIndexModify > 0) {
@@ -108,6 +114,7 @@ function prevQuestionModify(event) {
   }
 }
 
+// Ferme la modal
 closeButtonsModify.forEach((button) => {
   button.addEventListener("click", function () {
     window.location.href = "/my-quizz";

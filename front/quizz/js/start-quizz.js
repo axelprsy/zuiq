@@ -1,3 +1,4 @@
+// Récupère l'adresse IP de l'utilisateur en effectuant une requête vers l'endpoint '/get_ip' pour savoir sur quelle ip envoyé les donnés.
 async function get_ip() {
     const response = await fetch('/get_ip');
     const data = await response.json();
@@ -11,6 +12,7 @@ document.getElementById('username').innerText = `${localStorage.getItem('usernam
 var socket = null;
 var url = "";
 var number_connectedUsers = 0;
+
 document.addEventListener("DOMContentLoaded", async function () {
     await get_ip().then((ip) => {
         url = ip;
@@ -18,6 +20,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             transports: ["websocket"],
             withCredentials: true,
         });
+
+        // Récupération des joueurs connectés
         socket.on("userJoined", ({ username }) => {
             number_connectedUsers++;
             var list_connectedUsers = document.getElementById("listConnectedUsers");
@@ -29,6 +33,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             list_connectedUsers.appendChild(userElement);
 
         })
+
+        // Récupére le nombre de joueurs ayant répondu
         socket.on("userAnswered", ({ user_id }) => {
             const playerCount = document.getElementById("playerCount");
             const currentCount = playerCount.textContent.split("/")[0];
@@ -37,7 +43,11 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
     })
     const user_id = localStorage.user_id;
+
+    // Création de la session
     socket.emit("createSession", { user_id: user_id });
+
+    // Récupération du code de la session et génération du QR Code quand la session est créée
     socket.on("sessionCreated", ({ code }) => {
         sessionCodeDisplay.textContent = `Code de session : ${code}`;
         generateQRCode(code);
@@ -50,6 +60,7 @@ const connectedUsersContainer = document.getElementById("connectedUsers");
 const qrCodeContainer = document.getElementById("qrCode");
 const adminContainer = document.getElementById("admin-container");
 
+// Lorsque le bouton de lancement du quizz est cliqué, on retire l'affichage du code de session et on affiche les infos du quiz
 startQuizzButton.addEventListener("click", () => {
     adminContainer.classList.remove("flex");
     adminContainer.innerHTML = "";
@@ -101,6 +112,7 @@ startQuizzButton.addEventListener("click", () => {
 
     let currentQuestionIndex = 0;
 
+    // Chargement des questions
     async function loadQuestion() {
         nextQuestionButton.style.display = "none";
         displayAnswer.style.display = "block";
@@ -149,6 +161,7 @@ startQuizzButton.addEventListener("click", () => {
                         answersContainer.appendChild(answerBlock);
                     });
 
+                    // Envoie de la question au socket pour les utilisateurs
                     socket.emit("sendQuestion", {
                         code: code,
                         question: title,
@@ -215,6 +228,7 @@ startQuizzButton.addEventListener("click", () => {
                             });
                         });
 
+                    // Envoie de la fin du quizz au socket pour les utilisateurs
                     socket.emit("endQuizz", {
                         quizz_id: quizzId,
                         code: code
@@ -233,6 +247,7 @@ startQuizzButton.addEventListener("click", () => {
                 const question = questions[currentQuestionIndex - 1];
                 const correctAnswer = question.correct_answer;
 
+                // Envoie de la réponse correcte aux utilisateurs
                 socket.emit("answerResult", { correct_answer: correctAnswer, code: sessionCodeDisplay.textContent.split(": ")[1] });
 
                 document.querySelectorAll(".answerBlock").forEach(e => {
@@ -249,6 +264,7 @@ startQuizzButton.addEventListener("click", () => {
 
 });
 
+// Génère un QR Code permettant de rejoindre la session sur téléphone
 async function generateQRCode(code) {
     const qrCodeImage = document.createElement("img");
     await get_ip().then((ip) => {

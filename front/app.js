@@ -13,6 +13,7 @@ app.use(express.static(path.join(__dirname, 'quizz')));
 const indexRouter = require('./routes/routes.js');
 app.use('/', indexRouter);
 
+// Récupére l'adresse IP de la machine
 function getLocalIPAddress() {
   if (config_file.url != "") {
     return config_file.url;

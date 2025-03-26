@@ -1,3 +1,4 @@
+// Récupère l'adresse IP de l'utilisateur en effectuant une requête vers l'endpoint '/get_ip' pour savoir sur quelle ip envoyé les donnés.
 async function get_ip() {
     const response = await fetch('/get_ip');
     const data = await response.json();
@@ -7,6 +8,7 @@ get_ip().then((ip) => {
     url = ip;
 })
 
+// Ajoutes les informations à la Bdd
 async function addDB(title, questions) {
     const formdata = new FormData();
     formdata.append("name", title);
@@ -30,7 +32,7 @@ async function addDB(title, questions) {
         });
 }
 
-
+// Récupère les informations du formulaire
 async function recupInfoForm() {
     const numberOfQuestions = window.numberOfQuestions || document.querySelectorAll(".form-group").length;
     const title = document.getElementById("quizz_name")?.value.trim();
