@@ -97,11 +97,11 @@
         <!-- Modal pour ajouter des questions -->
         <div id="modal-questions" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
             <div
-                class="modal-content bg-[#F9F7F7] rounded-lg p-8 w-full max-w-2xl h-[90vh] relative flex flex-col justify-between">
+                class="modal-content bg-[#F9F7F7] rounded-lg p-8 w-full max-w-2xl h-[90vh] relative flex flex-col justify-between overflow-hidden">
                 <span class="close absolute top-4 right-4 text-[#112D4E] text-2xl cursor-pointer">&times;</span>
                 <h2 class="text-[#112D4E] text-2xl font-bold mb-4">Créer des Questions</h2>
 
-                <div id="question-container" class="relative h-full">
+                <div id="question-container" class="relative h-full overflow-y-auto">
                     <!-- Les questions seront générées ici -->
                 </div>
 
@@ -118,6 +118,7 @@
                 <p id="error_message" class="text-red-500 mt-2"></p>
             </div>
         </div>
+
 
         <!-- FIN DES MODAUX -->
 
