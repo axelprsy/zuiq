@@ -196,7 +196,7 @@ startQuizzButton.addEventListener("click", () => {
 
 
                             const generateExcelButton = document.createElement("button");
-                            generateExcelButton.textContent = "Générer un fichier Excel";
+                            generateExcelButton.textContent = "Générer un fichier csv";
                             generateExcelButton.classList.add("bg-green-500", "text-white", "py-2", "px-4", "rounded-lg", "mt-4", "hover:bg-green-700",);
                             generateExcelButton.style.marginRight = "10px";
                             resultsContainer.appendChild(generateExcelButton);
