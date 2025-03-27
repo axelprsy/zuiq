@@ -97,34 +97,8 @@ cd zuiq/api
 
 ---
 
-### Étape 2 : (Optionnel) Créer et activer un environnement virtuel  
-*L’utilisation d’un environnement virtuel permet d’isoler les dépendances du projet.*  
-
-#### Linux / MacOS  
-1. Créez un environnement virtuel :  
-    ```bash
-    python3 -m venv .venv
-    ```  
-2. Activez l’environnement virtuel :  
-    ```bash
-    source .venv/bin/activate
-    ```  
-
-#### Windows  
-1. Créez un environnement virtuel :  
-    ```bash
-    python -m venv .venv
-    ```  
-2. Activez l’environnement virtuel :  
-    ```bash
-    .venv\Scripts\activate
-    ```  
-
----
-
-### Étape 3 : Initialiser l’API  
-Initialisez la base de données et installez les dépendances en exécutant :  
-
+### Étape 2 : Initialiser l’API  
+Ouvrez un premier terminal, initialisez la base de données et installez les dépendances en exécutant :  
 #### Linux / MacOS  
 ```bash
 python3 init_api.py
@@ -137,7 +111,7 @@ python init_api.py
 
 ---
 
-### Étape 4 : Lancer l’API  
+### Étape 3 : Lancer l’API  
 Démarrez le serveur de l’API avec la commande suivante :  
 
 #### Linux / MacOS  
@@ -152,10 +126,10 @@ python run.py
 
 ---
 
-### Étape 5 : Lancer la seconde API (Socket.io)  
-Accédez au dossier :  
+### Étape 4 : Lancer la seconde API (Socket.io)
+Ouvrez un second terminal puis, accédez au dossier :  
 ```bash
-cd ../api_socketio
+cd zuiq/api_socketio
 ```  
 
 #### Linux / MacOS  
@@ -172,11 +146,11 @@ python run_socketio.py
 ---
 
 ## Lancer le front  
-Pour démarrer le front-end, suivez les étapes ci-dessous :  
+Pour finir lancez un troisième termianl, pour démarrer le front-end :
 
 ### Étape 1 : Accéder au répertoire du front-end  
 ```bash
-cd front
+cd zuiq/front
 ```  
 
 ### Étape 2 : Installer les dépendances  
