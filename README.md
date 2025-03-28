@@ -52,7 +52,8 @@ git clone https://github.com/axelprsy/zuiq.git
 
 ---
 
-## Option 1 (conseillée)  
+## Option 1 (Rapide et conseillée)  
+> Si l'utilisation de Docker échoue pour une raison quelconque, utilisez l'option 2 comme alternative.
 
 ### Prérequis  
 **Docker** doit être installé sur votre machine.  
@@ -79,7 +80,7 @@ sudo ./start.sh
 
 ---
 
-## Option 2 (déconseillée)  
+## Option 2 (Sûre)  
 
 ### Lancer l’API  
 Pour démarrer l’API, suivez les étapes ci-dessous en fonction de votre système d’exploitation.  
