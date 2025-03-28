@@ -38,7 +38,7 @@ class GenerateQuizz(Resource):
                             "question_id": 1,
                             "title": "[intitulé_de_la_question]",
                             "answers": ["[option_1]", "[option_2]", "[option_3]", "[option_4]"],
-                            "correct_answer": donne le numéro de la bonne réponse (1, 2, 3 ou 4)
+                            "correct_answer": donne le numéro de la l'option qui contient la bonne réponse, il faut uniquement mettre 1, 2, 3 ou 4
                         }},
                         // autres questions...
                     ]
@@ -52,6 +52,11 @@ class GenerateQuizz(Resource):
         }
         ])
         print(response.message.content)
-        quizz=json.loads(response.message.content.replace("```json", "").replace("```", ""))
+        try:
+            quizz=json.loads(response.message.content.replace("```json", "").replace("```", ""))
+        except json.JSONDecodeError:
+            print("Failed to parse JSON, retrying...")
+            return self.get()
+
         quizz["quizz"]["created_at"]=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         return jsonify({"status": 200, "quizz": quizz})
