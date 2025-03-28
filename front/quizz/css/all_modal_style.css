@@ -41,14 +41,17 @@
     opacity: 1;
     visibility: visible;
     transform: translateX(0);
+    z-index: 2;
 }
 .form-group_modify.previous_modify {
     opacity: 0;
     transform: translateX(-20%);
+    z-index: 1;
 }
 .form-group_modify.next_modify {
     opacity: 0;
     transform: translateX(20%);
+    z-index: 1;
 }
 
 
