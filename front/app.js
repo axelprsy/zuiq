@@ -33,6 +33,6 @@ function getLocalIPAddress() {
 const ip = getLocalIPAddress();
 console.log(ip);
 
-app.listen("3000", "0.0.0.0", () => {
-  console.log(`Server is running : https://${ip}:3000`);
+app.listen("3030", "0.0.0.0", () => {
+  console.log(`Server is running : https://${ip}:3030`);
 });
